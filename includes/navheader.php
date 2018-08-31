@@ -1,8 +1,8 @@
-<div class="header-nav">
-      <div class="header-nav-wrapper navbar-scrolltofixed bg-white" style="border-top:2px solid #43B14B;">
+<div class="header-nav" >
+      <div class="header-nav-wrapper navbar-scrolltofixed bg-white" style="height:50px;background-image:url(images/headerbg.png)">
         <div class="container" >
-          <nav id="menuzord" class="menuzord default menuzord-responsive">
-            <ul class="menuzord-menu">
+          <nav id="menuzord" class="menuzord default menuzord-responsive" style="height:50px; padding-top:0px;background-image:url(images/headerbg.png)">
+            <ul class="menuzord-menu" style="margin-top:-10px">
               <li><a href="index">Home</a></li>               
               <li><a href="about">About Us</a></li>
               <li><a href="facilities">Facilities</a></li>
@@ -18,10 +18,10 @@
             </ul>
             <div class="pull-right sm-pull-none mb-sm-15">
                 <form id="frmsearch">                
-                <div class="input-group" style="width:320px; margin-top:20px">
-                    <input type="text" id="search" data-height="35px" class="form-control" style="border-color:#43b14b" placeholder="Find here...">
+                <div class="input-group" style="width:320px; margin-top:8px">
+                    <input type="text" id="search" data-height="35px" class="form-control" style="border-color:#3B46B2" placeholder="Find here...">
                     <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success btn-sm m-0" data-height="35px">Search</button>
+                    <button type="submit" class="btn btn-primary btn-sm m-0" data-height="35px">Search</button>
                     </span>
                 </div>
                 </form>
