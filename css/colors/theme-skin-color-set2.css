@@ -235,9 +235,7 @@ blockquote.gray.bg-theme-colored footer {
   background-color: rgba(30, 49, 72, 0.5) !important;
 }
 /* -------- layer overlay Color ---------- */
-.layer-overlay {
-  /* .overlay-theme-colored */
-}
+
 .layer-overlay.overlay-theme-colored::before {
   background-color: rgba(30, 49, 72, 0.8) !important;
 }
@@ -898,9 +896,7 @@ blockquote.gray.bg-theme-colored2 footer {
   background-color: rgba(67, 177, 75, 0.5) !important;
 }
 /* -------- layer overlay Color ---------- */
-.layer-overlay {
-  /* .overlay-theme-colored2 */
-}
+
 .layer-overlay.overlay-theme-colored2::before {
   background-color: rgba(67, 177, 75, 0.8) !important;
 }
