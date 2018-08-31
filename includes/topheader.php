@@ -1,12 +1,12 @@
 <div class="header-top bg-theme-colored2 sm-text-center">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <div class="widget text-white">
               <ul class="list-inline xs-text-center text-white">
-                <li class="m-0 pl-10 pr-10"> <a href="#" class="text-white"><i class="fa fa-phone text-white"></i> 091-575168, 575249</a> </li>
+                <li class="m-0 pl-10 pr-10"> <a href="#" class="text-white"><i class="fa fa-phone text-white"></i>  ०९१-५२५०४०</a> </li>
                 <li class="m-0 pl-10 pr-10"> 
-                  <a href="#" class="text-white"><i class="fa fa-envelope-o text-white mr-5"></i> contact@vidyabhushan.edu.np</a> 
+                  <a href="#" class="text-white"><i class="fa fa-home text-white mr-5"></i> गौरिगंगा न.पा.-२, चौमाला, कैलाली</a> 
                 </li>
               </ul>
             </div>
@@ -20,10 +20,14 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-2">
             <ul class="list-inline sm-pull-none sm-text-center text-right text-white mb-sm-20 mt-10">
-              <li class="m-0 pl-10"><a href="admin/login" target="_blank" class="text-white"><i class="fa fa-user-o mr-5 text-white"></i> Login</a> </li>
-              
+              <li class="m-0 pl-10"><a href="admin/login" target="_blank" class="text-white">
+              <i class="fa fa-user-o mr-5 text-white"></i> लगइन</a> 
+              </li> 
+              <li class="m-0 pl-10"><a href="admin/login" target="_blank" class="text-white">
+              <i class="fa fa-envelope-o mr-5 text-white"></i> इमेल</a> 
+              </li>            
             </ul>
           </div>
         </div>

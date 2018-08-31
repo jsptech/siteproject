@@ -46,7 +46,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap; font-weight:700;">Asembly<span class="text-theme-colored2">In Groud</span>
+                  style="z-index: 5; white-space: nowrap; font-weight:700;">हाम्रा दक्ष<span class="text-theme-colored2"> शिक्षकहरु</span>
                 </div>
                 <!-- LAYER NR. 3 -->
                 <div class="tp-caption tp-resizeme text-white rs-parallaxlevel-0" 
@@ -292,7 +292,6 @@
             <div class="tp-bannertimer tp-bottom" style="height: 5px; background-color: rgba(255, 255, 255, 0.2);"></div>
           </div>
         </div>
-
         <!-- END REVOLUTION SLIDER -->
         <script type="text/javascript">
           var tpj=jQuery;

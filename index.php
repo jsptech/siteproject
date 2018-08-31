@@ -8,7 +8,7 @@
 <meta name="keywords" content="vidyabhushan" />
 <meta name="author" content="JSP" />
 <!-- Page Title -->
-<title>Home | Vidyabhushan</title>
+<title>गृह | मालिका मा.वि.</title>
 <!-- Favicon icon-->
 <link href="images/favicon.png" rel="shortcut icon" type="image/png">
 <!-- Stylesheet -->
@@ -67,34 +67,34 @@
               <img class="img-fullwidth maxwidth500" src="images/about/1.png" alt="">
             </div>
             <div class="col-md-7">
-              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30">Welcome to <span class="text-theme-colored2">Vidyabhushan</span></h2>
+              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30">विद्यालयको <span class="text-theme-colored2">परिचय</span></h2>
               <div class="double-line-bottom-theme-colored-2"></div>
-              <p style="text-align:justify">Vidya Bhusan Public School (V.B.P.S), Mohanpur, Kailali residential cum day co-educational is one of the promising Lower Secondary Level (Proposed for Secondary Level for the year-2074) academic institutions in far –western development region founded on the auspicious occasion of Sarsawati Puja (Shree Panchami) in 2064 B.S. with a motto "Quality education to lead the nation"</p>
-              <p class="hidden-md" style="text-align:justify">The institution was founded with the pledge to meet the demand of time on the field of education by imparting modern, technical, scientific and vocational method of education. The school got its affiliation form the government of Nepal, District Education Office (DEO), Kailali in 2064 to run classes in English medium. The organization has been imparting result oriented and practical based education under new management since 2072.</p>
-              <a href="about" class="btn btn-colored btn-theme-colored2 text-white btn-lg pl-40 pr-40 mt-15">Read More</a>
+              <p style="text-align:justify">कठोर राणा शासनको अन्त्यपछि नेपालभरी सर्वत्र पाठशालाहरु स्थापना हुने सिलसिला शुरु भयो । शिक्षा बहुमुखी विकासको श्रोत हो भन्ने कुरालाई हृदयङ्गम गरी यस भेकका तत्कालीन चौमाला राणा दरबारवाट सूर्य प्रकाश राणाले आफ्नै दरबारको एउटा कक्षमा   शिक्षालय स्थापना गर्न प्रेरणा  दिएको सुनिन्छ । जनश्रुति अनुसार वि.सं. २०१६  साल  श्रीपञ्चमीका  दिनदेखि  सु–सञ्चालन  गर्ने  भनी स्थानीय  शिक्षाप्रेमी  हरद्वारी  रानाको  अध्यक्षतामा र  लोक बहादुर शाहीको सेकरेटरीसीपमा गठित  पाठशाला सञ्चालन  समितिको र जनसमुदायको सहभागितामा  उक्त राणा दरवारमा भएको  बालवालिकाहरुको नामाङ्ककनबाट वर्तमान  मालिका मा.वि.  को प्रथम सोपान स्वरुप प्राइमरी पाठशाला चौमालाको जग बसेको हो भन्ने सुनिन्छ  । </p>
+              
+              <a href="about" class="btn btn-colored btn-theme-colored2 text-white btn-lg pl-40 pr-40 mt-15">पुरा पढ्नुहोस</a>
             </div>            
           </div>
         </div>
       </div>
     </section>
-
     <section>
       <div class="container pb-50">
         <div class="section-content">
           <div class="row">
             <div class="col-md-6">
-              <h3 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-calendar mr-10"></i>Latest <span class="text-theme-colored2">News & Events</span></h3>
+              <h3 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-calendar mr-10">                
+              </i>ताजा सुचाना  <span class="text-theme-colored2">तथा कार्यक्रमहरु</span></h3>
               <article>
               	<div class="event-block">
 	                <div class="event-date text-center">
 	                  <ul class="text-white font-18 font-weight-600">
-	                    <li class="border-bottom">28</li>
-	                    <li class="">Feb</li>
+	                    <li class="border-bottom">१</li>
+	                    <li class="">भाद्र</li>
 	                  </ul>
 	                </div>
 	                <div class="event-meta border-1px pl-40">
 	                  <div class="event-content pull-left flip">
-	                    <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="#">Admission Fair Spring 2017</a></h4>
+	                    <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="#">कक्षा १२ को भर्ना सम्बन्धी सुचना</a></h4>
 	                    <span class="mb-10 text-gray-darkgray mr-10"><i class="fa fa-clock-o mr-5 text-theme-colored2"></i> at 5.00 pm - 7.30 pm</span>
 	                    <span class="text-gray-darkgray"><i class="fa fa-map-marker mr-5 text-theme-colored2"></i> 25 Newyork City</span>
 	                    <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commod</p>
@@ -140,7 +140,7 @@
               </article>
             </div>
             <div class="col-md-6">
-              <h3 class="text-uppercase line-bottom-theme-colored-2 line-height-1 mt-0 mt-sm-30"><i class="fa fa-envelope"></i> Message From <span class="text-theme-colored2">Principal</span></h3>
+              <h3 class="text-uppercase line-bottom-theme-colored-2 line-height-1 mt-0 mt-sm-30"><i class="fa fa-envelope"></i> प्रध्यापकको <span class="text-theme-colored2"> भनाइ</span></h3>
               <p style="text-align:justify;"><img alt="" src="images/principal.jpg"  width="200" style="float: right; margin-left:10px">First and foremost, I would like to extend my heartfelt gratitude to all gentle people for taking V.B.P.S positively. Let me throw some lights on major specialties of the institution first. The major specialties of the institution are: child friendly environment, ample physical infrastructure, qualified and experienced teaching professionals, use of modern technology in teaching and learning procedure and highly competent and mastered promoters</P>
               <p><b>The Vidya Bhusan </b> defines its work as a service with social responsibility. Education is the third eye of human beings that eliminates ignorance and gives new insight to observe the world. It is essential not only to make one's life meaningful and successful but to lead the upcoming generation and direct them to the right path for the welfarement of human kind as a whole. We strongly believe the fact no any Nepalese should be deprived of education because this is his/her basic right.
               </p>
@@ -157,8 +157,8 @@
         <div class="section-title">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="text-uppercase title">What <span class="text-theme-colored2">Parent </span>Say</h2>              
-              <p class="text-uppercase mb-0">Parents Opinion</p>
+              <h2 class="text-uppercase title">अभिभावकको <span class="text-theme-colored2"> भनाइ </span>!</h2>              
+              
 					  	<div class="double-line-bottom-theme-colored-2"></div>
 						</div>
           </div>
