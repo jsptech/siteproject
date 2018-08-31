@@ -25,9 +25,9 @@
 <link href="css/preloader.css" rel="stylesheet" type="text/css">
 <!-- CSS | Custom Margin Padding Collection -->
 <link href="css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+<link href="css/utility-classes.css" rel="stylesheet" type="text/css">
 <!-- CSS | Responsive media queries -->
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
-
 <!-- Revolution Slider 5.x CSS settings -->
 <link  href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 <link  href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>

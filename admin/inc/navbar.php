@@ -23,7 +23,7 @@
           </ul>
         </li> 
         <li><a href="pages/index"><i class="fa fa-files-o"></i> Pages</a></li>
-        <li><a href="news"><i class="fa fa-newspaper-o"></i> News & Events</a></li>
+        <li><a href="news"><i class="fa fa-newspaper-o"></i> Contents</a></li>
         <li><a href="pages/index"><i class="fa fa-users"></i> Teachers & Staff</a></li>
       </ul>
     </section>
