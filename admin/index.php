@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php include '../includes/connection.php';
+include 'inc/functions.php';
+session_start();
+confirm_login();
+?>
 <html>
 <head>
   <meta charset="utf-8">

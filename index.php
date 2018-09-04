@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include "includes/connection.php";?>
 <html dir="ltr" lang="en">
 <head>
 <!-- Meta Tags -->
@@ -59,6 +60,10 @@
     <!-- Section: home -->
     <?php include 'includes/slidersection.php'; ?>
 <!-- Section: About -->
+  <?php 
+  $select_data = mysqli_query($con, "SELECT * FROM contents where content_id = '1'");
+  $data=mysqli_fetch_array($select_data);
+  ?>
     <section>
       <div class="container pb-70">
         <div class="section-content">
@@ -67,9 +72,9 @@
               <img class="img-fullwidth maxwidth500" src="images/about/1.png" alt="">
             </div>
             <div class="col-md-7">
-              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30">विद्यालयको <span class="text-theme-colored2">परिचय</span></h2>
+              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30"><?php echo $data[1];?>विद्यालयको <span class="text-theme-colored2">परिचय</span></h2>
               <div class="double-line-bottom-theme-colored-2"></div>
-              <p style="text-align:justify">कठोर राणा शासनको अन्त्यपछि नेपालभरी सर्वत्र पाठशालाहरु स्थापना हुने सिलसिला शुरु भयो । शिक्षा बहुमुखी विकासको श्रोत हो भन्ने कुरालाई हृदयङ्गम गरी यस भेकका तत्कालीन चौमाला राणा दरबारवाट सूर्य प्रकाश राणाले आफ्नै दरबारको एउटा कक्षमा   शिक्षालय स्थापना गर्न प्रेरणा  दिएको सुनिन्छ । जनश्रुति अनुसार वि.सं. २०१६  साल  श्रीपञ्चमीका  दिनदेखि  सु–सञ्चालन  गर्ने  भनी स्थानीय  शिक्षाप्रेमी  हरद्वारी  रानाको  अध्यक्षतामा र  लोक बहादुर शाहीको सेकरेटरीसीपमा गठित  पाठशाला सञ्चालन  समितिको र जनसमुदायको सहभागितामा  उक्त राणा दरवारमा भएको  बालवालिकाहरुको नामाङ्ककनबाट वर्तमान  मालिका मा.वि.  को प्रथम सोपान स्वरुप प्राइमरी पाठशाला चौमालाको जग बसेको हो भन्ने सुनिन्छ  । </p>
+              <p style="text-align:justify"><?php echo $data[2];?></p>
               
               <a href="about" class="btn btn-colored btn-theme-colored2 text-white btn-lg pl-40 pr-40 mt-15">पुरा पढ्नुहोस</a>
             </div>            
