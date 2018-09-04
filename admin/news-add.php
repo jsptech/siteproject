@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html><?php include '../includes/connection.php';
+include 'inc/functions.php';
+session_start();
+confirm_login();
+?>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -33,6 +38,26 @@
   <!-- Left side column. contains the logo and sidebar -->
   <?php include'inc/navbar.php'?>
   <!-- Content Wrapper. Contains page content -->
+   <?php
+   if(isset($_POST['save']))
+   {
+     $news_title = $_POST['news_title'];
+     $news_content = $_POST['news_content'];
+  
+    $fileinfo=PATHINFO($_FILES["image"]["name"]);
+    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+    move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $newFilename);
+    $location="upload/" . $newFilename;  
+    $save_query = mysqli_query($con, "INSERT INTO news_event(news_title, news_content, image_file_id, status) VALUES('{$news_title}', '{$news_content}', '{$location}', '1'");
+    //$save_query = mysqli_query($con, "INSERT INTO news_events(news_title, news_content, status) VALUES('{$news_title}', '{$news_content}', 1)");
+    if(!$save_query) die(mysqli_error($con));
+    if(mysqli_affected_rows($con)==1)
+    {
+      echo "Success";
+    }
+
+   }
+   ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -50,31 +75,31 @@
       <div class="col-xs-12">
           <div class="box">           
             <div class="box-body">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">News/Events Title *</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Example:News headline">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Example:News headline" name = "news_title">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">News/Events Slug</label>
-
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Example:News-headline">
-                  </div>
-                </div>
+               
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">News/Events Content *</label>
 
                   <div class="col-sm-10">
-                  <textarea class="textarea" id="editor1" placeholder="Place some text here"
+                  <textarea class="textarea" id="editor1" name ="news_content" placeholder="Place some text here"
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                   </div>
                 </div> 
+                <div class="form-group">
+                  <label for="image" class="col-sm-2 control-label">Image</label>
 
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="image" name ="image" >
+                  </div>
+                </div>
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
@@ -88,7 +113,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                 <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                <button type="submit" class="btn btn-info pull-right" name = "save">Save</button>
               </div>
               <!-- /.box-footer -->
             </form>
