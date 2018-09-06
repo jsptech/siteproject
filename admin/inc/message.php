@@ -1,0 +1,2 @@
+<?php if(isset($smsg)){ ?>	<div class="alert alert-success"><button class="close" data-dismiss="alert">×</button><strong>Success!</strong> <?php echo $smsg; ?></div><?php } ?>
+<?php if(isset($fmsg)){ ?>	<div class="alert alert-error"><button class="close" data-dismiss="alert">×</button><strong>Error!</strong> <?php echo $fmsg; ?></div><?php } ?>

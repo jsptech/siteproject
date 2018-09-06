@@ -19,12 +19,12 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="users/index"><i class="fa fa-users"></i> Users</a></li>
-            <li><a href="pages/index"><i class="fa fa-file-image-o"></i> Slider</a></li>            
+            <li><a href="slider-image"><i class="fa fa-file-image-o"></i> Slider</a></li>            
           </ul>
         </li> 
-        <li><a href="pages/index"><i class="fa fa-files-o"></i> Pages</a></li>
+        <li><a href="pages"><i class="fa fa-files-o"></i> Pages</a></li>
         <li><a href="news"><i class="fa fa-newspaper-o"></i> Contents</a></li>
-        <li><a href="pages/index"><i class="fa fa-users"></i> Teachers & Staff</a></li>
+        <li><a href="team-members"><i class="fa fa-users"></i> Teachers & Staff</a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
