@@ -3,6 +3,13 @@
 include 'inc/functions.php';
 session_start();
 confirm_login();
+if(isset($_GET['delete_id']))
+{
+  $delete_id = $_GET['delete_id'];
+  $delete_query = mysqli_query($con, "DELETE FROM news_events where id = '{$delete_id}'");
+  if(mysqli_affected_rows($con)==1)
+  echo "SUCCESS";
+}
 ?>
 
 <html>
@@ -53,6 +60,10 @@ confirm_login();
     </section>
     <!-- Main content -->
     <section class="content">
+    <?php 
+    $select_query = mysqli_query($con, "SELECT * FROM news_events ORDER BY id DESC");
+    
+    ?>
       <!-- Small boxes (Stat box) -->
       <div class="row">
       <div class="col-xs-12">
@@ -61,85 +72,35 @@ confirm_login();
               <table id="news" class="table table-bordered table-hover table-striped">
                 <thead>
                 <tr>
-                  <th>Thumbnail</th>
-                  <th>Title</th>
-                  <th>Details</th>
                   <th>Type</th>
+                  <th>Title</th>
+                  <th>Content</th>
+                  <th>Post By</th>
+                  <th>Post Date</th>
+                  <th>Image</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5.5</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 6
-                  </td>
-                  <td>Win 98+</td>
-                  <td>6</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet Explorer 7</td>
-                  <td>Win XP SP2+</td>
-                  <td>7</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>AOL browser (AOL desktop)</td>
-                  <td>Win XP</td>
-                  <td>6</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Firefox 1.0</td>
-                  <td>Win 98+ / OSX.2+</td>
-                  <td>1.7</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Firefox 1.5</td>
-                  <td>Win 98+ / OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Firefox 2.0</td>
-                  <td>Win 98+ / OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
+                <?php
+                while($data_news = mysqli_fetch_array($select_query))
+                {
+                  ?>
+                  <tr>
+                    <td><?php echo $data_news[1];?></td>
+                    <td><?php echo $data_news[2];?></td>
+                    <td><?php echo substr($data_news[3],0,100).'..................';?></td>
+                    <td><?php echo $data_news[5];?></td>
+                    <td><?php echo $data_news[6];?></td>
+                    <td><img src = "<?Php echo $data_news[4];?>" width=50px>
+                    
+                    <td>
+                      <a href = "?delete_id=<?php echo $data_news[0];?>"><img title = "Delete" width="30" src = "assets/img/delete_icon.png" class = "img-rounded" onclick = "if(!confirm('Are you sure want to delete this News/Event? Once Deletion No Chance of Recover.')) {return false}"></a>
+                      <a href = "news-edit?id=<?php echo $data_news[0];?>"><img title = "Update/Edit" width="30" src = "assets/img/edit.png" class = "img-rounded"></a>
+                    </td>
+                  <?php
+                } ?>
+                
                 <tr>
                   <td>Gecko</td>
                   <td>Firefox 3.0</td>
