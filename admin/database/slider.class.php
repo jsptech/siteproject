@@ -16,7 +16,7 @@
             return $stmt;
         }
 
-        public function GetById($id)
+        public function GetSlidById($id)
         {   try
             {     
                 $stmt = $this->conn->prepare("SELECT * FROM sliders WHERE id=:id");
@@ -54,13 +54,11 @@
         {
             try
             {
-                $stmt = $this->conn->prepare("UPDATE sliders SET SlidTitle=:SlidTitle, SlidSlog=:SlidSlog, SlidImage=:SlidImage WHERE Id=:Id");
-                
-                $stmt->bindparam(":Id", $Id);
+                $stmt = $this->conn->prepare("UPDATE sliders SET SlidTitle=:SlidTitle, SlidSlog=:SlidSlog, SlidImage=:SlidImage WHERE id=:id");
+                $stmt->bindparam(":id", $id);               
                 $stmt->bindparam(":SlidTitle", $SlidTitle);
                 $stmt->bindparam(":SlidSlog", $SlidSlog);
                 $stmt->bindparam(":SlidImage", $SlidImage, PDO::PARAM_LOB);
-
                 $stmt->execute();
                 return $stmt;
             }

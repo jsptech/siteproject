@@ -1,44 +1,44 @@
-<!DOCTYPE html>
-<?php include 'database/dbconfig.php';
-include 'inc/functions.php';
-session_start();
-confirm_login();
-?>
-
 <?php 
-    require_once('database/slider.class.php');
-    $slide = new SLID();
+session_start();
+require_once('database/dbconfig.php');
+require_once('inc/functions.php');
+confirm_login();
+require_once('database/slider.class.php');
 
-    if(isset($_POST['save']))
-    {
-        $SlidTitle = strip_tags($_POST['SlidTitle']);
-        $SlidSlog = strip_tags($_POST['SlidSlog']);
-        $SlidImage = fopen($_FILES['SlidImage']['tmp_name'], 'rb');
-        
-        if($SlidImage=="")	{
-            $error[] = "Provide Slider's Image !";
+$slide = new SLID();
+
+if(isset($_GET['id']))
+{
+  $id = $_GET['id'];
+  $result = $slide->GetSlidById($id);
+}   
+
+if(isset($_POST['save']))
+  {
+    $SlidTitle = strip_tags($_POST['SlidTitle']);
+    $SlidSlog = strip_tags($_POST['SlidSlog']);
+    $SlidImage = fopen($_FILES['SlidImage']['tmp_name'], 'rb'); 
+      try
+      {              
+        if($slide->UpdateSlid($id, $SlidTitle, $SlidSlog, $SlidImage))
+        {
+          $smsg = "Slider's Updated Successfully !";
+          header('Location:slider-image');
         }
         else
         {
-            try
-            {              
-                if($slide->CreateSlid($SlidTitle, $SlidSlog, $SlidImage))
-                {
-                    $smsg = "Slider's Created Successfully !";
-                }
-                else
-                {
-                    $fsmg = "Due to some problem Slider has not created";
-                }
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
+          $fsmg = "Due to some problem Slider has not created";
         }
-    }
-?>
+      }
+      catch(PDOException $e)
+      {
+        echo $e->getMessage();
+      }
+  }
 
+
+?>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -97,7 +97,8 @@ confirm_login();
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Slider's Title *</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Example:Slider's Title" name = "SlidTitle">
+                    <input type="text" class="form-control" id="inputEmail3" 
+                    placeholder="Example:Slider's Title" name = "SlidTitle" value="<?php echo $result['SlidTitle'] ?>">
                   </div>
                 </div>
                
@@ -106,21 +107,26 @@ confirm_login();
 
                   <div class="col-sm-10">
                   <textarea class="textarea" id="editor1" name ="SlidSlog" placeholder="Place some text here"
-                    style="width: 100%; height: 150px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    style="width: 100%; height: 150px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $result['SlidSlog'] ?></textarea>
                   </div>
                 </div> 
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Slider Image</label>
-
                   <div class="col-sm-10">
-                    <input type="file" class="form-control" id="image" name ="SlidImage" required="" >
+                    <input type="file" class="form-control" id="image" name ="SlidImage" required="">
                     <p>Note: Image Size must be width:1350 px, Height:600 px and Resolution:72px for best view</p>
                   </div>
-                </div>                
+                </div> 
+                <div class="form-group">
+                  <label for="image" class="col-sm-2 control-label">Old Image</label>
+                  <div class="col-sm-10">                    
+                  <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($result['SlidImage']).'" height="50" />'; ?>  
+                  </div>
+                </div>                             
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</button>
+                <a href="slider-image" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>                
                 <button type="submit" class="btn btn-success pull-right" name = "save"><i class="fa fa-floppy-o"></i> Save</button>
               </div>
               <!-- /.box-footer -->

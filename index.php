@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php include "includes/connection.php";?>
+<?php 
+include "includes/connection.php";
+?>
 <html dir="ltr" lang="en">
 <head>
 <!-- Meta Tags -->

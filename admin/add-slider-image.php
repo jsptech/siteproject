@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php include 'database/dbconfig.php';
+<?php 
+include 'database/dbconfig.php';
 include 'inc/functions.php';
 session_start();
 confirm_login();
@@ -120,7 +121,7 @@ confirm_login();
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</button>
+              <a href="slider-image" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>
                 <button type="submit" class="btn btn-success pull-right" name = "save"><i class="fa fa-floppy-o"></i> Save</button>
               </div>
               <!-- /.box-footer -->
