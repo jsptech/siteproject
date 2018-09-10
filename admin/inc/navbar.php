@@ -18,7 +18,7 @@
             </span>            
           </a>
           <ul class="treeview-menu">
-            <li><a href="users/index"><i class="fa fa-users"></i> Users</a></li>
+            <li><a href="user-list"><i class="fa fa-users"></i> Users</a></li>
             <li><a href="slider-image"><i class="fa fa-file-image-o"></i> Slider</a></li>            
           </ul>
         </li> 
