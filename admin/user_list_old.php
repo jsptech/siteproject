@@ -1,30 +1,22 @@
 <!DOCTYPE html>
-<?php include 'database/dbconfig.php';
+<?php include '../includes/connection.php';
 include 'inc/functions.php';
 session_start();
 confirm_login();
-?>
-<?php 
-  require_once('database/user.class.php');
-  $user = new USER();
-  $stmt = $user->GetAllUser("SELECT * FROM user");
-  $stmt->execute();
-?>
-<?php 
-if(isset($_GET['del']))
+if(isset($_GET['delete_id']))
 {
-  $id = $_GET['del'];
-  $user = new USER();
-  $stmt = $user->DeleteUser($id);  
-  header('Location:user_list');  
+  $delete_id = $_GET['delete_id'];
+  $delete_query = mysqli_query($con, "DELETE FROM user where id = '{$delete_id}'");
+  if(mysqli_affected_rows($con)==1)
+  echo "SUCCESS";
 }
-
 ?>
+
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Sliders</title>
+  <title>Admin Panel | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -60,7 +52,7 @@ if(isset($_GET['del']))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sliders       
+        user/Events       
       </h1>
       <ol class="breadcrumb" style="padding-top:0px;">
       <a href="user-add" class="btn btn-success"><i class="fa fa-plus"></i> Add User</a>
@@ -68,50 +60,72 @@ if(isset($_GET['del']))
     </section>
     <!-- Main content -->
     <section class="content">
+    <?php 
+    $select_query = mysqli_query($con, "SELECT * FROM user ORDER BY id DESC");
+    
+    ?>
       <!-- Small boxes (Stat box) -->
       <div class="row">
       <div class="col-xs-12">
           <div class="box">           
             <div class="box-body">
-              <table id="news" class="table table-bordered table-hover table-striped">
+              <table id="user" class="table table-bordered table-hover table-striped">
                 <thead>
                 <tr>
-                <th>SN</th>
                   <th>User Type</th>
                   <th>Name</th>
                   <th>Email ID</th>
                   <th>username</th>
                   <th>Photo</th>
-                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-
                 <?php
-                  if($stmt->rowCount() > 0)
-                  {
-                    $sn=1;
-                    while($row=$stmt->fetch(PDO::FETCH_ASSOC))
-                    {
-                      ?>
-                        <tr>
-                          <td><?php echo $sn;?></td>
-                          <td><?php echo $row['user_type'];?></td>
-                          <td><?php echo $row['Full_Name'];?></td>
-                          <td><?php echo $row['Email_id'];?></td>
-                          <td><?php echo $row['username'];?></td>
-                          <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['photo']).'" height="50" />'; ?></td>
-                          
-                          <td>
-                          <a class="btn btn-warning btn-sm" href="user-edit?id=<?php echo $row['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
-                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $row['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
-                          </td>
-                        </tr>
-                      <?php
-                      $sn++;
-                    }
-                  }
-                ?>             
+                while($data_user = mysqli_fetch_array($select_query))
+                {
+                  ?>
+                  <tr>
+                    <td><?php echo $data_user[5];?></td>
+                    <td><?php echo $data_user[1];?></td>
+                    <td><?php echo $data_user[2];?></td>
+                    <td><?php echo $data_user[3];?></td>
+                    <td><img src = "<?Php echo $data_user[6];?>" width=50px>
+                    
+                    <td>
+                      <a href = "?delete_id=<?php echo $data_user[0];?>"><img title = "Delete" width="30" src = "assets/img/delete_icon.png" class = "img-rounded" onclick = "if(!confirm('Are you sure want to delete this user/Event? Once Deletion No Chance of Recover.')) {return false}"></a>
+                      <a href = "user-edit?id=<?php echo $data_user[0];?>"><img title = "Update/Edit" width="30" src = "assets/img/edit.png" class = "img-rounded"></a>
+                    </td>
+                  <?php
+                } ?>
+                
+                <tr>
+                  <td>Gecko</td>
+                  <td>Firefox 3.0</td>
+                  <td>Win 2k+ / OSX.3+</td>
+                  <td>1.9</td>
+                  <td>A</td>
+                </tr>
+                <tr>
+                  <td>Gecko</td>
+                  <td>Camino 1.0</td>
+                  <td>OSX.2+</td>
+                  <td>1.8</td>
+                  <td>A</td>
+                </tr>
+                <tr>
+                  <td>Gecko</td>
+                  <td>Camino 1.5</td>
+                  <td>OSX.3+</td>
+                  <td>1.8</td>
+                  <td>A</td>
+                </tr>                
+                <tr>
+                  <td>Other browsers</td>
+                  <td>All others</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>U</td>
+                </tr>
                 </tbody>                
               </table>
             </div>
@@ -165,7 +179,7 @@ if(isset($_GET['del']))
 <script src="assets/js/dataTables.bootstrap.min.js"></script>
 <script>
   $(function () {
-    $('#news').DataTable()
+    $('#user').DataTable()
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
