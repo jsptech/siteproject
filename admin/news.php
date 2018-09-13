@@ -102,37 +102,10 @@ if(isset($_GET['del']))
                         <a class="btn btn-warning btn-sm" href="news-edit?id=<?php echo $data_news['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="?del=<?php echo $data_news['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
                         </td>
-                      <?php
-                    } } ?>
-                    
-                    <tr>
-                  <td>Gecko</td>
-                  <td>Firefox 3.0</td>
-                  <td>Win 2k+ / OSX.3+</td>
-                  <td>1.9</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Camino 1.0</td>
-                  <td>OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Camino 1.5</td>
-                  <td>OSX.3+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>                
-                <tr>
-                  <td>Other browsers</td>
-                  <td>All others</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>U</td>
-                </tr>
+                      </tr>
+                    <?php
+                    } 
+                  } ?>
                 </tbody>                
               </table>
             </div>

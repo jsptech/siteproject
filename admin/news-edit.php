@@ -1,4 +1,5 @@
-<!DOCTYPE html><?php include '../includes/connection.php';
+<!DOCTYPE html>
+<?php include '../includes/connection.php';
 include 'inc/functions.php';
 session_start();
 confirm_login();
@@ -57,14 +58,13 @@ if(isset($_GET['id']))
       $type = strip_tags($_POST['type']);
       $news_title = strip_tags($_POST['news_title']);
       $news_content = strip_tags($_POST['news_content']);
-      $image = fopen($_FILES['image']['tmp_name'], 'rb');
+      $photo = fopen($_FILES['image']['tmp_name'], 'rb');
       $posted_by = $_SESSION['username'];
-      $date  = date("y/m/d h:i:sa");	
-      $status = 1;
-      echo 1;
+      $posted_date  = date("y/m/d h:i:sa");	
+      $status = 1;      
         try
         {              
-          if($news_event->UpdateNews($id, $type, $news_title, $news_content, $image, $posted_by, $date, $status))
+          if($news_event->UpdateNews($id, $type, $news_title, $news_content, $photo, $posted_by, $posted_date, $status))
           {
             $smsg = "News Updated Successfully !";
             //header('Location:user_list');
@@ -98,6 +98,7 @@ if(isset($_GET['id']))
       <div class="col-xs-12">
           <div class="box">           
             <div class="box-body">
+            <?php include 'inc/message.php';?>
             <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
               <div class="box-body">
               <div class="form-group">
