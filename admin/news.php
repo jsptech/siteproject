@@ -3,15 +3,20 @@
 include 'inc/functions.php';
 session_start();
 confirm_login();
-if(isset($_GET['delete_id']))
+ 
+  require_once('database/news_event.class.php');
+  $news_event = new NEWS_EVENT();
+  $stmt = $news_event->GetAllNews_Event("SELECT * FROM news_events ORDER BY id DESC");
+  $stmt->execute();
+
+if(isset($_GET['del']))
 {
-  $delete_id = $_GET['delete_id'];
-  $delete_query = mysqli_query($con, "DELETE FROM news_events where id = '{$delete_id}'");
-  if(mysqli_affected_rows($con)==1)
-  echo "SUCCESS";
+  $id = $_GET['del'];
+  $news_event = new NEWS_EVENT();
+  $stmt = $news_event->DeleteNews_Event($id);  
+  header('Location:news'); 
 }
 ?>
-
 <html>
 <head>
   <meta charset="utf-8">
@@ -60,10 +65,7 @@ if(isset($_GET['delete_id']))
     </section>
     <!-- Main content -->
     <section class="content">
-    <?php 
-    $select_query = mysqli_query($con, "SELECT * FROM news_events ORDER BY id DESC");
     
-    ?>
       <!-- Small boxes (Stat box) -->
       <div class="row">
       <div class="col-xs-12">
@@ -83,25 +85,27 @@ if(isset($_GET['delete_id']))
                 </thead>
                 <tbody>
                 <?php
-                while($data_news = mysqli_fetch_array($select_query))
-                {
-                  ?>
-                  <tr>
-                    <td><?php echo $data_news[1];?></td>
-                    <td><?php echo $data_news[2];?></td>
-                    <td><?php echo substr($data_news[3],0,100).'..................';?></td>
-                    <td><?php echo $data_news[5];?></td>
-                    <td><?php echo $data_news[6];?></td>
-                    <td><img src = "<?Php echo $data_news[4];?>" width=50px>
+                if($stmt->rowCount() > 0)
+                  {
+                    $sn=1;
+                    while($data_news=$stmt->fetch(PDO::FETCH_ASSOC))
+                    { ?>
+                      <tr>
+                        <td><?php echo $data_news['news_event'];?></td>
+                        <td><?php echo $data_news['news_title'];?></td>
+                        <td><?php echo substr($data_news['news_content'],0,100).'..................';?></td>
+                        <td><?php echo $data_news['posted_by'];?></td>
+                        <td><?php echo $data_news['posted_date'];?></td>
+                        <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_news['image_file']).'" height="50" />'; ?></td>
+                        
+                        <td>
+                        <a class="btn btn-warning btn-sm" href="news-edit?id=<?php echo $data_news['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
+                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $data_news['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
+                        </td>
+                      <?php
+                    } } ?>
                     
-                    <td>
-                      <a href = "?delete_id=<?php echo $data_news[0];?>"><img title = "Delete" width="30" src = "assets/img/delete_icon.png" class = "img-rounded" onclick = "if(!confirm('Are you sure want to delete this News/Event? Once Deletion No Chance of Recover.')) {return false}"></a>
-                      <a href = "news-edit?id=<?php echo $data_news[0];?>"><img title = "Update/Edit" width="30" src = "assets/img/edit.png" class = "img-rounded"></a>
-                    </td>
-                  <?php
-                } ?>
-                
-                <tr>
+                    <tr>
                   <td>Gecko</td>
                   <td>Firefox 3.0</td>
                   <td>Win 2k+ / OSX.3+</td>

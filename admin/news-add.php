@@ -41,21 +41,39 @@ date_default_timezone_set("Asia/Kathmandu");
   <?php include'inc/navbar.php'?>
   <!-- Content Wrapper. Contains page content -->
    <?php
-   $date  = date("y/m/d h:i:sa");	
+   require_once('database/news_event.class.php');
+   $news_event = new NEWS_EVENT();
+   
    if(isset($_POST['save']))
    {
-      $type = $_POST['type'];
-     $news_title = $_POST['news_title'];
-     $news_content = $_POST['news_content'];
-  
-    $fileinfo=PATHINFO($_FILES["image"]["name"]);
-    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-    move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $newFilename);
-    $location="upload/" . $newFilename;  
-    $save_query = mysqli_query($con, "INSERT INTO news_events(news_event, news_title, news_content, image_file_id, posted_by, posted_date, statuss) VALUES('{$type}', '{$news_title}', '{$news_content}', '{$location}', '{$_SESSION['username']}', '{$date}', 1)");
-    //if(!$save_query) die(mysqli_error($con));
-    if(mysqli_affected_rows($con)==1)
-    $msg=1;
+      $type = strip_tags($_POST['type']);
+      
+      $news_title = strip_tags($_POST['news_title']);
+      $news_content = strip_tags($_POST['news_content']);
+      $image = fopen($_FILES['image']['tmp_name'], 'rb');
+      $posted_by = $_SESSION['username'];
+      $date  = date("y/m/d h:i:sa");	
+      $status = 1;
+
+      try
+            {              
+                if($news_event->save_news($type, $news_title, $news_content, $image, $posted_by, $date, $status ))
+                {
+                    $smsg = "News/Events Created Successfully !";
+                }
+                else
+                {
+                    $fsmg = "Due to some problem News has not created";
+                }
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+      //$save_query = mysqli_query($con, "INSERT INTO news_events(news_event, news_title, news_content, image_file_id, posted_by, posted_date, statuss) VALUES('{$type}', '{$news_title}', '{$news_content}', '{$location}', '{$_SESSION['username']}', '{$date}', 1)");
+      //if(!$save_query) die(mysqli_error($con));
+     // if(mysqli_affected_rows($con)==1)
+      //$msg=1;
 
    }
    ?>
@@ -79,18 +97,9 @@ date_default_timezone_set("Asia/Kathmandu");
       
           <div class="box">           
             <div class="box-body">
-            <?PHP
-                if(ISSET($msg))
-                {
-                  ?>
-                <div class="alert alert-success">
-                  <strong>Success!</strong> News/Event is successfully saved.
-                </div>
-                <?php
-                }
-              ?>
-            <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
+             <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
               <div class="box-body">
+              <?php include 'inc/message.php';?>
               <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Type</label>
 

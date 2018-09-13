@@ -3,6 +3,15 @@ include 'inc/functions.php';
 session_start();
 confirm_login();
 date_default_timezone_set("Asia/Kathmandu");
+require_once('database/news_event.class.php');
+
+$news_event = new NEWS_EVENT();
+
+if(isset($_GET['id']))
+{
+  $id = $_GET['id'];
+  $data_news = $news_event->GetNewsById($id);
+}   
 
 ?>
 
@@ -42,25 +51,33 @@ date_default_timezone_set("Asia/Kathmandu");
   <!-- Content Wrapper. Contains page content -->
    <?php
    $date  = date("y/m/d h:i:sa");
-   echo "Helo";	
+   //echo "Helo";	
    if(isset($_POST['save']))
    {
-    
-        $type = $_POST['type'];
-        $news_title = $_POST['news_title'];
-        $news_content = $_POST['news_content'];
-        
-        $fileinfo=PATHINFO($_FILES["image"]["name"]);
-        $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-        move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $newFilename);
-        $location="upload/" . $newFilename;  
-        $save_query = mysqli_query($con, "UPDATE news_events set news_event = '{$type}', news_title = '{$news_title}', news_content = '{$news_content}', image_file_id = '{$location}', posted_by = '{$_SESSION['username']}', posted_date = '{$date}}' where id = '{$_GET['id']}' "); 
-        //$save_query = mysqli_query($con, "INSERT INTO news_events(news_event, news_title, news_content, image_file_id, posted_by, posted_date, statuss) VALUES('{$type}', '{$news_title}', '{$news_content}', '{$location}', '{$_SESSION['username']}', '{$date}', 1)");
-        //$msg=1;
-        if(!$save_query) die(mysqli_error($con));
-        if(mysqli_affected_rows($con)==1)
-        $msg=1;
-
+      $type = strip_tags($_POST['type']);
+      $news_title = strip_tags($_POST['news_title']);
+      $news_content = strip_tags($_POST['news_content']);
+      $image = fopen($_FILES['image']['tmp_name'], 'rb');
+      $posted_by = $_SESSION['username'];
+      $date  = date("y/m/d h:i:sa");	
+      $status = 1;
+      echo 1;
+        try
+        {              
+          if($news_event->UpdateNews($id, $type, $news_title, $news_content, $image, $posted_by, $date, $status))
+          {
+            $smsg = "News Updated Successfully !";
+            //header('Location:user_list');
+          }
+          else
+          {
+            $fsmg = "Due to some problem news is not updated";
+          }
+        }
+        catch(PDOException $e)
+        {
+          echo $e->getMessage();
+        }
    }
    ?>
   <div class="content-wrapper">
@@ -81,19 +98,6 @@ date_default_timezone_set("Asia/Kathmandu");
       <div class="col-xs-12">
           <div class="box">           
             <div class="box-body">
-            <?PHP
-                if(ISSET($msg))
-                {
-                  ?>
-                <div class="alert alert-success">
-                  <strong>Success!</strong> News/Event is successfully Updated.
-                </div>
-                <?php
-                }
-                $select_data=mysqli_query($con, "SELECT * FROM news_events where id = '{$_GET['id']}'");
-                $data_news=mysqli_fetch_array($select_data);
-                
-              ?>
             <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
               <div class="box-body">
               <div class="form-group">
@@ -101,8 +105,8 @@ date_default_timezone_set("Asia/Kathmandu");
 
                   <div class="col-sm-10">
                     <select name = "type" class="form-control">
-                      <option <?php if($data_news[1]=='News') echo 'SELECTED';?>>News</option>
-                      <option <?php if($data_news[1]=='Events') echo 'SELECTED';?>>Events</option>
+                      <option <?php if($data_news['news_event']=='News') echo 'SELECTED';?>>News</option>
+                      <option <?php if($data_news['news_event']=='Events') echo 'SELECTED';?>>Events</option>
                     </select>
                     
                   </div>
@@ -111,7 +115,7 @@ date_default_timezone_set("Asia/Kathmandu");
                   <label for="inputEmail3" class="col-sm-2 control-label">News/Events Title *</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Example:News headline" name = "news_title" value = '<?php echo $data_news[2];?>'>
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Example:News headline" name = "news_title" value = '<?php echo $data_news['news_title'];?>'>
                   </div>
                 </div>
                
@@ -120,7 +124,7 @@ date_default_timezone_set("Asia/Kathmandu");
 
                   <div class="col-sm-10">
                   <textarea class="textarea" id="editor1" name ="news_content" placeholder="Place some text here"
-                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $data_news[3];?></textarea>
+                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $data_news['news_content'];?></textarea>
                   </div>
                 </div> 
                 <div class="form-group">
@@ -128,6 +132,12 @@ date_default_timezone_set("Asia/Kathmandu");
 
                   <div class="col-sm-10">
                     <input type="file" class="form-control" id="image" name ="image" >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="image" class="col-sm-2 control-label">Old Image</label>
+                  <div class="col-sm-10">                    
+                  <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_news['image_file']).'" height="80" />'; ?>  
                   </div>
                 </div>
                 
