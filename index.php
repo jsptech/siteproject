@@ -63,7 +63,7 @@ include "includes/connection.php";
     <?php include 'includes/slidersection.php'; ?>
 <!-- Section: About -->
   <?php 
-  $select_data = mysqli_query($con, "SELECT * FROM contents where content_id = '1'");
+  $select_data = mysqli_query($con, "SELECT * FROM contents where id = '5'");
   $data=mysqli_fetch_array($select_data);
   ?>
     <section>
@@ -74,9 +74,9 @@ include "includes/connection.php";
               <img class="img-fullwidth maxwidth500" src="images/about/1.png" alt="">
             </div>
             <div class="col-md-7">
-              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30"><?php echo $data[1];?>विद्यालयको <span class="text-theme-colored2">परिचय</span></h2>
+              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30"><?php echo $data[2];?>विद्यालयको <span class="text-theme-colored2">परिचय</span></h2>
               <div class="double-line-bottom-theme-colored-2"></div>
-              <p style="text-align:justify"><?php echo $data[2];?></p>
+              <p style="text-align:justify"><?php echo $data[3];?></p>
               
               <a href="about" class="btn btn-colored btn-theme-colored2 text-white btn-lg pl-40 pr-40 mt-15">पुरा पढ्नुहोस</a>
             </div>            
