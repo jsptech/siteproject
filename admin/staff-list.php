@@ -60,7 +60,7 @@ if(isset($_GET['del']))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sliders       
+        Staffs      
       </h1>
       <ol class="breadcrumb" style="padding-top:0px;">
       <a href="staff-add" class="btn btn-success"><i class="fa fa-plus"></i> Add Staff</a>
@@ -83,9 +83,7 @@ if(isset($_GET['del']))
                   <th>Qualification</th>
                   <th>Mobile</th>
                   <th>Description</th>
-                  <th>Facebook Link</th>
-                  <th>Twitter Link</th>
-                  <th>Google Link</th>
+                  
                   <th>Photo</th>
                   <th>Action</th>
                 </tr>
@@ -107,9 +105,6 @@ if(isset($_GET['del']))
                           <td><?php echo $row['qualification'];?></td>
                           <td><?php echo $row['mobile'];?></td>
                           <td><?php echo $row['description'];?></td>
-                          <td><?php echo $row['facebook_link'];?></td>
-                          <td><?php echo $row['twitter_link'];?></td>
-                          <td><?php echo $row['google_link'];?></td>
                           <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['photo']).'" height="50" />'; ?></td>
                           
                           <td>
