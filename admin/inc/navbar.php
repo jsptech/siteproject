@@ -4,11 +4,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="index">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>            
-          </a>          
-        </li>
+        <li class="treeview"><a href="index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-gear"></i>
@@ -22,8 +18,8 @@
             <li><a href="slider-image"><i class="fa fa-file-image-o"></i> Slider</a></li>            
           </ul>
         </li> 
-        <li><a href="pages"><i class="fa fa-files-o"></i> Pages</a></li>
-        <li><a href="news"><i class="fa fa-newspaper-o"></i> Contents</a></li>
+        <li><a href="news"><i class="fa fa-files-o"></i> News & Events</a></li>
+        <li><a href="content-list"><i class="fa fa-newspaper-o"></i> Contents</a></li>
         <li><a href="team-members"><i class="fa fa-users"></i> Teachers & Staff</a></li>
       </ul>
     </section>

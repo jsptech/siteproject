@@ -46,10 +46,9 @@ date_default_timezone_set("Asia/Kathmandu");
    
    if(isset($_POST['save']))
    {
-      $type = strip_tags($_POST['type']);
-      
+      $type = strip_tags($_POST['type']);      
       $news_title = strip_tags($_POST['news_title']);
-      $news_content = strip_tags($_POST['news_content']);
+      $news_content = $_POST['news_content'];
       $image = fopen($_FILES['image']['tmp_name'], 'rb');
       $posted_by = $_SESSION['username'];
       $date  = date("y/m/d h:i:sa");	
