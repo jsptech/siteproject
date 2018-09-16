@@ -4,10 +4,14 @@ include 'inc/functions.php';
 session_start();
 confirm_login();
 date_default_timezone_set("Asia/Kathmandu");
+
+require_once('database/pages.class.php');
+$pages = new PAGE();
+$pstmt = $pages->GetAllpages("SELECT * FROM pages ORDER BY id");
+$pstmt->execute();
+
 require_once('database/content.class.php');
-
 $content = new CONTENT();
-
 if(isset($_GET['id']))
 {
   $id = $_GET['id'];
@@ -82,10 +86,10 @@ if(isset($_GET['id']))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>      
-        News & Events
+        Content
       </h1>  
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="news" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
+      <a href="content-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
       </ol>    
     </section>
     <!-- Main content -->
@@ -100,14 +104,18 @@ if(isset($_GET['id']))
             <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
               <div class="box-body">
               <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">ID</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Page</label>
 
                   <div class="col-sm-10">
                     <select name = "page_id" class="form-control">
                     <?php
-                        for($i=1;$i<=10;$i++) {?>
-                        <option <?php if($data_content['PageId']==$i) echo 'SELECTED';?>><?php echo $i; ?></option>
-                        <?php } ?>
+                        while($data_pages=$pstmt->fetch(PDO::FETCH_ASSOC)) 
+                        { 
+                          ?>
+                           <option value = "<?Php echo $data_pages['id'];?>"<?php if($data_pages['id']==$data_content['PageId']) echo "SELECTED";?>><?php echo $data_pages['page_name'];?></option>
+                        <?php
+                         }
+                        ?>
                     </select>
                     
                   </div>

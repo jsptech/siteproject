@@ -41,42 +41,44 @@ date_default_timezone_set("Asia/Kathmandu");
   <?php include'inc/navbar.php'?>
   <!-- Content Wrapper. Contains page content -->
    <?php
-  	require_once('database/user.class.php');
-      $user = new USER();
+   require_once('database/message.class.php');
+   $message = new MESSAGE();
+   
    if(isset($_POST['save']))
    {
-        $user_type = strip_tags($_POST['user_type']);
-        $Full_Name = strip_tags($_POST['Full_Name']);
-        $Email_ID = strip_tags($_POST['Email_ID']);
-        $user_name = strip_tags($_POST['user_name']);
-        $password = sha1(strip_tags($_POST['password']));
-        $SlidImage = fopen($_FILES['image']['tmp_name'], 'rb');
-        $status = 1;
-        try
+      $post = strip_tags($_POST['post']);
+      $full_name = strip_tags($_POST['full_name']);
+      $address = strip_tags($_POST['address']);
+      $message_detail = $_POST['message'];
+      $image = fopen($_FILES['image']['tmp_name'], 'rb');
+      $status = 1;
+
+      try
             {              
-                if($user->save_user($user_type, $Full_Name, $Email_ID, $user_name, $password, $SlidImage, $status ))
+                if($message->save_message($post, $full_name, $address, $message_detail, $image, $status))
                 {
-                    $smsg = "User Created Successfully !";
+                    $smsg = "Message Created Successfully !";
                 }
                 else
                 {
-                    $fsmg = "Due to some problem Slider has not created";
+                    $fsmg = "Due to some problem Message has not created";
                 }
             }
             catch(PDOException $e)
             {
                 echo $e->getMessage();
             }
+     
    }
    ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>      
-        User
+        Messages
       </h1>  
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="user-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
+      <a href="message" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
       </ol>    
     </section>
     <!-- Main content -->
@@ -89,49 +91,49 @@ date_default_timezone_set("Asia/Kathmandu");
       
           <div class="box">           
             <div class="box-body">
-            <?php include 'inc/message.php';?>
-            <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
+             <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
               <div class="box-body">
+              <?php include 'inc/message.php';?>
               <div class="form-group">
-                  <label for="user_type" class="col-sm-2 control-label">Type</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Post</label>
 
                   <div class="col-sm-10">
-                    <select name = "user_type" class="form-control">
-                      <option>Admin</option>
-                      <option>User</option>
+                    <select name = "post" class="form-control">
+                      <option>Principal</option>
+                      <option>Vice-Principal</option>
+                      <option>Chairman</option>
+                      <option>Vice-Chairman</option>
+                      <option>Teacher</option>
+                      <option>Guardian</option>
+                      <option>Ex. Student</option>
+                      <option>Student</option>
                     </select>
                     
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="Full_Name" class="col-sm-2 control-label">Full Name *</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Full Name *</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Full_Name" placeholder="" name = "Full_Name">
+                    <input type="text" class="form-control" id="full_name" name = "full_name">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="Email_ID" class="col-sm-2 control-label">Email ID *</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Address *</label>
 
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="Email_ID" placeholder="" name = "Email_ID">
+                    <input type="text" class="form-control" id="address" name = "address">
                   </div>
                 </div>
+               
                 <div class="form-group">
-                  <label for="user_name" class="col-sm-2 control-label">User Name *</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Message Content *</label>
 
                   <div class="col-sm-10">
-                    <input type="user_name" class="form-control" id="user_name" placeholder="" name = "user_name">
+                  <textarea class="textarea" id="editor1" name ="message" placeholder="Place some text here"
+                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="password" class="col-sm-2 control-label">Password *</label>
-
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="" name = "password">
-                  </div>
-                </div>
-                
+                </div> 
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Image</label>
 

@@ -85,7 +85,7 @@ if(isset($_POST['save']))
         Edit User
       </h1>  
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="user_list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
+      <a href="user-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
       </ol>    
     </section>
     <!-- Main content -->

@@ -4,17 +4,17 @@ include 'inc/functions.php';
 session_start();
 confirm_login();
  
-  require_once('database/content.class.php');
-  $content = new CONTENT();
-  $stmt = $content->GetAllContent("SELECT * FROM contents ORDER BY PageId");
+  require_once('database/message.class.php');
+  $message = new Message();
+  $stmt = $message->GetAllMessage("SELECT * FROM messages ORDER BY id DESC");
   $stmt->execute();
 
 if(isset($_GET['del']))
 {
   $id = $_GET['del'];
-  $content = new CONTENT();
-  $stmt = $content->DeleteContent($id);  
-  header('Location:content-list'); 
+  $message = new MESSAGE();
+  $stmt = $message->DeleteMessage($id);  
+  header('Location:message'); 
 }
 ?>
 <html>
@@ -57,10 +57,10 @@ if(isset($_GET['del']))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Content Page       
+        Messages       
       </h1>
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="content-add" class="btn btn-success"><i class="fa fa-plus"></i> Add Content</a>
+      <a href="message-add" class="btn btn-success"><i class="fa fa-plus"></i> Add Message</a>
       </ol>
     </section>
     <!-- Main content -->
@@ -74,11 +74,12 @@ if(isset($_GET['del']))
               <table id="news" class="table table-bordered table-hover table-striped">
                 <thead>
                 <tr>
-                <th>SN</th>
-                  <th>Page ID</th>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Photo</th>
+                  <th>SN</th>
+                  <th>Post</th>
+                  <th>Full Name</th>
+                  <th>Address</th>
+                  <th>Message</th>
+                  <th>photo</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -87,18 +88,19 @@ if(isset($_GET['del']))
                 if($stmt->rowCount() > 0)
                   {
                     $sn=1;
-                    while($data_content=$stmt->fetch(PDO::FETCH_ASSOC))
+                    while($data_message=$stmt->fetch(PDO::FETCH_ASSOC))
                     { ?>
                       <tr>
                         <td><?php echo $sn;?></td>
-                        <td><?php echo $data_content['PageId'];?></td>
-                        <td><?php echo $data_content['title'];?></td>
-                        <td><?php echo substr($data_content['Description'],0,100).'..................';?></td>
-                        <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_content['photo']).'" height="50" />'; ?></td>
+                        <td><?php echo $data_message['post'];?></td>
+                        <td><?php echo $data_message['full_name'];?></td>
+                        <td><?php echo $data_message['address'];?></td>
+                        <td><?php echo substr($data_message['message'],0,100).'..................';?></td>
+                        <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_message['photo']).'" height="50" />'; ?></td>
                         
                         <td>
-                        <a class="btn btn-warning btn-sm" href="content-edit?id=<?php echo $data_content['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
-                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $data_content['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
+                        <a class="btn btn-warning btn-sm" href="message-edit?id=<?php echo $data_message['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
+                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $data_message['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
                         </td>
                       </tr>
                     <?php

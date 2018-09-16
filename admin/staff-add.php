@@ -41,26 +41,30 @@ date_default_timezone_set("Asia/Kathmandu");
   <?php include'inc/navbar.php'?>
   <!-- Content Wrapper. Contains page content -->
    <?php
-  	require_once('database/user.class.php');
-      $user = new USER();
+  	require_once('database/staff.class.php');
+      $staff = new STAFF();
    if(isset($_POST['save']))
    {
-        $user_type = strip_tags($_POST['user_type']);
-        $Full_Name = strip_tags($_POST['Full_Name']);
-        $Email_ID = strip_tags($_POST['Email_ID']);
-        $user_name = strip_tags($_POST['user_name']);
-        $password = sha1(strip_tags($_POST['password']));
-        $SlidImage = fopen($_FILES['image']['tmp_name'], 'rb');
-        $status = 1;
+        $type = strip_tags($_POST['type']);
+        $name = strip_tags($_POST['name']);
+        $designation = strip_tags($_POST['designation']);
+        $qualification = strip_tags($_POST['qualification']);
+        $mobile = strip_tags($_POST['mobile']);
+        $description = strip_tags($_POST['description']);
+        $facebook_link = strip_tags($_POST['facebook_link']);
+        $twitter_link = strip_tags($_POST['twitter_link']);
+        $google_link = strip_tags($_POST['google_link']);
+        $photo = fopen($_FILES['image']['tmp_name'], 'rb');
+        
         try
             {              
-                if($user->save_user($user_type, $Full_Name, $Email_ID, $user_name, $password, $SlidImage, $status ))
+                if($staff->save_staff($type, $name, $designation, $qualification, $mobile, $description, $facebook_link, $twitter_link, $google_link, $photo))
                 {
-                    $smsg = "User Created Successfully !";
+                    $smsg = "Staff Created Successfully !";
                 }
                 else
                 {
-                    $fsmg = "Due to some problem Slider has not created";
+                    $fsmg = "Due to some problem Staff has not created";
                 }
             }
             catch(PDOException $e)
@@ -73,10 +77,10 @@ date_default_timezone_set("Asia/Kathmandu");
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>      
-        User
+        Staff
       </h1>  
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="user-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
+      <a href="staff-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
       </ol>    
     </section>
     <!-- Main content -->
@@ -89,49 +93,78 @@ date_default_timezone_set("Asia/Kathmandu");
       
           <div class="box">           
             <div class="box-body">
-            <?php include 'inc/message.php';?>
+            
             <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
               <div class="box-body">
+              <?php include 'inc/message.php';?>
               <div class="form-group">
-                  <label for="user_type" class="col-sm-2 control-label">Type</label>
+                  <label for="type" class="col-sm-2 control-label">Type</label>
 
                   <div class="col-sm-10">
-                    <select name = "user_type" class="form-control">
-                      <option>Admin</option>
-                      <option>User</option>
+                    <select name = "type" class="form-control">
+                      <option>Teaching Staff</option>
+                      <option>Non-Teaching Staff</option>
                     </select>
                     
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="Full_Name" class="col-sm-2 control-label">Full Name *</label>
+                  <label for="name" class="col-sm-2 control-label">Full Name *</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Full_Name" placeholder="" name = "Full_Name">
+                    <input type="text" class="form-control" id="name" placeholder="" name = "name">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="Email_ID" class="col-sm-2 control-label">Email ID *</label>
+                  <label for="designation" class="col-sm-2 control-label">Designation *</label>
 
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="Email_ID" placeholder="" name = "Email_ID">
+                    <input type="text" class="form-control" id="designation" placeholder="" name = "designation">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="user_name" class="col-sm-2 control-label">User Name *</label>
+                  <label for="qualification" class="col-sm-2 control-label">Qualification *</label>
 
                   <div class="col-sm-10">
-                    <input type="user_name" class="form-control" id="user_name" placeholder="" name = "user_name">
+                    <input type="text" class="form-control" id="qualification" placeholder="" name = "qualification">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="password" class="col-sm-2 control-label">Password *</label>
+                  <label for="mobile" class="col-sm-2 control-label">Mobile No. *</label>
 
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="" name = "password">
+                    <input type="text" class="form-control" id="mobile" placeholder="" name = "mobile">
                   </div>
                 </div>
-                
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Description *</label>
+
+                  <div class="col-sm-10">
+                  <textarea class="textarea" id="editor" name ="description" placeholder="Place some text here"
+                    style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="facebook_link" class="col-sm-2 control-label">Facebook Link *</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="facebook_link" placeholder="" name = "facebook_link">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="twitter_link" class="col-sm-2 control-label">Twitter Link *</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="twitter_link" placeholder="" name = "twitter_link">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="google_link" class="col-sm-2 control-label">Google Link *</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="google_link" placeholder="" name = "google_link">
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Image</label>
 

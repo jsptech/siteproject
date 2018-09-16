@@ -41,6 +41,12 @@ date_default_timezone_set("Asia/Kathmandu");
   <?php include'inc/navbar.php'?>
   <!-- Content Wrapper. Contains page content -->
    <?php
+    require_once('database/pages.class.php');
+    $pages = new PAGE();
+    $pstmt = $pages->GetAllpages("SELECT * FROM pages ORDER BY id");
+    $pstmt->execute();
+
+
    require_once('database/content.class.php');
    $content = new CONTENT();
    
@@ -67,12 +73,10 @@ date_default_timezone_set("Asia/Kathmandu");
             {
                 echo $e->getMessage();
             }
-      //$save_query = mysqli_query($con, "INSERT INTO news_events(news_event, news_title, news_content, image_file_id, posted_by, posted_date, statuss) VALUES('{$type}', '{$news_title}', '{$news_content}', '{$location}', '{$_SESSION['username']}', '{$date}', 1)");
-      //if(!$save_query) die(mysqli_error($con));
-     // if(mysqli_affected_rows($con)==1)
-      //$msg=1;
+     
 
    }
+   $menu =array("About Us", )
    ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -98,13 +102,17 @@ date_default_timezone_set("Asia/Kathmandu");
               <div class="box-body">
               <?php include 'inc/message.php';?>
               <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Page ID</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Page</label>
 
                   <div class="col-sm-10">
                     <select name = "page_id" class="form-control">
                       <?php 
-                        for($i=1; $i<=10;$i++)
-                            echo "<option>".$i."</option>";
+                        while($data_pages=$pstmt->fetch(PDO::FETCH_ASSOC))
+                          {
+                            ?>
+                              <option value = "<?Php echo $data_pages['id'];?>"><?php echo $data_pages['page_name'];?></option>
+                            <?php
+                          }
                         ?>
                     </select>
                     
