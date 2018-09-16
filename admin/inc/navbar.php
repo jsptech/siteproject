@@ -18,9 +18,10 @@
             <li><a href="slider-image"><i class="fa fa-file-image-o"></i> Slider</a></li>            
           </ul>
         </li> 
+        <li><a href="message"><i class="fa fa-files-o"></i> Messages</a></li>
         <li><a href="news"><i class="fa fa-files-o"></i> News & Events</a></li>
         <li><a href="content-list"><i class="fa fa-newspaper-o"></i> Contents</a></li>
-        <li><a href="team-members"><i class="fa fa-users"></i> Teachers & Staff</a></li>
+        <li><a href="staff-list"><i class="fa fa-users"></i> Teachers & Staff</a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
