@@ -22,7 +22,7 @@
         <li><a href="news"><i class="fa fa-files-o"></i> News & Events</a></li>
         <li><a href="content-list"><i class="fa fa-newspaper-o"></i> Contents</a></li>
         <li><a href="staff-list"><i class="fa fa-users"></i> Teachers & Staff</a></li>
-<<<<<<< HEAD
+
         <li><a href="message"><i class="fa fa-users"></i> Messages</a></li>
 
         <li class="treeview">
@@ -38,8 +38,6 @@
             <li><a href="Photo-list"><i class="fa fa-file-image-o"></i> Photo</a></li>            
           </ul>
         </li> 
-=======
->>>>>>> 6b9a842a167d8e608fd7723e99e02dfca93ffb88
       </ul>
     </section>
     <!-- /.sidebar -->
