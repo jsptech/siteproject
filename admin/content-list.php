@@ -91,7 +91,12 @@ if(isset($_GET['del']))
                     { ?>
                       <tr>
                         <td><?php echo $sn;?></td>
-                        <td><?php echo $data_content['PageId'];?></td>
+                        <?php 
+                           require_once('database/pages.class.php');
+                           $page = new PAGE();
+                           $result = $page->GetPageById($data_content['PageId']);
+                           ?>
+                        <td><?php echo $result['page_name'] ?></td>
                         <td><?php echo $data_content['title'];?></td>
                         <td><?php echo substr($data_content['Description'],0,100).'..................';?></td>
                         <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_content['photo']).'" height="50" />'; ?></td>

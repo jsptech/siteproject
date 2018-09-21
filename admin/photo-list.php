@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<?php include 'database/dbconfig.php';
+<?php include '../includes/connection.php';
 include 'inc/functions.php';
 session_start();
 confirm_login();
-?>
-<?php 
-  require_once('database/user.class.php');
-  $user = new USER();
-  $stmt = $user->GetAllUser("SELECT * FROM user");
+ 
+  require_once('database/photo.class.php');
+  $photo = new PHOTO();
+  $stmt = $photo->GetAllPhoto("SELECT * FROM photo_store ORDER BY id desc");
   $stmt->execute();
-?>
-<?php 
+
 if(isset($_GET['del']))
 {
   $id = $_GET['del'];
-  $user = new USER();
-  $stmt = $user->DeleteUser($id);  
-  header('Location:user_list');  
+  $photo = new PHOTO();
+  $stmt = $photo->DeletePhoto($id);  
+  header('Location:photo-list'); 
 }
-
 ?>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Users</title>
+  <title>Admin Panel | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -60,14 +57,15 @@ if(isset($_GET['del']))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Users      
+        Photo List     
       </h1>
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="user-add" class="btn btn-success"><i class="fa fa-plus"></i> Add User</a>
+      <a href="photo-add" class="btn btn-success"><i class="fa fa-plus"></i> Add Photo</a>
       </ol>
     </section>
     <!-- Main content -->
     <section class="content">
+    
       <!-- Small boxes (Stat box) -->
       <div class="row">
       <div class="col-xs-12">
@@ -77,41 +75,41 @@ if(isset($_GET['del']))
                 <thead>
                 <tr>
                 <th>SN</th>
-                  <th>User Type</th>
-                  <th>Name</th>
-                  <th>Email ID</th>
-                  <th>username</th>
+                  <th>Album</th>
+                  <th>Title</th>
+                  <th>Description</th>
                   <th>Photo</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-
                 <?php
-                  if($stmt->rowCount() > 0)
+                if($stmt->rowCount() > 0)
                   {
                     $sn=1;
-                    while($row=$stmt->fetch(PDO::FETCH_ASSOC))
-                    {
-                      ?>
-                        <tr>
-                          <td><?php echo $sn;?></td>
-                          <td><?php echo $row['user_type'];?></td>
-                          <td><?php echo $row['Full_Name'];?></td>
-                          <td><?php echo $row['Email_id'];?></td>
-                          <td><?php echo $row['username'];?></td>
-                          <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['photo']).'" height="50" />'; ?></td>
-                          
-                          <td>
-                          <a class="btn btn-warning btn-sm" href="user-edit?id=<?php echo $row['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
-                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $row['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
-                          </td>
-                        </tr>
-                      <?php
-                      $sn++;
-                    }
-                  }
-                ?>             
+                    while($data_photo=$stmt->fetch(PDO::FETCH_ASSOC))
+                    { ?>
+                      <tr>
+                        <td><?php echo $sn;?></td>
+                           <?php 
+                           require_once('database/album.class.php');
+                           $album = new ALBUM();
+                           $result = $album->GetAlbumById($data_photo['album_id']);
+                           ?>
+                        <td><?php echo $result['album_name'] ?></td>
+                        <td><?php echo $data_photo['photo_name'];?></td>
+                        <td><?php echo substr($data_photo['description'],0,100).'..................';?></td>
+                        <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_photo['photo']).'" height="50" />'; ?></td>
+                        
+                        <td>
+                        <a class="btn btn-warning btn-sm" href="photo-edit?id=<?php echo $data_photo['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
+                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $data_photo['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
+                        </td>
+                      </tr>
+                    <?php
+                    $sn++;
+                    } 
+                  } ?>
                 </tbody>                
               </table>
             </div>

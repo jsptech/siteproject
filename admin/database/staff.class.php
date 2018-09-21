@@ -75,11 +75,11 @@
             } 
         }
 
-        public function UpdateStaff($id, $type, $name, $designation, $qualification, $mobile, $description, $facebook_link, $twitter_link, $google_link, $photo)
+        public function UpdateStaff($id, $type, $name, $designation, $qualification, $mobile, $description, $facebook_link, $twitter_link, $google_link)
         {
             try
             {
-                $stmt = $this->conn->prepare("UPDATE staffteachers SET type=:type, full_name=:name, designation=:designation, qualification=:qualification, mobile=:mobile, description=:description, facebook_link=:facebook_link, twitter_link=:twitter_link, google_link=:google_link,  photo=:photo WHERE id=:id");
+                $stmt = $this->conn->prepare("UPDATE staffteachers SET type=:type, full_name=:name, designation=:designation, qualification=:qualification, mobile=:mobile, description=:description, facebook_link=:facebook_link, twitter_link=:twitter_link, google_link=:google_link WHERE id=:id");
                 $stmt->bindparam(":id", $id);               
                 $stmt->bindparam(":type", $type);
                 $stmt->bindparam(":name", $name);
@@ -90,7 +90,7 @@
                 $stmt->bindparam(":facebook_link", $facebook_link);
                 $stmt->bindparam(":twitter_link", $twitter_link);
                 $stmt->bindparam(":google_link", $google_link);
-                $stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
+                //$stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
                 $stmt->execute();
                 echo 1;
                 return $stmt;

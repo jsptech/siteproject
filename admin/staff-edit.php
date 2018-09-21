@@ -24,10 +24,10 @@ if(isset($_POST['save']))
         $facebook_link = strip_tags($_POST['facebook_link']);
         $twitter_link = strip_tags($_POST['twitter_link']);
         $google_link = strip_tags($_POST['google_link']);
-        $photo = fopen($_FILES['image']['tmp_name'], 'rb');
+        //$photo = fopen($_FILES['image']['tmp_name'], 'rb');
       try
       {              
-        if($staff->UpdateStaff($id, $type, $name, $designation, $qualification, $mobile, $description, $facebook_link, $twitter_link, $google_link, $photo))
+        if($staff->UpdateStaff($id, $type, $name, $designation, $qualification, $mobile, $description, $facebook_link, $twitter_link, $google_link))
         {
           $smsg = "Staff's Updated Successfully !";
           //header('Location:user_list');
@@ -168,14 +168,15 @@ if(isset($_POST['save']))
                     <input type="text" class="form-control" id="google_link" placeholder="" name = "google_link" value = '<?php echo $result['google_link'];?>'>
                     </div>
                     </div>
+                    <!--
                     <div class="form-group">
                     <label for="image" class="col-sm-2 control-label">Image</label>
 
                     <div class="col-sm-10">
                     <input type="file" class="form-control" id="image" name ="image" >
                     </div>
-                    </div>
-                <div class="form-group">
+                    </div>-->
+                   <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Old Image</label>
                   <div class="col-sm-10">                    
                   <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($result['photo']).'" height="80" />'; ?>  

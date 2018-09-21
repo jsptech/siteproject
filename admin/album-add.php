@@ -1,16 +1,53 @@
-<!DOCTYPE html><?php include '../includes/connection.php';
+<!DOCTYPE html>
+<?php 
+include 'database/dbconfig.php';
 include 'inc/functions.php';
 session_start();
 confirm_login();
-date_default_timezone_set("Asia/Kathmandu");
+?>
 
+<?php 
+    require_once('database/album.class.php');
+    $album = new ALBUM();
+
+    if(isset($_POST['save']))
+    {
+        $album_title = strip_tags($_POST['album_title']);
+       
+        $abc = $album->CheckAlbumIfExists("SELECT * FROM album where album_name = '{$album_title}'");
+        $abc->execute();
+       
+        if($abc->rowCount() == 0)
+        {
+            try
+            {              
+                if($album->CreateAlbum($album_title))
+                {
+                    $smsg = "Album Created Successfully !";
+                }
+                else
+                {
+                    $fsmg = "Due to some problem Album has not created";
+                }
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
+        else
+        {
+           
+            $fmsg = "The name you entered already exists. So please try again.";
+        }
+    }
 ?>
 
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Add User</title>
+  <title>Admin Panel | Add Album</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -40,111 +77,40 @@ date_default_timezone_set("Asia/Kathmandu");
   <!-- Left side column. contains the logo and sidebar -->
   <?php include'inc/navbar.php'?>
   <!-- Content Wrapper. Contains page content -->
-   <?php
-  	require_once('database/user.class.php');
-      $user = new USER();
-   if(isset($_POST['save']))
-   {
-        $user_type = strip_tags($_POST['user_type']);
-        $Full_Name = strip_tags($_POST['Full_Name']);
-        $Email_ID = strip_tags($_POST['Email_ID']);
-        $user_name = strip_tags($_POST['user_name']);
-        $password = sha1(strip_tags($_POST['password']));
-        $SlidImage = fopen($_FILES['image']['tmp_name'], 'rb');
-        $status = 1;
-        try
-            {              
-                if($user->save_user($user_type, $Full_Name, $Email_ID, $user_name, $password, $SlidImage, $status ))
-                {
-                    $smsg = "User Created Successfully !";
-                }
-                else
-                {
-                    $fsmg = "Due to some problem Slider has not created";
-                }
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
-   }
-   ?>
+   
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>      
-        User
+        Add Album
       </h1>  
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="user-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
+      <a href="album-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
       </ol>    
     </section>
     <!-- Main content -->
-    
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      
       <div class="row">
       <div class="col-xs-12">
-      
           <div class="box">           
             <div class="box-body">
-            <?php include 'inc/message.php';?>
-            <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
+            <form class="form-horizontal" action="" method="post"  enctype="multipart/form-data">
               <div class="box-body">
-              <div class="form-group">
-                  <label for="user_type" class="col-sm-2 control-label">Type</label>
-
-                  <div class="col-sm-10">
-                    <select name = "user_type" class="form-control">
-                      <option>Admin</option>
-                      <option>User</option>
-                    </select>
-                    
-                  </div>
-                </div>
+              <?php include 'inc/message.php';?>
                 <div class="form-group">
-                  <label for="Full_Name" class="col-sm-2 control-label">Full Name *</label>
-
+                  <label for="inputEmail3" class="col-sm-2 control-label">Album Title *</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Full_Name" placeholder="" name = "Full_Name">
+                    <input type="text" class="form-control" id="inputEmail3" name = "album_title">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="Email_ID" class="col-sm-2 control-label">Email ID *</label>
-
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="Email_ID" placeholder="" name = "Email_ID">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="user_name" class="col-sm-2 control-label">User Name *</label>
-
-                  <div class="col-sm-10">
-                    <input type="user_name" class="form-control" id="user_name" placeholder="" name = "user_name">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="password" class="col-sm-2 control-label">Password *</label>
-
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="" name = "password">
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="image" class="col-sm-2 control-label">Image</label>
-
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="image" name ="image" >
-                  </div>
-                </div>
-                
+               
+                           
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <a href="user-list" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>
-                <button type="submit" class="btn btn-info pull-right" name = "save">Save</button>
+              <a href="album-list" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>
+                <button type="submit" class="btn btn-success pull-right" name = "save"><i class="fa fa-floppy-o"></i> Save</button>
               </div>
               <!-- /.box-footer -->
             </form>
@@ -206,3 +172,6 @@ date_default_timezone_set("Asia/Kathmandu");
 </script>
 </body>
 </html>
+
+
+

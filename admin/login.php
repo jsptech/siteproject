@@ -48,6 +48,7 @@ IF(ISSET($_SESSION['username']))
           $_SESSION['username']=$user_name;
           $_SESSION['user_type']=$data_user[5];
           $_SESSION['name']=$data_user[1];
+          $_SESSION['user_id']=$data_user[0];
           //$_SESSION['rm']=$data_user[7];
           if(isset($_POST['remember_me']))
           {

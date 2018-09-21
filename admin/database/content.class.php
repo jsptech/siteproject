@@ -73,17 +73,17 @@
             } 
         }
 
-        public function UpdateContent($id, $page_id, $tile, $description, $photo, $status)
+        public function UpdateContent($id, $page_id, $tile, $description, $status)
         {
         
             try
             {
-                $stmt = $this->conn->prepare("UPDATE contents SET PageId=:page_id, title=:tile, Description=:description, photo=:photo, status=:status WHERE id=:id");
+                $stmt = $this->conn->prepare("UPDATE contents SET PageId=:page_id, title=:tile, Description=:description, status=:status WHERE id=:id");
                 $stmt->bindparam(":id", $id, PDO::PARAM_INT);               
                 $stmt->bindparam(":page_id", $page_id);
                 $stmt->bindparam(":tile", $tile);
                 $stmt->bindparam(":description", $description);
-                $stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
+                //$stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
                 $stmt->bindparam(":status", $status);
                 $stmt->execute();                
                 return $stmt;

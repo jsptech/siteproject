@@ -20,11 +20,11 @@ if(isset($_POST['save']))
     $Email_ID = strip_tags($_POST['Email_ID']);
     $user_name = strip_tags($_POST['user_name']);
     $password = sha1(strip_tags($_POST['password']));
-    $SlidImage = fopen($_FILES['image']['tmp_name'], 'rb');
+    //$SlidImage = fopen($_FILES['image']['tmp_name'], 'rb');
     $status = 1;
       try
       {              
-        if($user->UpdateUser($id, $user_type, $Full_Name, $Email_ID, $user_name, $password, $SlidImage, $status))
+        if($user->UpdateUser($id, $user_type, $Full_Name, $Email_ID, $user_name, $password, $status))
         {
           $smsg = "User's Updated Successfully !";
           //header('Location:user_list');
@@ -47,7 +47,7 @@ if(isset($_POST['save']))
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Edit Sliders</title>
+  <title>Admin Panel | Edit User</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -137,14 +137,14 @@ if(isset($_POST['save']))
                     <input type="password" class="form-control" id="password" placeholder="" name = "password" value = '<?php echo $result['Full_Name'];?>'>
                   </div>
                 </div>
-                
+                <!--
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Image</label>
 
                   <div class="col-sm-10">
                     <input type="file" class="form-control" id="image" name ="image" >
                   </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Old Image</label>
                   <div class="col-sm-10">                    
@@ -157,7 +157,7 @@ if(isset($_POST['save']))
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <a href="user_list" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>                
+                <a href="user-list" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>                
                 <button type="submit" class="btn btn-success pull-right" name = "save"><i class="fa fa-floppy-o"></i> Save</button>
               </div>
               <!-- /.box-footer -->

@@ -15,7 +15,7 @@ $content = new CONTENT();
 if(isset($_GET['id']))
 {
   $id = $_GET['id'];
-  $data_content = $content->GetContentById($id);
+  
 }   
 
 ?>
@@ -62,11 +62,11 @@ if(isset($_GET['id']))
     $page_id = strip_tags($_POST['page_id']);
     $title = strip_tags($_POST['title']);
     $description = $_POST['description'];
-    $photo = fopen($_FILES['image']['tmp_name'], 'rb');
+    //$photo = fopen($_FILES['image']['tmp_name'], 'rb');
     $status = 1;
         try
         {              
-          if($content->UpdateContent($id, $page_id, $title, $description, $photo, $status))
+          if($content->UpdateContent($id, $page_id, $title, $description, $status))
           {
             $smsg = "Content Updated Successfully !";
             //header('Location:user_list');
@@ -81,6 +81,7 @@ if(isset($_GET['id']))
           echo $e->getMessage();
         }
    }
+   $data_content = $content->GetContentById($id);
    ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -136,13 +137,14 @@ if(isset($_GET['id']))
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $data_content['Description'];?></textarea>
                   </div>
                 </div> 
+                <!--
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Image</label>
 
                   <div class="col-sm-10">
                     <input type="file" class="form-control" id="image" name ="image" >
                   </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Old Image</label>
                   <div class="col-sm-10">                    

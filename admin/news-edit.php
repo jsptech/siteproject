@@ -11,7 +11,7 @@ $news_event = new NEWS_EVENT();
 if(isset($_GET['id']))
 {
   $id = $_GET['id'];
-  $data_news = $news_event->GetNewsById($id);
+  
 }   
 
 ?>
@@ -58,13 +58,13 @@ if(isset($_GET['id']))
       $type = strip_tags($_POST['type']);
       $news_title = strip_tags($_POST['news_title']);
       $news_content = strip_tags($_POST['news_content']);
-      $photo = fopen($_FILES['image']['tmp_name'], 'rb');
+      //$photo = fopen($_FILES['image']['tmp_name'], 'rb');
       $posted_by = $_SESSION['username'];
       $posted_date  = date("y/m/d h:i:sa");	
       $status = 1;      
         try
         {              
-          if($news_event->UpdateNews($id, $type, $news_title, $news_content, $photo, $posted_by, $posted_date, $status))
+          if($news_event->UpdateNews($id, $type, $news_title, $news_content, $posted_by, $posted_date, $status))
           {
             $smsg = "News Updated Successfully !";
             //header('Location:user_list');
@@ -79,6 +79,7 @@ if(isset($_GET['id']))
           echo $e->getMessage();
         }
    }
+   $data_news = $news_event->GetNewsById($id);
    ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -128,13 +129,14 @@ if(isset($_GET['id']))
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $data_news['news_content'];?></textarea>
                   </div>
                 </div> 
+                <!--
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Image</label>
 
                   <div class="col-sm-10">
                     <input type="file" class="form-control" id="image" name ="image" >
                   </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Old Image</label>
                   <div class="col-sm-10">                    

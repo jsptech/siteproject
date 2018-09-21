@@ -75,18 +75,18 @@
             } 
         }
 
-        public function UpdateUser($id, $user_type, $name, $email_id, $username, $password, $photo, $status)
+        public function UpdateUser($id, $user_type, $name, $email_id, $username, $password, $status)
         {
             try
             {
-                $stmt = $this->conn->prepare("UPDATE user SET Full_Name=:Full_Name, Email_id=:Email_id, username=:username, password=:password, user_type=:user_type, photo=:photo, status=:status  WHERE id=:id");
+                $stmt = $this->conn->prepare("UPDATE user SET Full_Name=:Full_Name, Email_id=:Email_id, username=:username, password=:password, user_type=:user_type, status=:status  WHERE id=:id");
                 $stmt->bindparam(":id", $id);               
                 $stmt->bindparam(":Full_Name", $name);
                 $stmt->bindparam(":Email_id", $email_id);
                 $stmt->bindparam(":username", $username);
                 $stmt->bindparam(":password", $password);
                 $stmt->bindparam(":user_type", $user_type);
-                $stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
+                //$stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
                 $stmt->bindparam(":status", $status);
                 $stmt->execute();
                 echo 1;
@@ -97,6 +97,8 @@
                 echo $e->getMessage();
             }
         }
+
+    
     }
 ?>
    

@@ -75,17 +75,17 @@
             } 
         }
 
-        public function UpdateNews($id, $type, $news_title, $news_content, $photo, $posted_by, $posted_date, $status)
+        public function UpdateNews($id, $type, $news_title, $news_content, $posted_by, $posted_date, $status)
         {
         
             try
             {
-                $stmt = $this->conn->prepare("UPDATE news_events SET news_event=:news_event, news_title=:news_title, news_content=:news_content, image_file=:photo, posted_by=:posted_by, posted_date=:posted_date, statuss=:statuss WHERE id=:id");
+                $stmt = $this->conn->prepare("UPDATE news_events SET news_event=:news_event, news_title=:news_title, news_content=:news_content, posted_by=:posted_by, posted_date=:posted_date, statuss=:statuss WHERE id=:id");
                 $stmt->bindparam(":id", $id, PDO::PARAM_INT);               
                 $stmt->bindparam(":news_event", $type);
                 $stmt->bindparam(":news_title", $news_title);
                 $stmt->bindparam(":news_content", $news_content);
-                $stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
+                //$stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
                 $stmt->bindparam(":posted_by", $posted_by);
                 $stmt->bindparam(":posted_date", $posted_date);
                 $stmt->bindparam(":statuss", $status);

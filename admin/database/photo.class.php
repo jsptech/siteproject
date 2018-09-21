@@ -1,8 +1,8 @@
 <?php
    require_once('dbconfig.php');
-    class MESSAGE
+    class PHOTO
     {
-        private $post, $full_name, $address, $message_detail, $photo, $status;
+        private $album_id, $photo_name, $description, $photo;
         private $conn;
         public function __construct()
         {
@@ -10,17 +10,19 @@
             $db = $database->dbConnection();
             $this->conn = $db;
         }
-        public function save_message($post, $full_name, $address, $message_detail, $photo, $status)
+        public function save_photo($album_id, $photo_name, $description, $photo)
         {
+            //$this->user_type = $user_type;
+            //$this->name = $name;
+            //echo $this->name;
             try{
-                $stmt = $this->conn->prepare("INSERT INTO messages(post, full_name, address, message, photo, status) 
-                                                                   VALUES(:post, :full_name, :address, :message_detail, :photo, :status)");
-                $stmt->bindparam(":post", $post);
-                $stmt->bindparam(":full_name", $full_name);
-                $stmt->bindparam(":address", $address);
-                $stmt->bindparam(":message_detail", $message_detail);
+                $stmt = $this->conn->prepare("INSERT INTO photo_store(album_id, photo_name, description, photo) 
+                                                                   VALUES(:album_id, :photo_name, :description, :photo)");
+                $stmt->bindparam(":album_id", $album_id);
+                $stmt->bindparam(":photo_name", $photo_name);
+                $stmt->bindparam(":description", $description);
                 $stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
-                $stmt->bindparam(":status", $status);
+                
                 
                 $stmt->execute();
                 return $stmt;
@@ -35,17 +37,17 @@
                
         }
 
-        public function GetAllMessage($sql)
+        public function GetAllPhoto($sql)
         {
             $stmt = $this->conn->prepare($sql);
             return $stmt;
         }
 
-        public function DeleteMessage($id)
+        public function DeletePhoto($id)
         {
             try
             {
-                $stmt = $this->conn->prepare("DELETE FROM messages WHERE id=:id");                
+                $stmt = $this->conn->prepare("DELETE FROM photo_store WHERE id=:id");                
                 $stmt->bindparam(":id", $id);
                 $stmt->execute();
                 return $stmt;
@@ -56,10 +58,10 @@
             }
         }
 
-        public function GetMessageById($id)
+        public function GetPhotoById($id)
         {   try
             {     
-                $stmt = $this->conn->prepare("SELECT * FROM messages WHERE id=:id");
+                $stmt = $this->conn->prepare("SELECT * FROM photo_store WHERE id=:id");
                 $stmt->bindparam(":id", $id);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -71,19 +73,17 @@
             } 
         }
 
-        public function UpdateMessage($id, $post, $full_name, $address, $message_detail, $status)
+        public function UpdatePhoto($id, $album_id, $photo_name, $description)
         {
         
             try
             {
-                $stmt = $this->conn->prepare("UPDATE messages SET post=:post, full_name=:full_name, address=:address, message=:message_detail, status=:status WHERE id=:id");
+                $stmt = $this->conn->prepare("UPDATE photo_store SET album_id=:album_id, photo_name=:photo_name, description=:description WHERE id=:id");
                 $stmt->bindparam(":id", $id, PDO::PARAM_INT);               
-                $stmt->bindparam(":post", $post);
-                $stmt->bindparam(":full_name", $full_name);
-                $stmt->bindparam(":address", $address);
-                $stmt->bindparam(":message_detail", $message_detail);
+                $stmt->bindparam(":album_id", $album_id);
+                $stmt->bindparam(":photo_name", $photo_name);
+                $stmt->bindparam(":description", $description);
                 //$stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
-                $stmt->bindparam(":status", $status);
                 $stmt->execute();                
                 return $stmt;
             }

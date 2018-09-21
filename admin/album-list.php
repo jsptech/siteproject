@@ -5,18 +5,18 @@ session_start();
 confirm_login();
 ?>
 <?php 
-  require_once('database/user.class.php');
-  $user = new USER();
-  $stmt = $user->GetAllUser("SELECT * FROM user");
+  require_once('database/album.class.php');
+  $album = new ALBUM();
+  $stmt = $album->GetAllAlbum("SELECT * FROM album");
   $stmt->execute();
 ?>
 <?php 
 if(isset($_GET['del']))
 {
   $id = $_GET['del'];
-  $user = new USER();
-  $stmt = $user->DeleteUser($id);  
-  header('Location:user_list');  
+  $album = new ALBUM();
+  $stmt = $album->DeleteAlbum($id);  
+  header('Location:album-list');  
 }
 
 ?>
@@ -24,7 +24,7 @@ if(isset($_GET['del']))
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Users</title>
+  <title>Admin Panel | Albums</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -60,10 +60,10 @@ if(isset($_GET['del']))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Users      
+        Photo Albums       
       </h1>
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="user-add" class="btn btn-success"><i class="fa fa-plus"></i> Add User</a>
+      <a href="album-add" class="btn btn-success"><i class="fa fa-plus"></i> Add Album</a>
       </ol>
     </section>
     <!-- Main content -->
@@ -76,13 +76,9 @@ if(isset($_GET['del']))
               <table id="news" class="table table-bordered table-hover table-striped">
                 <thead>
                 <tr>
-                <th>SN</th>
-                  <th>User Type</th>
-                  <th>Name</th>
-                  <th>Email ID</th>
-                  <th>username</th>
-                  <th>Photo</th>
-                  <th>Action</th>
+                  <th>Album Name</th>
+                  <th>No. of Photos</th>
+                  <th width="105">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,25 +86,18 @@ if(isset($_GET['del']))
                 <?php
                   if($stmt->rowCount() > 0)
                   {
-                    $sn=1;
                     while($row=$stmt->fetch(PDO::FETCH_ASSOC))
                     {
                       ?>
                         <tr>
-                          <td><?php echo $sn;?></td>
-                          <td><?php echo $row['user_type'];?></td>
-                          <td><?php echo $row['Full_Name'];?></td>
-                          <td><?php echo $row['Email_id'];?></td>
-                          <td><?php echo $row['username'];?></td>
-                          <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['photo']).'" height="50" />'; ?></td>
-                          
+                          <td><?php echo $row['album_name'];?></td>
+                          <td>0</td>
                           <td>
-                          <a class="btn btn-warning btn-sm" href="user-edit?id=<?php echo $row['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
+                          <a class="btn btn-warning btn-sm" href="album-edit?id=<?php echo $row['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="?del=<?php echo $row['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
                           </td>
                         </tr>
                       <?php
-                      $sn++;
                     }
                   }
                 ?>             

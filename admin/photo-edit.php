@@ -1,8 +1,22 @@
-<!DOCTYPE html><?php include '../includes/connection.php';
+<!DOCTYPE html>
+<?php include '../includes/connection.php';
 include 'inc/functions.php';
 session_start();
 confirm_login();
 date_default_timezone_set("Asia/Kathmandu");
+
+require_once('database/album.class.php');
+$album = new ALBUM();
+$pstmt = $album->GetAllAlbum("SELECT * FROM album ORDER BY id");
+$pstmt->execute();
+
+require_once('database/photo.class.php');
+$photo = new PHOTO();
+if(isset($_GET['id']))
+{
+  $id = $_GET['id'];
+  
+}   
 
 ?>
 
@@ -10,7 +24,7 @@ date_default_timezone_set("Asia/Kathmandu");
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Add User</title>
+  <title>Admin Panel | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -41,110 +55,109 @@ date_default_timezone_set("Asia/Kathmandu");
   <?php include'inc/navbar.php'?>
   <!-- Content Wrapper. Contains page content -->
    <?php
-  	require_once('database/user.class.php');
-      $user = new USER();
+   $date  = date("y/m/d h:i:sa");
+   //echo "Helo";	
    if(isset($_POST['save']))
    {
-        $user_type = strip_tags($_POST['user_type']);
-        $Full_Name = strip_tags($_POST['Full_Name']);
-        $Email_ID = strip_tags($_POST['Email_ID']);
-        $user_name = strip_tags($_POST['user_name']);
-        $password = sha1(strip_tags($_POST['password']));
-        $SlidImage = fopen($_FILES['image']['tmp_name'], 'rb');
-        $status = 1;
+     $album_id = strip_tags($_POST['album_id']);
+      $photo_name = strip_tags($_POST['photo_name']);
+      $description = $_POST['description'];
+      
+    //$photo = fopen($_FILES['image']['tmp_name'], 'rb');
+    
         try
-            {              
-                if($user->save_user($user_type, $Full_Name, $Email_ID, $user_name, $password, $SlidImage, $status ))
-                {
-                    $smsg = "User Created Successfully !";
-                }
-                else
-                {
-                    $fsmg = "Due to some problem Slider has not created";
-                }
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
+        {              
+          if($photo->UpdatePhoto($id, $album_id, $photo_name, $description))
+          {
+            $smsg = "Photo Updated Successfully !";
+            //header('Location:user_list');
+          }
+          else
+          {
+            $fsmg = "Due to some problem Photo is not updated";
+          }
+        }
+        catch(PDOException $e)
+        {
+          echo $e->getMessage();
+        }
    }
+   $data_photo = $photo->GetPhotoById($id);
    ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>      
-        User
+        Content
       </h1>  
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="user-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
+      <a href="photo-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
       </ol>    
     </section>
     <!-- Main content -->
-    
+   
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      
       <div class="row">
       <div class="col-xs-12">
-      
           <div class="box">           
             <div class="box-body">
             <?php include 'inc/message.php';?>
             <form class="form-horizontal" action="<?Php $_SERVER['PHP_SELF']?>" method="post"  enctype="multipart/form-data">
               <div class="box-body">
               <div class="form-group">
-                  <label for="user_type" class="col-sm-2 control-label">Type</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Album</label>
 
                   <div class="col-sm-10">
-                    <select name = "user_type" class="form-control">
-                      <option>Admin</option>
-                      <option>User</option>
+                    <select name = "album_id" class="form-control">
+                    <?php
+                        while($data_album=$pstmt->fetch(PDO::FETCH_ASSOC)) 
+                        { 
+                          ?>
+                           <option value = "<?Php echo $data_album['id'];?>"<?php if($data_album['id']==$data_photo['album_id']) echo "SELECTED";?>><?php echo $data_album['album_name'];?></option>
+                        <?php
+                         }
+                        ?>
                     </select>
                     
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="Full_Name" class="col-sm-2 control-label">Full Name *</label>
+                  <label for="title" class="col-sm-2 control-label">Title *</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Full_Name" placeholder="" name = "Full_Name">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Example:News headline" name = "photo_name" value = '<?php echo $data_photo['photo_name'];?>'>
                   </div>
                 </div>
+               
                 <div class="form-group">
-                  <label for="Email_ID" class="col-sm-2 control-label">Email ID *</label>
+                  <label for="description" class="col-sm-2 control-label">Description *</label>
 
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="Email_ID" placeholder="" name = "Email_ID">
+                  <textarea class="textarea" id="editor1" name ="description" placeholder="Place some text here"
+                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $data_photo['description'];?></textarea>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="user_name" class="col-sm-2 control-label">User Name *</label>
-
-                  <div class="col-sm-10">
-                    <input type="user_name" class="form-control" id="user_name" placeholder="" name = "user_name">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="password" class="col-sm-2 control-label">Password *</label>
-
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="" name = "password">
-                  </div>
-                </div>
-                
+                </div> 
+                <!--
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Image</label>
 
                   <div class="col-sm-10">
                     <input type="file" class="form-control" id="image" name ="image" >
                   </div>
+                </div>-->
+                <div class="form-group">
+                  <label for="image" class="col-sm-2 control-label">Old Image</label>
+                  <div class="col-sm-10">                    
+                  <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_photo['photo']).'" height="80" />'; ?>  
+                  </div>
                 </div>
                 
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <a href="user-list" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>
-                <button type="submit" class="btn btn-info pull-right" name = "save">Save</button>
+                <button type="submit" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-info pull-right" name = "save">Update</button>
               </div>
               <!-- /.box-footer -->
             </form>

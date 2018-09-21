@@ -59,11 +59,11 @@ if(isset($_GET['id']))
     $full_name = strip_tags($_POST['full_name']);
     $address = strip_tags($_POST['address']);
     $message_detail = $_POST['message'];
-    $image = fopen($_FILES['image']['tmp_name'], 'rb');
+    //$image = fopen($_FILES['image']['tmp_name'], 'rb');
     $status = 1;     
         try
         {              
-          if($message->UpdateMessage($id, $post, $full_name, $address, $message_detail, $image, $status))
+          if($message->UpdateMessage($id, $post, $full_name, $address, $message_detail, $status))
           {
             $smsg = "Message Updated Successfully !";
             //header('Location:user_list');
@@ -140,13 +140,14 @@ if(isset($_GET['id']))
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $data_message['message'];?></textarea>
                   </div>
                 </div> 
+                <!--
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Image</label>
 
                   <div class="col-sm-10">
                     <input type="file" class="form-control" id="image" name ="image" >
                   </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                   <label for="image" class="col-sm-2 control-label">Old Image</label>
                   <div class="col-sm-10">                    
