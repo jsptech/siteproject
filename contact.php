@@ -86,21 +86,52 @@
               </div>             
             </div>
             <div class="col-md-6">
+
+              <?php
+                 
+                 require_once('admin/database/contact_message.class.php');
+                  //echo $fine;
+                  if(isset($_POST['save']))
+                  {
+                    
+                    $contact_message = new CONTACT_MESSAGE();
+                    $full_name = strip_tags($_POST['full_name']);
+                    $email = strip_tags($_POST['email']);
+                    $contact_no = strip_tags($_POST['contact_no']);
+                    $subject = strip_tags($_POST['subject']);  
+                    $message_detail = strip_tags($_POST['message']);
+                    try
+                    {              
+                        if($contact_message->save_contact_message($full_name, $email, $contact_no, $subject, $message_detail))
+                        {
+                            $smsg = "User Created Successfully !";
+                        }
+                        else
+                        {
+                            $fsmg = "Due to some problem Slider has not created";
+                        }
+                    }
+                    catch(PDOException $e)
+                    {
+                        echo $e->getMessage();
+                    }
+                  }
+              ?>
               <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-user"></i> Interested in <span class="text-theme-colored2"> discussing? !</span></h4>
               
-              <form id="contact_form" name="contact_form" class="" action="http://thememascot.net/demo/personal/j/learnpro/v4.0/demo/includes/sendmail.php" method="post">
+              <form id="contact_form" name="contact_form" class="" action="<?Php $_SERVER['PHP_SELF']?>" method="post">
 
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Name <small>*</small></label>
-                    <input name="form_name" class="form-control" type="text" placeholder="Enter Name" required="">
+                    <input class="form-control" type="text" placeholder="Enter Name" required="" name = "full_name">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Email <small>*</small></label>
-                    <input name="form_email" class="form-control required email" type="email" placeholder="Enter Email">
+                    <input class="form-control required email" type="email" placeholder="Enter Email" name = "email">
                   </div>
                 </div>
               </div>
@@ -109,24 +140,24 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Subject <small>*</small></label>
-                    <input name="form_subject" class="form-control required" type="text" placeholder="Enter Subject">
+                    <input class="form-control required" type="text" placeholder="Enter Subject" name = "subject">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Phone</label>
-                    <input name="form_phone" class="form-control" type="text" placeholder="Enter Phone">
+                    <input class="form-control" type="text" placeholder="Enter Phone" name = "contact_no">
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Message</label>
-                <textarea name="form_message" class="form-control required" rows="5" placeholder="Enter Message"></textarea>
+                <textarea name="message" class="form-control required" rows="5" placeholder="Enter Message"></textarea>
               </div>
               <div class="form-group">
                 <input name="form_botcheck" class="form-control" type="hidden" value="" />
-                <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5" data-loading-text="Please wait...">Send your message</button>
+                <button type="submit" name = "save" class="btn btn-dark btn-theme-colored btn-flat mr-5" data-loading-text="Please wait...">Send your message</button>
                 <button type="reset" class="btn btn-default btn-flat btn-theme-colored">Reset</button>
               </div>
               </form>

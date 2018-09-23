@@ -90,11 +90,21 @@ if(isset($_GET['del']))
                     {
                       ?>
                         <tr>
-                          <td><?php echo $row['album_name'];?></td>
-                          <td>0</td>
+                          <td><?php echo $row['album_name'].$row['id'];?></td>
+                          <?php 
+                          
+                           require_once('database/photo.class.php');
+                           $photo = new PHOTO();
+                           $result = $photo->GetPhotoByAlbumId("SELECT * FROM photo_store where album_id='{$row['id']}'");
+                           $result->execute();
+                          ?>
+                          <td><?php echo $result->rowCount();?></td>
                           <td>
                           <a class="btn btn-warning btn-sm" href="album-edit?id=<?php echo $row['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
-                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $row['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
+                          <?php if($result->rowCount()==0) { ?>
+                            <a class="btn btn-danger btn-sm" href="?del=<?php echo $row['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
+                          <?php } ?>
+                          
                           </td>
                         </tr>
                       <?php

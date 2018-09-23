@@ -72,6 +72,18 @@
                 echo $e->getMessage();
             } 
         }
+        public function GetPhotoByAlbumId($album_id)
+        {
+            try
+            {     
+                $stmt = $this->conn->prepare($album_id);
+                return $stmt;
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            } 
+        }
 
         public function UpdatePhoto($id, $album_id, $photo_name, $description)
         {

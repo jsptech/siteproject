@@ -57,7 +57,7 @@
                 echo $e->getMessage();
             } 
         }
-
+       
         public function CreateAlbum($album_title)
         {            
             try
