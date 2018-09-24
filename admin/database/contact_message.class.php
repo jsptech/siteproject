@@ -2,7 +2,7 @@
    require_once('dbconfig.php');
     class CONTACT_MESSAGE
     {
-        private $full_name, $email, $contact_no, $subject $message_detail;
+        private $full_name, $email, $contact_no, $subject, $message_detail;
         private $conn;
         public function __construct()
         {
@@ -18,7 +18,7 @@
                 $stmt->bindparam(":full_name", $full_name);
                 $stmt->bindparam(":email", $email);
                 $stmt->bindparam(":contact_no", $contact_no);
-                $stmt->bindparam("subject", $subject;)
+                $stmt->bindparam(":subject", $subject);
                 $stmt->bindparam(":message_detail", $message_detail);
                 
                 $stmt->execute();
