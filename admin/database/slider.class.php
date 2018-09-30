@@ -1,5 +1,5 @@
 <?php
-    require_once('database/dbconfig.php');
+    require_once('dbconfig.php');
     class SLID
     {
         private $conn;

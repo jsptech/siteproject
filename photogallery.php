@@ -89,7 +89,8 @@
           </div>
         </div>
         <?php 
-          include 'admin/database/album.class.php';
+          require_once('admin/database/album.class.php');
+          //include 'admin/database/album.class.php';
           $album = new ALBUM();
           $stmt = $album->GetAllAlbum("SELECT * FROM album");
           $stmt->execute();
