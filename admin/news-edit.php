@@ -60,7 +60,8 @@ if(isset($_GET['id']))
       $news_content = strip_tags($_POST['news_content']);
       //$photo = fopen($_FILES['image']['tmp_name'], 'rb');
       $posted_by = $_SESSION['username'];
-      $posted_date  = date("y/m/d h:i:sa");	
+      //$date  = date("y/m/d h:i:sa");	
+      $posted_date = $_POST['year']."/".$_POST['month']."/".$_POST['day'];
       $status = 1;      
         try
         {              
@@ -111,6 +112,55 @@ if(isset($_GET['id']))
                       <option <?php if($data_news['news_event']=='Events') echo 'SELECTED';?>>Events</option>
                     </select>
                     
+                  </div>
+                </div>
+                <?php
+                  $year=substr($data_news['posted_date'],0,4);
+                  echo $year;
+                  $month=substr($data_news['posted_date'],5,2);
+                  echo $month;
+                  $day=substr($data_news['posted_date'],8,2);
+                  echo $day;
+                ?>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Date</label>
+                  <div class="col-sm-2">
+                    <select name = "year" class="form-control">
+                      <option>Select Year</option>
+                      <?php
+                        foreach($year_array as $key => $year_value)
+                        {
+                          ?>
+                            <option <?php if($key==$year) echo "SELECTED";?> value = '<?php echo $key;?>'><?php echo $year_value;?></option>
+                          <?php
+                        }?>
+                    </select>
+                  </div>
+                  <div class="col-sm-2">
+                    <select name = "month" class="form-control">
+                      <option>Select Month</option>
+                      <?php foreach($month_array as $key => $month_value)
+                        {
+                          ?>
+                            <option <?php if($month==$key) echo 'SELECTED';?> value = '<?php echo $key;?>'><?php echo $month_value;?></option>
+                          <?php
+                        } ?>
+                    </select>
+                  </div>
+                  <div class="col-sm-2">
+                    <select name = "day" class="form-control">
+                      <option>Select Day</option>
+                      
+                        <?php 
+                         foreach($day_array as $key => $day_value)
+                         {
+                           ?>
+                             <option <?php if($day==$key) echo 'SELECTED';?> value = '<?php echo $key;?>'><?php echo $day_value;?></option>
+                           <?php
+                         }
+                      
+                      ?>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">

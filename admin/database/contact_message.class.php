@@ -34,6 +34,26 @@
                
         }
 
+        public function GetAllContact_Message($sql)
+        {
+            $stmt = $this->conn->prepare($sql);
+            return $stmt;
+        }
+        
+        public function DeleteContact_Message($id)
+        {
+            try
+            {
+                $stmt = $this->conn->prepare("DELETE FROM contact_message WHERE id=:id");                
+                $stmt->bindparam(":id", $id);
+                $stmt->execute();
+                return $stmt;
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
        
     }
 ?>

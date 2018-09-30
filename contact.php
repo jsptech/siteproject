@@ -104,11 +104,11 @@
                     {              
                         if($contact_message->save_contact_message($full_name, $email, $contact_no, $subject, $message_detail))
                         {
-                            $smsg = "User Created Successfully !";
+                            $smsg = "Message Sent Successfully ! We will contact you soon.";
                         }
                         else
                         {
-                            $fsmg = "Due to some problem Slider has not created";
+                            $fsmg = "Due to some problem your Message is not Sents";
                         }
                     }
                     catch(PDOException $e)
@@ -121,7 +121,8 @@
               
               <form id="contact_form" name="contact_form" class="" action="<?Php $_SERVER['PHP_SELF']?>" method="post">
 
-              <div class="row">
+              <div class="row"><?php include 'admin/inc/message.php';?>
+              
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Name <small>*</small></label>

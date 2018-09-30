@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<?php include '../includes/connection.php';
+<?php include 'database/dbconfig.php';
 include 'inc/functions.php';
 session_start();
 confirm_login();
- 
-  require_once('database/news_event.class.php');
-  $news_event = new NEWS_EVENT();
-  $stmt = $news_event->GetAllNews_Event("SELECT * FROM news_events ORDER BY id DESC");
+?>
+<?php 
+  require_once('database/contact_message.class.php');
+  $contact_message = new CONTACT_MESSAGE();
+  $stmt = $contact_message->GetAllContact_Message("SELECT * FROM contact_message");
   $stmt->execute();
-
+?>
+<?php 
 if(isset($_GET['del']))
 {
   $id = $_GET['del'];
-  $news_event = new NEWS_EVENT();
-  $stmt = $news_event->DeleteNews_Event($id);  
-  header('Location:news'); 
+  $contact_message = new CONTACT_MESSAGE();
+  $stmt = $contact_message->DeleteContact_Message($id);  
+  header('Location:contact-message');  
 }
+
 ?>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Dashboard</title>
+  <title>Admin Panel | Contact Message</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -57,15 +60,14 @@ if(isset($_GET['del']))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        News/Events       
+        Contact Message      
       </h1>
-      <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="news-add" class="btn btn-success"><i class="fa fa-plus"></i> Add News/Events</a>
-      </ol>
+     <!-- <ol class="breadcrumb" style="padding-top:0px;">
+      <a href="user-add" class="btn btn-success"><i class="fa fa-plus"></i> Add User</a>
+      </ol>-->
     </section>
     <!-- Main content -->
     <section class="content">
-    
       <!-- Small boxes (Stat box) -->
       <div class="row">
       <div class="col-xs-12">
@@ -74,41 +76,41 @@ if(isset($_GET['del']))
               <table id="news" class="table table-bordered table-hover table-striped">
                 <thead>
                 <tr>
-                  <th>SN</th>
-                  <th>Type</th>
-                  <th>Title</th>
-                  <th>Content</th>
-                  <th>Post By</th>
-                  <th>Post Date</th>
-                  <th>Image</th>
+                <th>SN</th>
+                  <th>Name</th>
+                  <th>Email ID</th>
+                  <th>Contact No</th>
+                  <th>Subject</th>
+                  <th>Message</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
+
                 <?php
-                if($stmt->rowCount() > 0)
+                  if($stmt->rowCount() > 0)
                   {
                     $sn=1;
-                    while($data_news=$stmt->fetch(PDO::FETCH_ASSOC))
-                    { ?>
-                      <tr>
-                        <td><?php echo $sn;?></td>
-                        <td><?php echo $data_news['news_event'];?></td>
-                        <td><?php echo $data_news['news_title'];?></td>
-                        <td><?php echo substr($data_news['news_content'],0,100).'..................';?></td>
-                        <td><?php echo $data_news['posted_by'];?></td>
-                        <td><?php echo $data_news['posted_date'];?></td>
-                        <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_news['image_file']).'" height="50" />'; ?></td>
-                        
-                        <td>
-                        <a class="btn btn-warning btn-sm" href="news-edit?id=<?php echo $data_news['id']; ?>" ><i class="fa fa-pencil"></i> Edit</a>
-                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $data_news['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
-                        </td>
-                      </tr>
-                    <?php
-                    $sn++;
-                    } 
-                  } ?>
+                    while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+                    {
+                      ?>
+                        <tr>
+                          <td><?php echo $sn;?></td>
+                          <td><?php echo $row['full_name'];?></td>
+                          <td><?php echo $row['email'];?></td>
+                          <td><?php echo $row['contact_no'];?></td>
+                          <td><?php echo $row['subject'];?></td>
+                          <td><?php echo $row['message'];?></td>
+                          
+                          <td>
+                          <a class="btn btn-danger btn-sm" href="?del=<?php echo $row['id']; ?>" ><i class="fa fa-trash"></i> Delete</a>
+                          </td>
+                        </tr>
+                      <?php
+                      $sn++;
+                    }
+                  }
+                ?>             
                 </tbody>                
               </table>
             </div>

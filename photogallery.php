@@ -88,15 +88,30 @@
 						</div>
           </div>
         </div>
+        <?php 
+          include 'admin/database/album.class.php';
+          $album = new ALBUM();
+          $stmt = $album->GetAllAlbum("SELECT * FROM album");
+          $stmt->execute();
+
+        ?>
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
               <!-- Works Filter -->
               <div class="portfolio-filter font-alt align-center">
+              <?php /*
+              if($stmt->rowCount() > 0)
+                  {
+                    while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+                    { */?>
+                    <a href="" class = "" ><?php echo $row['abum_name'];?></a>
                 <a href="#" class="active" data-filter="*">All</a>
                 <a href="#select1" class="" data-filter=".select1">Photos</a>
                 <a href="#select2" class="" data-filter=".select2">school</a>
                 <a href="#select3" class="" data-filter=".select3">Students</a>
+
+                <?php //} } ?>
               </div>
               <!-- End Works Filter -->
               

@@ -6,7 +6,16 @@
           <!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode -->
           <div id="rev_slider_home" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.0.7">
             <ul>
-
+              <?php 
+             /*require_once('includes/slider.class.php');
+              $slide = new SLID();
+              $stmt = $slide->GetAllSlid("SELECT * FROM sliders");
+              $stmt->execute();
+            /*
+              if($stmt->rowCount() > 0)
+              {
+                while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+                { */ ?>
               <!-- SLIDE 1 -->
               <li data-index="rs-1" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/bg/bg3.jpg" data-rotate="0"  data-fstransition="fade" data-saveperformance="off" data-title="Web Show" data-description="">
                 <!-- MAIN IMAGE -->
@@ -61,6 +70,7 @@
                 <!-- LAYER NR. 4 -->
                 
               </li>
+              <?php // } } ?>
               <!-- SLIDE 2 -->
               <li data-index="rs-2" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/bg/bg1.jpg" data-rotate="0"  data-fstransition="fade" data-saveperformance="off" data-title="Web Show" data-description="">
                 <!-- MAIN IMAGE -->

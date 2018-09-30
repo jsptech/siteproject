@@ -5,7 +5,6 @@ confirm_login();
 date_default_timezone_set("Asia/Kathmandu");
 
 ?>
-
 <html>
 <head>
   <meta charset="utf-8">
@@ -51,7 +50,8 @@ date_default_timezone_set("Asia/Kathmandu");
       $news_content = $_POST['news_content'];
       $image = fopen($_FILES['image']['tmp_name'], 'rb');
       $posted_by = $_SESSION['username'];
-      $date  = date("y/m/d h:i:sa");	
+      //$date  = date("y/m/d h:i:sa");	
+      $date = $_POST['year']."/".$_POST['month']."/".$_POST['day'];
       $status = 1;
 
       try
@@ -108,6 +108,51 @@ date_default_timezone_set("Asia/Kathmandu");
                       <option>Events</option>
                     </select>
                     
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Date</label>
+                  <div class="col-sm-2">
+                    <select name = "year" class="form-control">
+                    <option>Select Year</option>
+                      
+                    <?php
+                        foreach($year_array as $key => $year_value)
+                        {
+                          ?>
+                            <option value = '<?php echo $key;?>'><?php echo $year_value;?></option>
+                          <?php
+                        } ?>
+                    </select>
+                  </div>
+                  <div class="col-sm-2">
+                    <select name = "month" class="form-control">
+                      <option>Select Month</option>
+                      <?php
+                        foreach($month_array as $key => $month_value)
+                        {
+                          ?>
+                            <option value = '<?php echo $key;?>'><?php echo $month_value;?></option>
+                          <?php
+                        }
+                      
+                      ?>
+                     </select>
+                  </div>
+                  <div class="col-sm-2">
+                    <select name = "day" class="form-control">
+                      <option>Select Day</option>
+                      <?php 
+
+                          foreach($day_array as $key => $day_value)
+                          {
+                            ?>
+                              <option value = '<?php echo $key;?>'><?php echo $day_value;?></option>
+                            <?php
+                          }
+                       
+                      ?>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">

@@ -91,68 +91,71 @@ include "includes/connection.php";
             <div class="col-md-6">
               <h3 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-calendar mr-10">                
               </i>ताजा सुचाना  <span class="text-theme-colored2">तथा कार्यक्रमहरु</span></h3>
-              <article>
-              	<div class="event-block">
-	                <div class="event-date text-center">
-	                  <ul class="text-white font-18 font-weight-600">
-	                    <li class="border-bottom">१</li>
-	                    <li class="">भाद्र</li>
-	                  </ul>
-	                </div>
-	                <div class="event-meta border-1px pl-40">
-	                  <div class="event-content pull-left flip">
-	                    <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="#">कक्षा १२ को भर्ना सम्बन्धी सुचना</a></h4>
-	                    <span class="mb-10 text-gray-darkgray mr-10"><i class="fa fa-clock-o mr-5 text-theme-colored2"></i> at 5.00 pm - 7.30 pm</span>
-	                    <span class="text-gray-darkgray"><i class="fa fa-map-marker mr-5 text-theme-colored2"></i> 25 Newyork City</span>
-	                    <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commod</p>
-	                  </div>
-	                </div>
-	              </div>
-              </article>
-              <article>
-              	<div class="event-block">
-	                <div class="event-date text-center">
-	                  <ul class="text-white font-18 font-weight-600">
-	                    <li class="border-bottom">28</li>
-	                    <li class="">Feb</li>
-	                  </ul>
-	                </div>
-	                <div class="event-meta border-1px pl-40">
-	                  <div class="event-content pull-left flip">
-	                    <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="#">Learning Spoken English</a></h4>
-	                    <span class="mb-10 text-gray-darkgray mr-10"><i class="fa fa-clock-o mr-5 text-theme-colored2"></i> at 5.00 pm - 7.30 pm</span>
-	                    <span class="text-gray-darkgray"><i class="fa fa-map-marker mr-5 text-theme-colored2"></i> 25 Newyork City</span>
-	                    <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commod</p>
-	                  </div>
-	                </div>
-	              </div>
-              </article>
-              <article>
-              	<div class="event-block">
-	                <div class="event-date text-center">
-	                  <ul class="text-white font-18 font-weight-600">
-	                    <li class="border-bottom">28</li>
-	                    <li class="">Feb</li>
-	                  </ul>
-	                </div>
-	                <div class="event-meta border-1px pl-40">
-	                  <div class="event-content pull-left flip">
-	                    <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="#">Workshop Online Marketing</a></h4>
-	                    <span class="mb-10 text-gray-darkgray mr-10"><i class="fa fa-clock-o mr-5 text-theme-colored2"></i> at 5.00 pm - 7.30 pm</span>
-	                    <span class="text-gray-darkgray"><i class="fa fa-map-marker mr-5 text-theme-colored2"></i> 25 Newyork City</span>
-	                    <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commod</p>
-	                  </div>
-	                </div>
-	              </div>
-              </article>
+              
+              <?php
+              require_once('admin/database/news_event.class.php');
+              $news_event = new NEWS_EVENT();
+              $stmt = $news_event->GetAllNews_Event("SELECT * FROM news_events ORDER BY id DESC limit 0,4");
+              $stmt->execute();
+              if($stmt->rowCount() > 0)
+                  {
+                    $sn=1;
+                    while($data_news=$stmt->fetch(PDO::FETCH_ASSOC))
+                    {  ?>
+                      <article>
+                      <div class="event-block">
+                        <div class="event-date text-center">
+                          <ul class="text-white font-18 font-weight-600">
+                            <li class="border-bottom">
+                              <?php 
+                              foreach($day_array as $key => $day_value)
+                              {
+                                if($key==substr($data_news['posted_date'],8,2))
+                                echo $day_value;
+                              } ?>
+                            </li>
+                            <li class="">
+                              <?php 
+                                foreach($month_array as $key => $month_value)
+                                {
+                                  if($key==substr($data_news['posted_date'],5,2))
+                                  echo $month_value;
+                                } ?>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="event-meta border-1px pl-40">
+                          <div class="event-content pull-left flip">
+                            <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="news_detail?id=<?php echo $data_news['id'];?>"><?php echo $data_news['news_title'];?></a></h4>
+                            <!--<span class="mb-10 text-gray-darkgray mr-10"><i class="fa fa-clock-o mr-5 text-theme-colored2"></i> at 5.00 pm - 7.30 pm</span>
+                            <span class="text-gray-darkgray"><i class="fa fa-map-marker mr-5 text-theme-colored2"></i> 25 Newyork City</span>-->
+                            <p class="mt-5"><?php echo $data_news['news_content'];?></p>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                    
+                  <?php } } 
+                  else echo "<i>News Not posted Yet</i>";                  ?>
+                
             </div>
+            <?php
+            require_once('admin/database/message.class.php');
+            $message = new Message();
+            $stmt = $message->GetAllMessage("SELECT * FROM messages where post = 'Principal' limit 1");
+            $stmt->execute();
+            if($stmt->rowCount() > 0)
+                  {
+                   $data_message=$stmt->fetch(PDO::FETCH_ASSOC)
+               
+            ?>
             <div class="col-md-6">
               <h3 class="text-uppercase line-bottom-theme-colored-2 line-height-1 mt-0 mt-sm-30"><i class="fa fa-envelope"></i> प्रध्यापकको <span class="text-theme-colored2"> भनाइ</span></h3>
-              <p style="text-align:justify;"><img alt="" src="images/principal.jpg"  width="200" style="float: right; margin-left:10px">First and foremost, I would like to extend my heartfelt gratitude to all gentle people for taking V.B.P.S positively. Let me throw some lights on major specialties of the institution first. The major specialties of the institution are: child friendly environment, ample physical infrastructure, qualified and experienced teaching professionals, use of modern technology in teaching and learning procedure and highly competent and mastered promoters</P>
-              <p><b>The Vidya Bhusan </b> defines its work as a service with social responsibility. Education is the third eye of human beings that eliminates ignorance and gives new insight to observe the world. It is essential not only to make one's life meaningful and successful but to lead the upcoming generation and direct them to the right path for the welfarement of human kind as a whole. We strongly believe the fact no any Nepalese should be deprived of education because this is his/her basic right.
+              <p style="text-align:justify;"><img alt="" src="data:image/jpeg;base64,<?php echo base64_encode($data_message['photo']);?>"  width="200" style="float: right; margin-left:10px"><?php echo $data_message['message'];?>
               </p>
               <a href="#" class="btn btn-colored btn-theme-colored2 text-white btn-sm pull-right">Read More</a>
             </div>
+                  <?php } ?>
           </div>
         </div>
       </div>
@@ -170,57 +173,34 @@ include "includes/connection.php";
 						</div>
           </div>
         </div>
+        
         <div class="row">
           <div class="col-md-12 mb-30">
             <div class="owl-carousel-2col boxed" data-dots="true">
+            <?php
+            require_once('admin/database/message.class.php');
+            $message = new Message();
+            $stmt = $message->GetAllMessage("SELECT * FROM messages where post = 'Guardian'");
+            $stmt->execute();
+            if($stmt->rowCount() > 0)
+                  {
+                   while($data_message=$stmt->fetch(PDO::FETCH_ASSOC))
+                   {
+               
+            ?>
               <div class="item">
                 <div class="testimonial pt-10">
                   <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail img-circle" alt="" src="images/testimonials/1.jpg" width="110">
+                    <img class="img-thumbnail img-circle" alt="" src="data:image/jpeg;base64,<?php echo base64_encode($data_message['photo']);?>" width="50">
                   </div>
                   <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO JSP Tech</h6>
+                    <h4 class="mt-0 font-weight-300"><?php echo $data_message['message'];?></h4>
+                    <h5 class="mt-10 font-16 mb-0"><?php echo $data_message['full_name'];?></h5>
+                    <h6 class="mt-5"><?php echo $data_message['address'];?></h6>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail img-circle" alt="" src="images/testimonials/2.jpg" width="110">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO JSP Tech</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail img-circle" alt="" src="images/testimonials/3.jpg" width="110">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO JSP Tech</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail img-circle" alt="" src="images/testimonials/1.jpg" width="110">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO JSP Tech</h6>
-                  </div>
-                </div>
-              </div>
+                   <?php } } ?>
             </div> 
           </div>
         </div>
