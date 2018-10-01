@@ -172,7 +172,7 @@ date_default_timezone_set("Asia/Kathmandu");
                     <input type="file" class="form-control" id="image" name ="image" >
                   </div>
                 </div>
-                
+                Note : Image Size must be as Width: 275px, Height:370px and Resolution:72px for best design.
               </div>
               <!-- /.box-body -->
               <div class="box-footer">

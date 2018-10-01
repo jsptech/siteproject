@@ -1,10 +1,9 @@
-<?php 
-  include('admin/includes/config.php');
-  $sql = 'SELECT * FROM `teachers`';
-  $result=mysqli_query($con, $sql);
-  $row=mysqli_fetch_array($result);  
- ?>
-
+<?php
+require_once('admin/database/staff.class.php');
+$staff = new STAFF();
+$stmt = $staff->GetAllStaff("SELECT * FROM staffteachers");
+$stmt->execute();
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -75,85 +74,48 @@
       </div>
     </section>
     <!-- Section: Team -->
+    <!-- Section: Team -->
     <section id="team" class="bg-silver-deep">
-      <div class="container">
+      <div class="container pb-40">
+        <div class="section-title">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="text-uppercase title">Qualified <span class="text-theme-colored2">Teachers</span></h2>              
+              <p class="text-uppercase mb-0">We Have Highly Qualified Teachers</p>
+					  	<div class="double-line-bottom-theme-colored-2"></div>
+						</div>
+          </div>
+        </div>
         <div class="row mtli-row-clearfix">
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/team/1.jpg">
-                <div class="team-overlay"></div>
-                <ul class="styled-icons team-social icon-sm">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-              <div class="team-details">
-                <h4 class="text-uppercase text-theme-colored font-weight-600 m-5">Jhon Anderson</h4>
-                <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0">Civil Engineer</h6>
-                <p class="hidden-md">Lorem ipsum dolor sit ametcon secte adipis elit. Debitis magnam placeat dignissimos saperator ellium</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/team/2.jpg">
-                <div class="team-overlay"></div>
-                <ul class="styled-icons team-social icon-sm">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-              <div class="team-details">
-                <h4 class="text-uppercase text-theme-colored font-weight-600 m-5">Jhon Anderson</h4>
-                <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0">Civil Engineer</h6>
-                <p class="hidden-md">Lorem ipsum dolor sit ametcon secte adipis elit. Debitis magnam placeat dignissimos saperator ellium</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/team/3.jpg">
-                <div class="team-overlay"></div>
-                <ul class="styled-icons team-social icon-sm">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-              <div class="team-details">
-                <h4 class="text-uppercase text-theme-colored font-weight-600 m-5">Jhon Anderson</h4>
-                <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0">Civil Engineer</h6>
-                <p class="hidden-md">Lorem ipsum dolor sit ametcon secte adipis elit. Debitis magnam placeat dignissimos saperator ellium</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/team/4.jpg">
-                <div class="team-overlay"></div>
-                <ul class="styled-icons team-social icon-sm">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-              <div class="team-details">
-                <h4 class="text-uppercase text-theme-colored font-weight-600 m-5">Jhon Anderson</h4>
-                <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0">Civil Engineer</h6>
-                <p class="hidden-md">Lorem ipsum dolor sit ametcon secte adipis elit. Debitis magnam placeat dignissimos saperator ellium</p>
-              </div>
-            </div>
-          </div>
+          <?php
+            if($stmt->rowCount() > 0)
+            {
+              while($data=$stmt->fetch(PDO::FETCH_ASSOC))
+              {?>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                  <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
+                    <div class="team-thumb">                      
+                      <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data['photo']).'" class="img-fullwidth" Width="275" Height="370" />'; ?></td>
+                      <div class="team-overlay"></div>
+                      <ul class="styled-icons team-social icon-sm">
+                        <li><a href="<?php echo $data['facebook_link']; ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                      </ul>
+                    </div>
+                    <div class="team-details">
+                      <h4 class="text-uppercase text-theme-colored font-weight-600 m-5"><?php echo $data['full_name']; ?></h4>
+                      <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0"><?php echo $data['designation']; ?></h6>
+                      <p class="hidden-md"><?php echo $data['description']; ?></p>
+                    </div>
+                  </div>
+                </div> 
+                <?php                
+              }
+            }
+          ?>
+                   
         </div>
       </div>
     </section>

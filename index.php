@@ -105,7 +105,7 @@ include "includes/connection.php";
                       <article>
                       <div class="event-block">
                         <div class="event-date text-center">
-                          <ul class="text-white font-18 font-weight-600">
+                          <ul class="text-white font-16 font-weight-600" style="width:40px; margin-left:-10px">
                             <li class="border-bottom">
                               <?php 
                               foreach($day_array as $key => $day_value)
@@ -124,7 +124,7 @@ include "includes/connection.php";
                             </li>
                           </ul>
                         </div>
-                        <div class="event-meta border-1px pl-40">
+                        <div class="event-meta border-1px pl-40" style="width:515px; height:110.317px">
                           <div class="event-content pull-left flip">
                             <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="news_detail?id=<?php echo $data_news['id'];?>"><?php echo $data_news['news_title'];?></a></h4>
                             <!--<span class="mb-10 text-gray-darkgray mr-10"><i class="fa fa-clock-o mr-5 text-theme-colored2"></i> at 5.00 pm - 7.30 pm</span>
@@ -190,8 +190,8 @@ include "includes/connection.php";
             ?>
               <div class="item">
                 <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail img-circle" alt="" src="data:image/jpeg;base64,<?php echo base64_encode($data_message['photo']);?>" width="50">
+                  <div class="thumb pull-left mb-0 mr-0" style="width:100px; height:100px">                    
+                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_message['photo']).'" class="img-thumbnail img-circle" Width="110px" Height="110px" />'; ?></td>
                   </div>
                   <div class="testimonial-content">
                     <h4 class="mt-0 font-weight-300"><?php echo $data_message['message'];?></h4>
