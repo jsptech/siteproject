@@ -67,7 +67,7 @@
           </div>
           <div class="col-md-6"  >
             <div class="col-md-9">
-              <p style="text-align: right">Developed by: 
+              <p style="text-align: right">Developed By: 
             </div>
             <div class="col-md-3">
               <a href="http://www.kesuapps.com" target="_blank"><img class="mt-5 mb-20" alt="" src="images/designerlogo.png" height="20" style="margin-top:100px"></a></p>
