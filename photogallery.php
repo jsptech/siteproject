@@ -90,7 +90,6 @@
         </div>
         <?php 
           require_once('admin/database/album.class.php');
-          //include 'admin/database/album.class.php';
           $album = new ALBUM();
           $stmt = $album->GetAllAlbum("SELECT * FROM album");
           $stmt->execute();
@@ -101,18 +100,19 @@
             <div class="col-md-12">
               <!-- Works Filter -->
               <div class="portfolio-filter font-alt align-center">
-              <?php /*
+              <?php 
               if($stmt->rowCount() > 0)
                   {
                     while($row=$stmt->fetch(PDO::FETCH_ASSOC))
-                    { */?>
-                    <a href="" class = "" ><?php echo $row['abum_name'];?></a>
+                    { ?>
+                    <a data-filter="*" href="photogallery.php?album_id=<?php echo $row['id'];?>" ><?php echo $row['album_name'];?></a>
+               
+                <?php } } ?>
                 <a href="#" class="active" data-filter="*">All</a>
                 <a href="#select1" class="" data-filter=".select1">Photos</a>
                 <a href="#select2" class="" data-filter=".select2">school</a>
                 <a href="#select3" class="" data-filter=".select3">Students</a>
-
-                <?php //} } ?>
+                    
               </div>
               <!-- End Works Filter -->
               
@@ -122,17 +122,17 @@
                 <!-- Portfolio Item Start -->
                 <div class="gallery-item select1">
                   <div class="thumb">
-                    <img class="img-fullwidth" src="images/gallery/s1.jpg" alt="project">
+                    <img class="img-fullwidth" src="images/bg/bg1.jpg" alt="project">
                     <div class="overlay-shade"></div>
                     <div class="icons-holder">
                       <div class="icons-holder-inner">
                         <div class="styled-icons icon-sm icon-bordered icon-circled icon-theme-colored2">
-                          <a data-lightbox="image" href="images/gallery/1.jpg"><i class="fa fa-plus"></i></a>
+                          <a data-lightbox="image" href="images/bg/bg1.jpg"><i class="fa fa-plus"></i></a>
                           <a href="#"><i class="fa fa-link"></i></a>
                         </div>
                       </div>
                     </div>
-                    <a class="hover-link" data-lightbox="image" href="images/gallery/1.jpg">View more</a>
+                    <a class="hover-link" data-lightbox="image" href="images/bg/bg1.jpg">View more</a>
                   </div>
                 </div>
                 <!-- Portfolio Item End -->
@@ -140,17 +140,17 @@
                 <!-- Portfolio Item Start -->
                 <div class="gallery-item select1">
                   <div class="thumb">
-                    <img class="img-fullwidth" src="images/gallery/s2.jpg" alt="project">
+                    <img class="img-fullwidth" src="images/bg/bg2.jpg" alt="project">
                     <div class="overlay-shade"></div>
                     <div class="icons-holder">
                       <div class="icons-holder-inner">
                         <div class="styled-icons icon-sm icon-bordered icon-circled icon-theme-colored2">
-                          <a data-lightbox="image" href="images/gallery/2.jpg"><i class="fa fa-plus"></i></a>
+                          <a data-lightbox="image" href="images/bg/bg2.jpg"><i class="fa fa-plus"></i></a>
                           <a href="#"><i class="fa fa-link"></i></a>
                         </div>
                       </div>
                     </div>
-                    <a class="hover-link" data-lightbox="image" href="images/gallery/2.jpg">View more</a>
+                    <a class="hover-link" data-lightbox="image" href="images/bg/bg2.jpg">View more</a>
                   </div>
                 </div>
                 <!-- Portfolio Item End -->
@@ -158,17 +158,17 @@
                 <!-- Portfolio Item Start -->
                 <div class="gallery-item select2">
                   <div class="thumb">
-                    <img class="img-fullwidth" src="images/gallery/s3.jpg" alt="project">
+                    <img class="img-fullwidth" src="images/bg/bg3.jpg" alt="project">
                     <div class="overlay-shade"></div>
                     <div class="icons-holder">
                       <div class="icons-holder-inner">
                         <div class="styled-icons icon-sm icon-bordered icon-circled icon-theme-colored2">
-                          <a data-lightbox="image" href="images/gallery/3.jpg"><i class="fa fa-plus"></i></a>
+                          <a data-lightbox="image" href="images/bg/bg3.jpg"><i class="fa fa-plus"></i></a>
                           <a href="#"><i class="fa fa-link"></i></a>
                         </div>
                       </div>
                     </div>
-                    <a class="hover-link" data-lightbox="image" href="images/gallery/3.jpg">View more</a>
+                    <a class="hover-link" data-lightbox="image" href="images/bg/bg3.jpg">View more</a>
                   </div>
                 </div>
                 <!-- Portfolio Item End -->
@@ -176,17 +176,17 @@
                 <!-- Portfolio Item Start -->
                 <div class="gallery-item select3">
                   <div class="thumb">
-                    <img class="img-fullwidth" src="images/gallery/s4.jpg" alt="project">
+                    <img class="img-fullwidth" src="images/bg/bg0.jpg" alt="project">
                     <div class="overlay-shade"></div>
                     <div class="icons-holder">
                       <div class="icons-holder-inner">
                         <div class="styled-icons icon-sm icon-bordered icon-circled icon-theme-colored2">
-                          <a data-lightbox="image" href="images/gallery/4.jpg"><i class="fa fa-plus"></i></a>
+                          <a data-lightbox="image" href="images/bg/bg0.jpg"><i class="fa fa-plus"></i></a>
                           <a href="#"><i class="fa fa-link"></i></a>
                         </div>
                       </div>
                     </div>
-                    <a class="hover-link" data-lightbox="image" href="images/gallery/4.jpg">View more</a>
+                    <a class="hover-link" data-lightbox="image" href="images/bg/bg0.jpg">View more</a>
                   </div>
                 </div>
                 <!-- Portfolio Item End -->
