@@ -32,6 +32,8 @@ include "includes/connection.php";
 <!-- CSS | Responsive media queries -->
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <!-- Revolution Slider 5.x CSS settings -->
+<link href="css/popupcss.css" rel="stylesheet" type="text/css">
+
 <link  href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 <link  href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css"/>
 <link  href="js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css"/>
@@ -48,6 +50,7 @@ include "includes/connection.php";
 <script src="js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
 </head>
 <body class="">
+<?php include 'includes/popupimg.php'; ?> 
 <div id="wrapper" class="clearfix">
   <!-- preloader -->
   <?php include 'includes/preloader.php'; ?>  
@@ -71,7 +74,7 @@ include "includes/connection.php";
         <div class="section-content">
           <div class="row">
             <div class="col-md-5">
-              <img class="img-fullwidth maxwidth500" src="images/about/1.png" alt="">
+              <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data['photo']).'" class="img-fullwidth maxwidth500" Width="460" Height="330" />'; ?>
             </div>
             <div class="col-md-7">
               <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30">विद्यालयको <span class="text-theme-colored2">परिचय</span></h2>
@@ -191,7 +194,7 @@ include "includes/connection.php";
               <div class="item">
                 <div class="testimonial pt-10">
                   <div class="thumb pull-left mb-0 mr-0" style="width:100px; height:100px">                    
-                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_message['photo']).'" class="img-thumbnail img-circle" Width="110px" Height="110px" />'; ?></td>
+                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_message['photo']).'" class="img-thumbnail img-circle" Width="110px" Height="110px" />'; ?>
                   </div>
                   <div class="testimonial-content">
                     <h4 class="mt-0 font-weight-300"><?php echo $data_message['message'];?></h4>
@@ -350,7 +353,13 @@ include "includes/connection.php";
 <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
 <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
 <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+<script type="text/javascript" src="js/jquery.bpopup.min.js"></script>
 
+<script>
+$( document ).ready(function() {
+    $('#popup_this').bPopup();
+});
+</script>
 </body>
 
 <!-- Mirrored from thememascot.net/demo/personal/j/learnpro/v4.0/demo/index-mp-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Feb 2018 16:37:29 GMT -->

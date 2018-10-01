@@ -65,7 +65,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap;">Computer science and technology growing rapidly <br> and our all students also getting full computer education with our managed computer lab and teachers
+                  style="z-index: 5; white-space: nowrap;">
                 </div>
                 <!-- LAYER NR. 4 -->
                 
@@ -97,7 +97,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap; font-weight:700;">Our <span class="text-theme-colored2">best</span> Students
+                  style="z-index: 5; white-space: nowrap; font-weight:700;">विद्यार्थिहरु <span class="text-theme-colored2">
                 </div>
                 <!-- LAYER NR. 3 -->
                 <div class="tp-caption tp-resizeme text-white rs-parallaxlevel-0" 
@@ -120,7 +120,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap;">We provides always our best educational services for our all students <br> and  always try to achieve our parants trust and satisfaction
+                  style="z-index: 5; white-space: nowrap;">
                 </div>
                 <!-- LAYER NR. 4 -->
                 
@@ -151,7 +151,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap; font-weight:700;">Science <span class="text-theme-colored2">Lab</span>
+                  style="z-index: 5; white-space: nowrap; font-weight:700;">वार्षिक साधारण सभा
                 </div>
                 <!-- LAYER NR. 3 -->
                 <div class="tp-caption tp-resizeme text-white rs-parallaxlevel-0" 
@@ -174,7 +174,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap;">We believe in practical education that make our students perfect.
+                  style="z-index: 5; white-space: nowrap;">
                 </div>
                 <!-- LAYER NR. 4 -->
                 
