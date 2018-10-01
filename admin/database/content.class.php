@@ -17,16 +17,16 @@
             //echo $this->name;
             try{
                 $stmt = $this->conn->prepare("INSERT INTO contents(PageId, title, Description, photo, status) 
-                                                                   VALUES(:page_id, :tile, :description, :photo, :status)");
+                                                        VALUES(:page_id, :tile, :description, :photo, :status)");
                 $stmt->bindparam(":page_id", $page_id);
                 $stmt->bindparam(":tile", $tile);
                 $stmt->bindparam(":description", $description);
                 $stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
-                $stmt->bindparam(":status", $status);
-                
+                $stmt->bindparam(":status", $status);                
                 $stmt->execute();
                 return $stmt;
                 //echo $this->name;
+                
                 
                 
             }
