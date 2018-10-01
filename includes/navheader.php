@@ -12,7 +12,7 @@
                   <li><a href="teachers">शिक्षकहरु</a></li>
                 </ul>
               </li>
-              <li><a href="#">सुचाना तथा कार्यक्रम</a></li>
+              <li><a href="news-events">सुचाना तथा कार्यक्रम</a></li>
               <li><a href="photogallery">फोटो ग्यालरी</a></li>
               <li><a href="contact">सम्पर्क</a></li> 
             </ul>
