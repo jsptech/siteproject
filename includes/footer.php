@@ -21,7 +21,7 @@
         </div>
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
-            <h4 class="widget-title line-bottom-theme-colored-2">पेजहरु</h4>
+            <h4 class="widget-title line-bottom-theme-colored-2">पेजहरु </h4>
             <ul class="angle-double-right list-border">
               <li><a href="#">गृह पृष्ट</a></li>
               <li><a href="#">हाम्रो बारेमा</a></li>
