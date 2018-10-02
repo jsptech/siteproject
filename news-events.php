@@ -60,7 +60,7 @@
         <div class="section-content">
           <div class="row"> 
             <div class="col-md-6">
-              <h2 class="text-theme-colored2 font-36">About us</h2>              
+              <h2 class="text-theme-colored2 font-36">News & Events</h2>              
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
               <img class="img-fullwidth maxwidth500" src="data:image/jpeg;base64,<?php echo base64_encode($data_news['image_file']);?>" alt="">
             </div>
             <div class="col-md-7">
-              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30"><?php echo $data_news['news_title'];?> <span class="text-theme-colored2">Vidyabhushan</span></h2>
+              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30"><?php echo $data_news['news_title'];?> <span class="text-theme-colored2"></span></h2>
               <div class="double-line-bottom-theme-colored-2"></div>
                 <p style="text-align:justify"><i>
                  <?php 
