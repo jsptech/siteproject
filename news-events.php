@@ -66,83 +66,78 @@
         </div>
       </div>
     </section>
-
-    <!-- Section: About -->
+    <?php
+    require_once('admin/database/news_event.class.php');
+    $news_event = new NEWS_EVENT();
+    if(isset($_GET['id']))
+    {
+      $id = $_GET['id'];
+      $data_news = $news_event->GetNewsById($id);
+    ?>
     <section>
       <div class="container pb-70">
         <div class="section-content">
           <div class="row">
             <div class="col-md-5">
-              <img class="img-fullwidth maxwidth500" src="images/about/school.jpg" alt="">
+              <img class="img-fullwidth maxwidth500" src="data:image/jpeg;base64,<?php echo base64_encode($data_news['image_file']);?>" alt="">
             </div>
             <div class="col-md-7">
-              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30">About <span class="text-theme-colored2">Vidyabhushan</span></h2>
+              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30"><?php echo $data_news['news_title'];?> <span class="text-theme-colored2">Vidyabhushan</span></h2>
               <div class="double-line-bottom-theme-colored-2"></div>
-                  <h1 style="font-size:16px;">Motto: "Quality education to lead the Nation"</h1>
-                  <p style="text-align:justify">Vidya Bhusan Public School (V.B.P.S), Mohanpur, Kailali residential cum day co-educational is one of the promising Lower Secondary Level (Proposed for Secondary Level for the year-2074) academic institutions in far –western development region founded on the auspicious occasion of Sarsawati Puja (Shree Panchami) in 2064 B.S. with a motto "Quality education to lead the nation". </span></p>
-                  <p style="text-align:justify">The institution was founded with the pledge to meet the demand of time on the field of education by imparting modern, technical, scientific and vocational method of education. The school got its affiliation form the government of Nepal, District Education Office (DEO), Kailali in 2064 to run classes in English medium. The organization has been imparting result oriented and practical based education under new management since 2072.</p>
-                  <p style="text-align:justify">So far its location is concerned; it is at Mohanpur, on the main highway to Dhangadhi covering its area of 3 bigha land, perhaps the largest area among any private institute in Kailali.</p>
-                  <p style="text-align:justify">The institution has been established following the norms of modern education. The facilities related to transportation, canteen, library, computer lab, science lab, visual classes, Midas e-class, day hostel and night hostel and the like are basic provision. Similary, for the ECA the institution has one well managed football ground, volleyball court, badminton court, table tennis board, auditorium hall etc.Most importantly; the institution is set up with a vision to run itself in a fully residential mode.</p>
-                  
+                <p style="text-align:justify"><i>
+                 <?php 
+                  foreach($day_array as $key => $day_value)
+                  {
+                    if($key==substr($data_news['posted_date'],8,2))
+                    echo $day_value;
+                  } ?>
+                  <?php 
+                    foreach($month_array as $key => $month_value)
+                    {
+                      if($key==substr($data_news['posted_date'],5,2))
+                      echo $month_value;
+                    } 
+                    echo " ,";
+                    foreach($year_array as $key => $year_value)
+                    {
+                      if($key==substr($data_news['posted_date'],0,4))
+                      echo $year_value;
+                    } 
+                    
+                    ?>
+
+                </i></p>
+                  <p style="text-align:justify"><?php echo $data_news['news_content'];?></p>
+                 
               </div>
             </div>
           </div>
         </div>
       </div>
    </section>
-   
+                  <?php } ?>
    
    <!-- Section: Vision, -->
-  <section>
-      <div class="container pb-50">
-        <div class="section-content">
-          <div class="row">
-            <div class="col-md-6">
-              <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-eye"></i> Our <span class="text-theme-colored2">Vision !</span></h4>
-              <p>Our vision is to produce that competitive and efficient manpower in the world where they can lead rather than follow.</p>
-              </br>
-              <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-eye"></i> Our <span class="text-theme-colored2">Mission !</span></h4>
-              <p>Our mission is to impart qualitative modern education to all the children of the nation with instilling norms of leaderships on student from the moment they are enrolled in the institution irrespective of cast, creed, color, position and religion.</p>
-            </div>
-            <div class="col-md-6">
-              <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-user"></i> School <span class="text-theme-colored2">Uniform !</span></h4>
-              <ul style="list-style-type: square;">
-                <li>Green lining shirt and green pant/skirt.</li>
-                <li>Blue Trouser and T- Shirt with yellow linening.</li>
-                <li>Black leather shoes with blue socks.</li>
-                <li>White shoes with white socks</li>
-                <li>Ribbon (for girls)-Green (Except Tuesday and Friday)</li>
-                <li>Ribbon (for girls) (According to the house color ,only on Tuesday and Friday)</li>
-                <h4>Note</h4>
-                <li>Tie, belt, ID card school's diary, are available in the school.</li>
-                <li>Every Tuesday and Friday it is compulsory to wear Trouser and T-shirt to all the students.</li>
-                <li>The girl must wear house ribbon.</li>
-                <li>No students will be allowed to sit in the class without proper uniform.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-  </section>
-  <!-- end main-content -->
+  <?php
+   require_once('admin/database/news_event.class.php');
+  $news_event = new NEWS_EVENT();
+  $stmt = $news_event->GetAllNews_Event("SELECT * FROM news_events ORDER BY id DESC");
+  $stmt->execute();
+  ?>
 <section>
   <div class="container pb-50">
     <div class="section-content">
       <div class="row">
-      <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-user"></i> Academic <span class="text-theme-colored2">Rules !</span></h4>
-      <ul style="list-style-type: square;">
-        <li>The new admission session starts from Baisakh.</li>
-        <li>Admission is usually held in the month of Baisakh or as informed by the union. (PABSON).</li>
-        <li>No candidates will be admitted except or an application in the prescribed form available at the school office in time of admission.</li>
-        <li>Admission forms will be distributed from the first week of Baisakh.</li>
-        <li>Admission for others and benefitted Students' Transfer Certificate & Mark-Sheet from recognized school is to be attached and submitted with the admission form.</li>
-        <li>New pupils must be introduced by their parents or guardian who will be respectable for their conduct, behavior and fees.</li>
-        <li>Parents are requested to submit the birth certificate to admit in pre-primary level. They will be admitted to their age. The minimum age required for Nursery is 3.5 years and school set.</li>
-        <li>Children from unrecognized school will be examined in any case and may be admitted if they are found fit.</li>
-        <li>Admission form L.K.G to above class is made after entrance and entrance date will be fixed by the school administration.</li>
-        <li>The entrance test will be held in the main subjects like English, Maths, Nepali, Science & Social-Studies etc.</li>
-        <li>A student who is not formally admitted to the school will not be allowed to attend class even provisionally.</li>
-        <li>The right of admission and every academic work to school is reserved.</li>
+      <h2 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-user"></i>  <span class="text-theme-colored2">सुचना तथा कार्यक्रमहरु !</span></h2>
+      <ul style="list-style-type: square; margin-left:66px;">
+      <?php
+      if($stmt->rowCount() > 0)
+        {
+          $sn=1;
+          while($data_news_all=$stmt->fetch(PDO::FETCH_ASSOC))
+          { ?>
+          <li><a href="?id=<?php echo $data_news_all['id'];?>"><?php echo $data_news_all['news_title'];?></a></li>
+          <?php }} ?>    
       </ul>
       </div>
     </div>

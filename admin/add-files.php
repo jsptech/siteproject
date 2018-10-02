@@ -7,29 +7,29 @@ confirm_login();
 ?>
 
 <?php 
-    require_once('database/slider.class.php');
-    $slide = new SLID();
+    require_once('database/download.class.php');
+    $slide = new DOWNLOAD();
 
     if(isset($_POST['save']))
     {
-        $SlidTitle = strip_tags($_POST['SlidTitle']);
-        $SlidSlog = strip_tags($_POST['SlidSlog']);
-        $SlidImage = fopen($_FILES['SlidImage']['tmp_name'], 'rb');
+        $title = strip_tags($_POST['title']);
+        $detail = strip_tags($_POST['detail']);
+        $file = fopen($_FILES['file']['tmp_name'], 'rb');
         
-        if($SlidImage=="")	{
-            $error[] = "Provide Slider's Image !";
+        if($file=="")	{
+            $error[] = "Select File !";
         }
         else
         {
             try
             {              
-                if($slide->CreateSlid($SlidTitle, $SlidSlog, $SlidImage))
+                if($slide->CreateDownload($title, $detail, $file))
                 {
-                    $smsg = "Slider's Created Successfully !";
+                    $smsg = "File's Uploaded Successfully !";
                 }
                 else
                 {
-                    $fsmg = "Due to some problem Slider has not created";
+                    $fsmg = "Due to some problem File is not upladed";
                 }
             }
             catch(PDOException $e)
@@ -44,7 +44,7 @@ confirm_login();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Add Sliders</title>
+  <title>Admin Panel | Add Files</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -82,7 +82,7 @@ confirm_login();
         Add Files
       </h1>  
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="slider-image" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
+      <a href="donwloads" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
       </ol>    
     </section>
     <!-- Main content -->
@@ -96,32 +96,32 @@ confirm_login();
               <div class="box-body">
               <?php include 'inc/message.php';?>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Slider's Title *</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">File's Title *</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Example:Slider's Title" name = "SlidTitle">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder=" Title" name = "title">
                   </div>
                 </div>
                
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Slider's Details *</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">File's Details *</label>
 
                   <div class="col-sm-10">
-                  <textarea class="textarea" id="editor1" name ="SlidSlog" placeholder="Place some text here"
+                  <textarea class="textarea" id="editor1" name ="detail" placeholder="Place some text here"
                     style="width: 100%; height: 150px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="image" class="col-sm-2 control-label">Slider Image</label>
+                  <label for="image" class="col-sm-2 control-label">File</label>
 
                   <div class="col-sm-10">
-                    <input type="file" class="form-control" id="image" name ="SlidImage" required="" >
+                    <input type="file" class="form-control" id="file" name ="file" required="" >
                     <p>Note: Image Size must be width:1350 px, Height:600 px and Resolution:72px for best view</p>
                   </div>
                 </div>                
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-              <a href="slider-image" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>
+              <a href="downloads" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>
                 <button type="submit" class="btn btn-success pull-right" name = "save"><i class="fa fa-floppy-o"></i> Save</button>
               </div>
               <!-- /.box-footer -->
