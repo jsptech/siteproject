@@ -76,13 +76,13 @@ if(isset($_GET['del']))
               <table id="news" class="table table-bordered table-hover table-striped">
                 <thead>
                 <tr>
+                  <th>Thumb</th>
                   <th>Album Name</th>
                   <th>No. of Photos</th>
                   <th width="105">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-
                 <?php
                   if($stmt->rowCount() > 0)
                   {
@@ -90,6 +90,7 @@ if(isset($_GET['del']))
                     {
                       ?>
                         <tr>
+                          <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['thumb']).'" height="50" />'; ?></td>
                           <td><?php echo $row['album_name'].$row['id'];?></td>
                           <?php 
                           

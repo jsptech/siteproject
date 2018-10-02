@@ -13,7 +13,7 @@ confirm_login();
     if(isset($_POST['save']))
     {
         $album_title = strip_tags($_POST['album_title']);
-       
+        $thumb = fopen($_FILES['thumb']['tmp_name'], 'rb');
         $abc = $album->CheckAlbumIfExists("SELECT * FROM album where album_name = '{$album_title}'");
         $abc->execute();
        
@@ -21,7 +21,7 @@ confirm_login();
         {
             try
             {              
-                if($album->CreateAlbum($album_title))
+                if($album->CreateAlbum($album_title, $thumb))
                 {
                     $smsg = "Album Created Successfully !";
                 }
@@ -104,7 +104,13 @@ confirm_login();
                     <input type="text" class="form-control" id="inputEmail3" name = "album_title">
                   </div>
                 </div>
-               
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Thumb Image *</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="image" name ="thumb" required="" >
+                    <p>Note: Image Size must be width:280 px, Height:155px and Resolution:72px for best view</p>
+                  </div>
+                </div>
                            
               </div>
               <!-- /.box-body -->

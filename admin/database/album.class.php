@@ -58,13 +58,14 @@
             } 
         }
        
-        public function CreateAlbum($album_title)
+        public function CreateAlbum($album_title, $thumb)
         {            
             try
             {         
-                $stmt = $this->conn->prepare("INSERT INTO album(album_name) 
-                                                        VALUES(:album_title)");
+                $stmt = $this->conn->prepare("INSERT INTO album(album_name, thumb) 
+                                                        VALUES(:album_title, :thumb)");
                 $stmt->bindparam(":album_title", $album_title);
+                $stmt->bindparam(":thumb", $thumb, PDO::PARAM_LOB);
                 $stmt->execute();
                 return $stmt;
             }
@@ -80,8 +81,7 @@
             {
                 $stmt = $this->conn->prepare("UPDATE album SET album_name=:album_title WHERE id=:id");
                 $stmt->bindparam(":id", $id);               
-                $stmt->bindparam(":album_title", $album_title);
-                
+                $stmt->bindparam(":album_title", $album_title);                
                 $stmt->execute();
                 return $stmt;
             }
