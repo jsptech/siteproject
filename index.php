@@ -50,7 +50,7 @@ include "includes/connection.php";
 <script src="js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
 </head>
 <body class="">
-<?php include 'includes/popupimg.php'; ?> 
+<?php // include 'includes/popupimg.php'; ?> 
 <div id="wrapper" class="clearfix">
   <!-- preloader -->
   <?php include 'includes/preloader.php'; ?>  
@@ -215,39 +215,37 @@ include "includes/connection.php";
       <div class="container">
         <div class="row">
           <div class="col-md-8 sm-text-center">
-            <h3 class="text-white mt-30 mb-0">Contact for new admission !</h3>
-            <h2 class="text-theme-colored2 font-54 mt-0">Request Now!</h2>
-            <p class="text-gray-darkgray font-15 pr-90 pr-sm-0 mb-sm-60">
-              You can also visit our school at given location.
-            </p>
+            <h3 class="text-white mt-30 mb-0">नयाँ भर्नाको लागी सम्मर्क गर्नुहोस !</h3>
+            <h2 class="text-theme-colored2 font-54 mt-0">अहिलै अनुरोध गर्नुहोस !</h2>
+            
             <div class="row mt-30 sm-text-center">
               <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                 <div class="funfact">
                   <i class="pe-7s-smile mb-20 text-theme-colored2"></i>
-                  <h2 data-animation-duration="2000" data-value="1150" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-                  <h5 class="text-white text-uppercase">Happy Students</h5>
+                  <h2 data-animation-duration="200" data-value="१३०४" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
+                  <h5 class="text-white text-uppercase">भर्ना भएका  विद्यार्थी</h5>
                 </div>
               </div>
               
               <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                 <div class="funfact">
                   <i class="pe-7s-users mb-20 text-theme-colored2"></i>
-                  <h2 data-animation-duration="2000" data-value="50" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-                  <h5 class="text-white text-uppercase">Certified Teachers</h5>
+                  <h2 data-animation-duration="200" data-value="३३" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
+                  <h5 class="text-white text-uppercase">दक्ष शिक्षकहरु</h5>
                 </div>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                 <div class="funfact">
                   <i class="pe-7s-study mb-20 text-theme-colored2"></i>
-                  <h2 data-animation-duration="2000" data-value="1248" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-                  <h5 class="text-white text-uppercase">Pass Out Students</h5>
+                  <h2 data-animation-duration="200" data-value="८०००" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
+                  <h5 class="text-white text-uppercase">पासअाउट विद्यार्थी</h5>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-4">
              <div class="p-30 mt-0 bg-dark-transparent-2">
-              <h3 class="title-pattern mt-0"><span class="text-white">Request <span class="text-theme-colored2">Information</span></span></h3>
+              <h3 class="title-pattern mt-0"><span class="text-white">अनुरोध <span class="text-theme-colored2">सूचना</span></span></h3>
               <!-- Appilication Form Start-->
               <form id="reservation_form" name="reservation_form" class="reservation-form mt-20" method="post" action="#" novalidate="novalidate">
                 <div class="row">
@@ -256,7 +254,7 @@ include "includes/connection.php";
                       <input placeholder="Enter Name" id="reservation_name" name="reservation_name" required="" class="form-control" aria-required="true" type="text">
                     </div>
                   </div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
                     <div class="form-group mb-20">
                       <input placeholder="Email" id="reservation_email" name="reservation_email" class="form-control" required="" aria-required="true" type="text">
                     </div>
@@ -266,22 +264,10 @@ include "includes/connection.php";
                       <input placeholder="Phone" id="reservation_phone" name="reservation_phone" class="form-control" required="" aria-required="true" type="text">
                     </div>
                   </div>
+                  
                   <div class="col-sm-6">
                     <div class="form-group mb-20">
-                      <div class="styled-select">
-                        <select id="person_select" name="person_select" class="form-control" required="">
-                          <option value="">Choose Subject</option>
-                          <option value="1 Person">Software Engineering</option>
-                          <option value="2 Person">Computer Science engineering</option>
-                          <option value="3 Person">Accounting Technologies</option>
-                          <option value="Family Pack">BACHELOR`S DEGREE</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group mb-20">
-                      <input name="Date Of Birth" class="form-control required date-picker" placeholder="Date Of Birth" aria-required="true" type="text">
+                      <input name="subject" class="form-control required" placeholder="Subject" aria-required="true" type="text">
                     </div>
                   </div>
                   <div class="col-sm-12">
@@ -292,7 +278,7 @@ include "includes/connection.php";
                   <div class="col-sm-12">
                     <div class="form-group mb-0 mt-10">
                       <input name="form_botcheck" class="form-control" value="" type="hidden">
-                      <button type="submit" class="btn btn-colored btn-theme-colored2 text-white btn-lg btn-block" data-loading-text="Please wait...">Submit Request</button>
+                      <button type="submit" class="btn btn-colored btn-theme-colored2 text-white btn-lg btn-block" data-loading-text="Please wait...">अनुरोध पेश गर्नुहोस्</button>
                     </div>
                   </div>
                 </div>
@@ -305,8 +291,7 @@ include "includes/connection.php";
                   submitHandler: function(form) {
                     var form_btn = $(form).find('button[type="submit"]');
                     var form_result_div = '#form-result';
-                    $(form_result_div).remove();
-                    form_btn.before('&amp;lt;div id="form-result" class="alert alert-success" role="alert" style="display: none;"&amp;gt;&amp;lt;/div&amp;gt;');
+                    $(form_result_div).remove();                    
                     var form_btn_old_msg = form_btn.html();
                     form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
                     $(form).ajaxSubmit({

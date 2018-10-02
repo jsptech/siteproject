@@ -7,7 +7,7 @@
           <div id="rev_slider_home" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.0.7">
             <ul>
               <?php 
-             require_once('admin/database/slider.class.php');
+              require_once('admin/database/slider.class.php');
               $slide = new SLID();
               $stmt = $slide->GetAllSlid("SELECT * FROM sliders");
               $stmt->execute();
