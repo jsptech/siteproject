@@ -93,7 +93,8 @@
                   {
                     while($row=$stmt->fetch(PDO::FETCH_ASSOC))
                     { ?>
-                    <a href="photos?album=<?php echo $row['id']; ?>">
+                    <!--<a href="photos?album=<?php// echo $row['id']; ?>">-->
+                    <a href="photogallery?album=<?php echo $row['id']; ?>">-->
                       <div class="gallery-item design">
                         <div class="thumb">
                           <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['thumb']).'" class="img-fullwidth" Width="280" Height="155.55" />'; ?>

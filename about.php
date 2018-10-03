@@ -66,24 +66,32 @@
         </div>
       </div>
     </section>
+    <?php
+      require_once('admin/database/content.class.php');
+      $content = new CONTENT();
+      $stmt = $content->GetAllContent("SELECT * FROM contents where Pageid=2");
+      $stmt->execute();
+      $data_content=$stmt->fetch(PDO::FETCH_ASSOC)
 
+
+    ?>
     <!-- Section: About -->
     <section>
       <div class="container pb-70">
         <div class="section-content">
           <div class="row">
             <div class="col-md-5">
-              <img class="img-fullwidth maxwidth500" src="images/about/school.jpg" alt="">
+              <img class="img-fullwidth maxwidth500" src="data:image/jpeg;base64,<?php echo base64_encode($data_content['photo']);?>" alt="">
             </div>
             <div class="col-md-7">
-              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30">About <span class="text-theme-colored2">Vidyabhushan</span></h2>
+              <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30">About US<span class="text-theme-colored2"></span></h2>
               <div class="double-line-bottom-theme-colored-2"></div>
-                  <h1 style="font-size:16px;">Motto: "Quality education to lead the Nation"</h1>
-                  <p style="text-align:justify">Vidya Bhusan Public School (V.B.P.S), Mohanpur, Kailali residential cum day co-educational is one of the promising Lower Secondary Level (Proposed for Secondary Level for the year-2074) academic institutions in far –western development region founded on the auspicious occasion of Sarsawati Puja (Shree Panchami) in 2064 B.S. with a motto "Quality education to lead the nation". </span></p>
-                  <p style="text-align:justify">The institution was founded with the pledge to meet the demand of time on the field of education by imparting modern, technical, scientific and vocational method of education. The school got its affiliation form the government of Nepal, District Education Office (DEO), Kailali in 2064 to run classes in English medium. The organization has been imparting result oriented and practical based education under new management since 2072.</p>
+                 
+                  <p style="text-align:justify"><?php echo $data_content['Description'];?></p>
+                <!--  <p style="text-align:justify">The institution was founded with the pledge to meet the demand of time on the field of education by imparting modern, technical, scientific and vocational method of education. The school got its affiliation form the government of Nepal, District Education Office (DEO), Kailali in 2064 to run classes in English medium. The organization has been imparting result oriented and practical based education under new management since 2072.</p>
                   <p style="text-align:justify">So far its location is concerned; it is at Mohanpur, on the main highway to Dhangadhi covering its area of 3 bigha land, perhaps the largest area among any private institute in Kailali.</p>
                   <p style="text-align:justify">The institution has been established following the norms of modern education. The facilities related to transportation, canteen, library, computer lab, science lab, visual classes, Midas e-class, day hostel and night hostel and the like are basic provision. Similary, for the ECA the institution has one well managed football ground, volleyball court, badminton court, table tennis board, auditorium hall etc.Most importantly; the institution is set up with a vision to run itself in a fully residential mode.</p>
-                  
+                 --> 
               </div>
             </div>
           </div>
@@ -92,7 +100,7 @@
    </section>
    
    
-   <!-- Section: Vision, -->
+   <!-- Section: Vision, --><!--
   <section>
       <div class="container pb-50">
         <div class="section-content">
@@ -124,7 +132,7 @@
         </div>
       </div>
   </section>
-  <!-- end main-content -->
+  <!-- end main-content --><!--
 <section>
   <div class="container pb-50">
     <div class="section-content">

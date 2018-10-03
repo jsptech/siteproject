@@ -1,50 +1,48 @@
-<!DOCTYPE html>
 <?php 
-include 'database/dbconfig.php';
-include 'inc/functions.php';
 session_start();
+require_once('database/dbconfig.php');
+require_once('inc/functions.php');
 confirm_login();
-?>
+require_once('database/facilities.class.php');
 
-<?php 
-    require_once('database/download.class.php');
-    $slide = new DOWNLOAD();
+$facility = new FACILITY();
 
-    if(isset($_POST['save']))
-    {
-        $title = strip_tags($_POST['title']);
-        $detail = strip_tags($_POST['detail']);
-        $file = fopen($_FILES['file']['tmp_name'], 'rb');
-        
-        if($file=="")	{
-            $error[] = "Select File !";
+if(isset($_GET['id']))
+{
+  $id = $_GET['id'];
+  
+}   
+
+if(isset($_POST['save']))
+  {
+    $title = strip_tags($_POST['title']);
+    $detail = strip_tags($_POST['detail']);
+     try
+      {              
+        if($facility->UpdateFacility($id, $title, $detail))
+        {
+          $smsg = "Facility's Updated Successfully !";
+         // header('Location:slider-image');
         }
         else
         {
-            try
-            {              
-                if($slide->CreateDownload($title, $detail, $file))
-                {
-                    $smsg = "File's Uploaded Successfully !";
-                }
-                else
-                {
-                    $fsmg = "Due to some problem File is not upladed";
-                }
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
+          $fsmg = "Due to some problem Facility has not updated";
         }
-    }
-?>
+      }
+      catch(PDOException $e)
+      {
+        echo $e->getMessage();
+      }
+  }
 
+  $result = $facility->GetFacilityById($id);
+?>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel | Add Files</title>
+  <title>Admin Panel | Edit Facilities</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -79,10 +77,10 @@ confirm_login();
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>      
-        Add Files
+        Edit Facilities
       </h1>  
       <ol class="breadcrumb" style="padding-top:0px;">
-      <a href="donwloads" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
+      <a href="facility-list" class="btn btn-success"><i class="fa fa-list"></i> View All</a>
       </ol>    
     </section>
     <!-- Main content -->
@@ -96,32 +94,32 @@ confirm_login();
               <div class="box-body">
               <?php include 'inc/message.php';?>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">File's Title *</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Faility's Title *</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder=" Title" name = "title">
+                    <input type="text" class="form-control" id="inputEmail3" 
+                    placeholder="Example:Faility's Title" name = "title" value="<?php echo $result['title'] ?>">
                   </div>
                 </div>
                
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">File's Details *</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Faility's Details *</label>
 
                   <div class="col-sm-10">
                   <textarea class="textarea" id="editor1" name ="detail" placeholder="Place some text here"
-                    style="width: 100%; height: 150px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    style="width: 100%; height: 150px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $result['details'] ?></textarea>
                   </div>
                 </div> 
+                
                 <div class="form-group">
-                  <label for="image" class="col-sm-2 control-label">File</label>
-
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="file" name ="file" required="" >
-                    <p>Note: Image Size must be width:1350 px, Height:600 px and Resolution:72px for best view</p>
+                  <label for="image" class="col-sm-2 control-label">Old Image</label>
+                  <div class="col-sm-10">                    
+                  <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($result['photo']).'" height="50" />'; ?>  
                   </div>
-                </div>                
+                </div>                             
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-              <a href="downloads" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>
+                <a href="facility-list" class="btn btn-danger"><i class="fa fa-times"></i> Close</a>                
                 <button type="submit" class="btn btn-success pull-right" name = "save"><i class="fa fa-floppy-o"></i> Save</button>
               </div>
               <!-- /.box-footer -->
@@ -184,6 +182,3 @@ confirm_login();
 </script>
 </body>
 </html>
-
-
-

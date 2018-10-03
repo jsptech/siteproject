@@ -94,51 +94,50 @@
           $stmt = $album->GetAllAlbum("SELECT * FROM album");
           $stmt->execute();
 
+          $album_id = $_GET['album'];
+
         ?>
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
               <!-- Works Filter -->
-              <div class="portfolio-filter font-alt align-center">
-              <?php 
-              if($stmt->rowCount() > 0)
-                  {
-                    while($row=$stmt->fetch(PDO::FETCH_ASSOC))
-                    { ?>
-                    <a data-filter="*" href="photogallery.php?album_id=<?php echo $row['id'];?>" ><?php echo $row['album_name'];?></a>
-               
-                <?php } } ?>
-                <a href="#" class="active" data-filter="*">All</a>
-                <a href="#select1" class="" data-filter=".select1">Photos</a>
-                <a href="#select2" class="" data-filter=".select2">school</a>
-                <a href="#select3" class="" data-filter=".select3">Students</a>
-                    
-              </div>
+              
               <!-- End Works Filter -->
               
               <!-- Portfolio Gallery Grid -->
               <div id="grid" class="gallery-isotope default-animation-effect grid-4 gutter clearfix">
-               
+               <?php
+                  require_once('admin/database/photo.class.php');
+                  $photo = new PHOTO();
+                  $stmt = $photo->GetAllPhoto("SELECT * FROM photo_store where album_id = '{$album_id}'ORDER BY id desc");
+                  $stmt->execute();
+                  if($stmt->rowCount() > 0)
+                  {
+                    $sn=1;
+                    while($data_photo=$stmt->fetch(PDO::FETCH_ASSOC))
+                    { 
+                ?>
                 <!-- Portfolio Item Start -->
                 <div class="gallery-item select1">
                   <div class="thumb">
-                    <img class="img-fullwidth" src="images/bg/bg1.jpg" alt="project">
+                    <img class="img-fullwidth" src="data:image/jpeg;base64,<?php echo base64_encode($data_photo['photo']);?>" alt="project">
                     <div class="overlay-shade"></div>
                     <div class="icons-holder">
                       <div class="icons-holder-inner">
                         <div class="styled-icons icon-sm icon-bordered icon-circled icon-theme-colored2">
-                          <a data-lightbox="image" href="images/bg/bg1.jpg"><i class="fa fa-plus"></i></a>
+                          <a data-lightbox="image" href="data:image/jpeg;base64,<?php echo base64_encode($data_photo['photo']);?>"><i class="fa fa-plus"></i></a>
                           <a href="#"><i class="fa fa-link"></i></a>
                         </div>
                       </div>
                     </div>
-                    <a class="hover-link" data-lightbox="image" href="images/bg/bg1.jpg">View more</a>
+                    <a class="hover-link" data-lightbox="image" href="data:image/jpeg;base64,<?php echo base64_encode($data_photo['photo']);?>">View more</a>
                   </div>
                 </div>
+                    <?php } }?>
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select1">
+              <!--<div class="gallery-item select1">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/bg/bg2.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -156,7 +155,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select2">
+               <!-- <div class="gallery-item select2">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/bg/bg3.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -174,7 +173,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select3">
+               <!-- <div class="gallery-item select3">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/bg/bg0.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -192,7 +191,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select1" style="position: absolute; left: 0px; top: 165px;">
+              <!--  <div class="gallery-item select1" style="position: absolute; left: 0px; top: 165px;">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/gallery/s5.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -210,7 +209,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select3" style="position: absolute; left: 285px; top: 165px;">
+               <!-- <div class="gallery-item select3" style="position: absolute; left: 285px; top: 165px;">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/gallery/s6.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -228,7 +227,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select2" style="position: absolute; left: 570px; top: 165px;">
+                <!--<div class="gallery-item select2" style="position: absolute; left: 570px; top: 165px;">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/gallery/s7.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -246,7 +245,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select3" style="position: absolute; left: 855px; top: 165px;">
+              <!--  <div class="gallery-item select3" style="position: absolute; left: 855px; top: 165px;">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/gallery/s8.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -264,7 +263,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select1" style="position: absolute; left: 0px; top: 330px;">
+              <!--  <div class="gallery-item select1" style="position: absolute; left: 0px; top: 330px;">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/gallery/s9.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -282,7 +281,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select2" style="position: absolute; left: 285px; top: 330px;">
+              <!--  <div class="gallery-item select2" style="position: absolute; left: 285px; top: 330px;">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/gallery/s10.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -300,7 +299,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select1" style="position: absolute; left: 570px; top: 330px;">
+              <!--  <div class="gallery-item select1" style="position: absolute; left: 570px; top: 330px;">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/gallery/s11.jpg" alt="project">
                     <div class="overlay-shade"></div>
@@ -318,7 +317,7 @@
                 <!-- Portfolio Item End -->
 
                 <!-- Portfolio Item Start -->
-                <div class="gallery-item select3" style="position: absolute; left: 855px; top: 330px;">
+               <!-- <div class="gallery-item select3" style="position: absolute; left: 855px; top: 330px;">
                   <div class="thumb">
                     <img class="img-fullwidth" src="images/gallery/s12.jpg" alt="project">
                     <div class="overlay-shade"></div>
