@@ -12,7 +12,7 @@
 <meta name="author" content="ThemeMascot" />
 
 <!-- Page Title -->
-<title>Facilities | Vidyabhushan</title>
+<title>हाम्रा सुविधाहरु | मालिका मा.वि.</title>
 
 <!-- Favicon and Touch Icons -->
 <link href="images/favicon.png" rel="shortcut icon" type="image/png">
@@ -73,7 +73,7 @@
         <div class="section-content">
           <div class="row"> 
             <div class="col-md-6">
-              <h2 class="text-theme-colored2 font-36">Our Facilites</h2>              
+              <h2 class="text-theme-colored2 font-36">हाम्रा सुविधाहरु</h2>              
             </div>
           </div>
         </div>

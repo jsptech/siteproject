@@ -129,7 +129,7 @@ include "includes/connection.php";
                         </div>
                         <div class="event-meta border-1px pl-40" style="width:515px; height:110.317px">
                           <div class="event-content pull-left flip">
-                            <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="news-events?id=<?php echo $data_news['id'];?>"><?php echo $data_news['news_title'];?></a></h4>
+                            <h4 class="event-title media-heading font-roboto-slab font-weight-700"><a href="notice-events?id=<?php echo $data_news['id'];?>"><?php echo $data_news['news_title'];?></a></h4>
                             <!--<span class="mb-10 text-gray-darkgray mr-10"><i class="fa fa-clock-o mr-5 text-theme-colored2"></i> at 5.00 pm - 7.30 pm</span>
                             <span class="text-gray-darkgray"><i class="fa fa-map-marker mr-5 text-theme-colored2"></i> 25 Newyork City</span>-->
                             <p class="mt-5"><?php echo substr($data_news['news_content'],0,130)."...";?></p>

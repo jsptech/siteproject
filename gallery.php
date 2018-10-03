@@ -15,7 +15,7 @@
 <meta name="keywords" content="education,school,university,educational,learn,learning,teaching,workshop" />
 <meta name="author" content="ThemeMascot" />
 <!-- Page Title -->
-<title>Malika | Gallery</title>
+<title>ग्यालरि | मालिका मा.वि.</title>
 <!-- Favicon and Touch Icons -->
 <link href="images/favicon.png" rel="shortcut icon" type="image/png">
 <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
@@ -68,7 +68,7 @@
         <div class="section-content">
           <div class="row"> 
             <div class="col-md-6">
-              <h2 class="text-theme-colored2 font-36">Gallery</h2>              
+              <h2 class="text-theme-colored2 font-36">फोटो ग्यालरि</h2>              
             </div>
           </div>
         </div>

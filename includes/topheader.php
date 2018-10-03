@@ -25,7 +25,7 @@
               <li class="m-0 pl-10"><a href="admin/login" target="_blank" class="text-white">
               <i class="fa fa-user-o mr-5 text-white"></i> लगइन</a> 
               </li> 
-              <li class="m-0 pl-10"><a href="admin/login" target="_blank" class="text-white">
+              <li class="m-0 pl-10"><a href="http://webmail.malikaschool.edu.np" target="_blank" class="text-white">
               <i class="fa fa-envelope-o mr-5 text-white"></i> इमेल</a> 
               </li>            
             </ul>

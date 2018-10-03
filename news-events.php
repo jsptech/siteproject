@@ -9,7 +9,7 @@
 <meta name="keywords" content="vidyabhushan" />
 <meta name="author" content="JSP" />
 <!-- Page Title -->
-<title>News/Events | Vidyabhushan</title>
+<title>खबर तथा सुचना | मालिका मा.वि.</title>
      <!-- Favicon icon-->
 <link href="images/favicon.png" rel="shortcut icon" type="image/png">
 <!-- Stylesheet -->
@@ -60,7 +60,7 @@
         <div class="section-content">
           <div class="row"> 
             <div class="col-md-6">
-              <h2 class="text-theme-colored2 font-36">News & Events</h2>              
+              <h2 class="text-theme-colored2 font-36">खबर तथा सुचना</h2>              
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@
    
    <!-- Section: Vision, -->
   <?php
-   require_once('admin/database/news_event.class.php');
+  require_once('admin/database/news_event.class.php');
   $news_event = new NEWS_EVENT();
   $stmt = $news_event->GetAllNews_Event("SELECT * FROM news_events ORDER BY id DESC");
   $stmt->execute();

@@ -1,3 +1,9 @@
+<?php
+require_once('admin/database/team.class.php');
+$team = new TEAM();
+$stmt = $team->GetAllTeam("SELECT * FROM team");
+$stmt->execute();
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -8,7 +14,7 @@
 <meta name="keywords" content="school" />
 <meta name="author" content="JSP" />
 <!-- Page Title -->
-<title>Teachers | Vidhyabhushan</title>
+<title>व्यवस्थापन समिती | मालिका मा.वि.</title>
 <!-- Favicon and Touch Icons -->
 <link href="images/favicon.png" rel="shortcut icon" type="image/png">
 <!-- Stylesheet -->
@@ -61,224 +67,105 @@
         <div class="section-content">
           <div class="row"> 
             <div class="col-md-6">
-              <h2 class="text-theme-colored2 font-36">Management Team</h2>              
+              <h2 class="text-theme-colored2 font-36">व्यवस्थापन समिती</h2>              
             </div>
           </div>
         </div>
       </div>
     </section>
-
+    <!-- Section: Team -->
     <!-- Section: Team -->
     <section id="team" class="bg-silver-deep">
-      <div class="container">
+      <div class="container pb-40">
+        <div class="section-title">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="text-uppercase title">व्यवस्थापन  <span class="text-theme-colored2">समिती</span></h2>              
+              <p class="text-uppercase mb-0">हाम्रा शिक्षाप्रेमी सदस्यहरु ।</p>
+					  	<div class="double-line-bottom-theme-colored-2"></div>
+						</div>
+          </div>
+        </div>
         <div class="row mtli-row-clearfix">
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/team/1.jpg">
-                <div class="team-overlay"></div>
-                <ul class="styled-icons team-social icon-sm">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-              <div class="team-details">
-                <h4 class="text-uppercase text-theme-colored font-weight-600 m-5">Jhon Anderson</h4>
-                <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0">Civil Engineer</h6>
-                <p class="hidden-md">Lorem ipsum dolor sit ametcon secte adipis elit. Debitis magnam placeat dignissimos saperator ellium</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/team/2.jpg">
-                <div class="team-overlay"></div>
-                <ul class="styled-icons team-social icon-sm">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-              <div class="team-details">
-                <h4 class="text-uppercase text-theme-colored font-weight-600 m-5">Jhon Anderson</h4>
-                <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0">Civil Engineer</h6>
-                <p class="hidden-md">Lorem ipsum dolor sit ametcon secte adipis elit. Debitis magnam placeat dignissimos saperator ellium</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/team/3.jpg">
-                <div class="team-overlay"></div>
-                <ul class="styled-icons team-social icon-sm">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-              <div class="team-details">
-                <h4 class="text-uppercase text-theme-colored font-weight-600 m-5">Jhon Anderson</h4>
-                <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0">Civil Engineer</h6>
-                <p class="hidden-md">Lorem ipsum dolor sit ametcon secte adipis elit. Debitis magnam placeat dignissimos saperator ellium</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="images/team/4.jpg">
-                <div class="team-overlay"></div>
-                <ul class="styled-icons team-social icon-sm">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-              <div class="team-details">
-                <h4 class="text-uppercase text-theme-colored font-weight-600 m-5">Jhon Anderson</h4>
-                <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0">Civil Engineer</h6>
-                <p class="hidden-md">Lorem ipsum dolor sit ametcon secte adipis elit. Debitis magnam placeat dignissimos saperator ellium</p>
-              </div>
-            </div>
-          </div>
+          <?php
+            if($stmt->rowCount() > 0)
+            {
+              while($data=$stmt->fetch(PDO::FETCH_ASSOC))
+              {?>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                  <div class="team-members border-bottom-theme-colored2px text-center maxwidth400 mb-30">
+                    <div class="team-thumb">                      
+                      <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data['photo']).'" class="img-fullwidth" Width="275" Height="370" />'; ?></td>
+                      <div class="team-overlay"></div>
+                      <ul class="styled-icons team-social icon-sm">
+                        <li><a href="<?php echo $data['facebook_link']; ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                      </ul>
+                    </div>
+                    <div class="team-details">
+                      <h4 class="text-uppercase text-theme-colored font-weight-600 m-5"><?php echo $data['full_name']; ?></h4>
+                      <h6 class="text-gray font-13 font-weight-400 line-bottom-centered mt-0"><?php echo $data['designation']; ?></h6>
+                      <p class="hidden-md"><?php echo $data['description']; ?></p>
+                    </div>
+                  </div>
+                </div> 
+                <?php                
+              }
+            }
+          ?>
+                   
         </div>
       </div>
     </section>
-
-    <!-- Divider: Funfact -->
-    <section class="layer-overlay overlay-theme-colored-9" data-bg-img="images/bg/bg1.jpg" data-parallax-ratio="0.7">
-      <div class="container pt-90 pb-90">
-        <div class="row mt-30">
-          <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-            <div class="funfact text-center">
-              <i class="pe-7s-smile mb-20 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="754" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-              <h5 class="text-white text-uppercase">Happy Students</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-            <div class="funfact text-center">
-              <i class="pe-7s-notebook mb-20 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="675" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-              <h5 class="text-white text-uppercase">Approved Courses</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-            <div class="funfact text-center">
-              <i class="pe-7s-users mb-20 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="675" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-              <h5 class="text-white text-uppercase">Certified Teachers</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-            <div class="funfact text-center">
-              <i class="pe-7s-study mb-20 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="1248" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-              <h5 class="text-white text-uppercase">Graduate Students</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+   
     <!-- Divider: Testimonials -->
     <section class="bg-silver-deep">
       <div class="container pt-70 pb-30">
         <div class="section-title">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="text-uppercase title">What <span class="text-theme-colored2">People </span>Say</h2>              
-              <p class="text-uppercase mb-0">Choose Your Desired Course</p>
-              <div class="double-line-bottom-theme-colored-2"></div>
-            </div>
+              <h2 class="text-uppercase title">अभिभावकको <span class="text-theme-colored2"> भनाइ </span>!</h2>              
+              
+					  	<div class="double-line-bottom-theme-colored-2"></div>
+						</div>
           </div>
         </div>
+        
         <div class="row">
           <div class="col-md-12 mb-30">
             <div class="owl-carousel-2col boxed" data-dots="true">
+            <?php
+            require_once('admin/database/message.class.php');
+            $message = new Message();
+            $mstmt = $message->GetAllMessage("SELECT * FROM messages where post = 'Guardian'");
+            $mstmt->execute();
+            if($mstmt->rowCount() > 0)
+                  {
+                   while($data_message=$mstmt->fetch(PDO::FETCH_ASSOC))
+                   {
+               
+            ?>
               <div class="item">
                 <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail" alt="" src="images/testimonials/1.jpg" width="130">
+                  <div class="thumb pull-left mb-0 mr-0" style="width:100px; height:100px">                    
+                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_message['photo']).'" class="img-thumbnail img-circle" Width="110px" Height="110px" />'; ?>
                   </div>
                   <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO apple.inc</h6>
+                    <h4 class="mt-0 font-weight-300"><?php echo $data_message['message'];?></h4>
+                    <h5 class="mt-10 font-16 mb-0"><?php echo $data_message['full_name'];?></h5>
+                    <h6 class="mt-5"><?php echo $data_message['address'];?></h6>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail" alt="" src="images/testimonials/2.jpg" width="130">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO apple.inc</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail" alt="" src="images/testimonials/3.jpg" width="130">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO apple.inc</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail" alt="" src="images/testimonials/1.jpg" width="130">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO apple.inc</h6>
-                  </div>
-                </div>
-              </div>
+                   <?php } } ?>
             </div> 
           </div>
         </div>
       </div>
-    </section>
-    
-    <!-- Divider: Clients -->
-    <section class="clients bg-theme-colored2">
-      <div class="container pt-0 pb-0">
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Section: Clients -->
-            <div class="owl-carousel-6col clients-logo transparent text-center">
-              <div class="item"> <a href="#"><img src="images/clients/w1.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w2.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w3.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w4.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w5.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w6.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w3.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w4.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w5.png" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="images/clients/w6.png" alt=""></a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </section>   
+    <!-- Divider: Clients -->    
   </div>
   <!-- end main-content -->
   

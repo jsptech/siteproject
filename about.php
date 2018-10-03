@@ -9,7 +9,7 @@
 <meta name="keywords" content="vidyabhushan" />
 <meta name="author" content="JSP" />
 <!-- Page Title -->
-<title>Home | Vidyabhushan</title>
+<title>हाम्रो बारेमा | मालिका मा.वि.</title>
      <!-- Favicon icon-->
 <link href="images/favicon.png" rel="shortcut icon" type="image/png">
 <!-- Stylesheet -->
@@ -60,7 +60,7 @@
         <div class="section-content">
           <div class="row"> 
             <div class="col-md-6">
-              <h2 class="text-theme-colored2 font-36">About us</h2>              
+              <h2 class="text-theme-colored2 font-36">हाम्रो बारेमा</h2>              
             </div>
           </div>
         </div>

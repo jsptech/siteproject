@@ -12,8 +12,8 @@
                   <li><a href="teachers">शिक्षकहरु</a></li>
                 </ul>
               </li>
-              <li><a href="news-events">सुचाना तथा कार्यक्रम</a></li>
-              <li><a href="photogallery">फोटो ग्यालरी</a></li>
+              <li><a href="notice-events">सुचाना तथा कार्यक्रम</a></li>
+              <li><a href="gallery">फोटो ग्यालरी</a></li>
               <li><a href="contact">सम्पर्क</a></li> 
             </ul>
             <div class="pull-right sm-pull-none mb-sm-15">

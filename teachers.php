@@ -14,7 +14,7 @@ $stmt->execute();
 <meta name="keywords" content="school" />
 <meta name="author" content="JSP" />
 <!-- Page Title -->
-<title>Teachers | Vidhyabhushan</title>
+<title>शिक्षक तथा कर्मचारी | मालिका मा.वि.</title>
 <!-- Favicon and Touch Icons -->
 <link href="images/favicon.png" rel="shortcut icon" type="image/png">
 <!-- Stylesheet -->
@@ -67,7 +67,7 @@ $stmt->execute();
         <div class="section-content">
           <div class="row"> 
             <div class="col-md-6">
-              <h2 class="text-theme-colored2 font-36">Teachers</h2>              
+              <h2 class="text-theme-colored2 font-36">शिक्षक तथा कर्मचारीहरु</h2>              
             </div>
           </div>
         </div>
@@ -80,8 +80,8 @@ $stmt->execute();
         <div class="section-title">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="text-uppercase title">Qualified <span class="text-theme-colored2">Teachers</span></h2>              
-              <p class="text-uppercase mb-0">We Have Highly Qualified Teachers</p>
+              <h2 class="text-uppercase title">हाम्रा दक्ष शिक्षक <span class="text-theme-colored2">तथा कर्मचारीहरु</span></h2>              
+              <p class="text-uppercase mb-0">हाम्रो यहाँ दक्ष तथा अनुभवि शिक्षक-शिक्षिका द्वारा अध्ययन गराइन्छ ।</p>
 					  	<div class="double-line-bottom-theme-colored-2"></div>
 						</div>
           </div>
@@ -119,111 +119,52 @@ $stmt->execute();
         </div>
       </div>
     </section>
-
-    <!-- Divider: Funfact -->
-    <section class="layer-overlay overlay-theme-colored-9" data-bg-img="images/bg/bg1.jpg" data-parallax-ratio="0.7">
-      <div class="container pt-90 pb-90">
-        <div class="row mt-30">
-          <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-            <div class="funfact text-center">
-              <i class="pe-7s-smile mb-20 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="754" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-              <h5 class="text-white text-uppercase">Happy Students</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-            <div class="funfact text-center">
-              <i class="pe-7s-notebook mb-20 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="675" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-              <h5 class="text-white text-uppercase">Approved Courses</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-            <div class="funfact text-center">
-              <i class="pe-7s-users mb-20 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="675" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-              <h5 class="text-white text-uppercase">Certified Teachers</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-            <div class="funfact text-center">
-              <i class="pe-7s-study mb-20 text-theme-colored2"></i>
-              <h2 data-animation-duration="2000" data-value="1248" class="animate-number text-white font-38 font-weight-400 mt-0 mb-15">0</h2>
-              <h5 class="text-white text-uppercase">Graduate Students</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+   
     <!-- Divider: Testimonials -->
     <section class="bg-silver-deep">
       <div class="container pt-70 pb-30">
         <div class="section-title">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="text-uppercase title">What <span class="text-theme-colored2">People </span>Say</h2>              
-              <p class="text-uppercase mb-0">Choose Your Desired Course</p>
-              <div class="double-line-bottom-theme-colored-2"></div>
-            </div>
+              <h2 class="text-uppercase title">अभिभावकको <span class="text-theme-colored2"> भनाइ </span>!</h2>              
+              
+					  	<div class="double-line-bottom-theme-colored-2"></div>
+						</div>
           </div>
         </div>
+        
         <div class="row">
           <div class="col-md-12 mb-30">
             <div class="owl-carousel-2col boxed" data-dots="true">
+            <?php
+            require_once('admin/database/message.class.php');
+            $message = new Message();
+            $mstmt = $message->GetAllMessage("SELECT * FROM messages where post = 'Guardian'");
+            $mstmt->execute();
+            if($mstmt->rowCount() > 0)
+                  {
+                   while($data_message=$mstmt->fetch(PDO::FETCH_ASSOC))
+                   {
+               
+            ?>
               <div class="item">
                 <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail" alt="" src="images/testimonials/1.jpg" width="130">
+                  <div class="thumb pull-left mb-0 mr-0" style="width:100px; height:100px">                    
+                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($data_message['photo']).'" class="img-thumbnail img-circle" Width="110px" Height="110px" />'; ?>
                   </div>
                   <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO apple.inc</h6>
+                    <h4 class="mt-0 font-weight-300"><?php echo $data_message['message'];?></h4>
+                    <h5 class="mt-10 font-16 mb-0"><?php echo $data_message['full_name'];?></h5>
+                    <h6 class="mt-5"><?php echo $data_message['address'];?></h6>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail" alt="" src="images/testimonials/2.jpg" width="130">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO apple.inc</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail" alt="" src="images/testimonials/3.jpg" width="130">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO apple.inc</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial pt-10">
-                  <div class="thumb pull-left mb-0 mr-0">
-                    <img class="img-thumbnail" alt="" src="images/testimonials/1.jpg" width="130">
-                  </div>
-                  <div class="testimonial-content">
-                    <h4 class="mt-0 font-weight-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                    <h5 class="mt-10 font-16 mb-0">Catherine Grace</h5>
-                    <h6 class="mt-5">CEO apple.inc</h6>
-                  </div>
-                </div>
-              </div>
+                   <?php } } ?>
             </div> 
           </div>
         </div>
       </div>
-    </section>    
+    </section>   
     <!-- Divider: Clients -->    
   </div>
   <!-- end main-content -->
