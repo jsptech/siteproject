@@ -63,7 +63,12 @@
     <?php include 'includes/middleheader.php'; ?>        
     <?php include 'includes/navheader.php'; ?>
   </header>
-
+  <?php 
+    require_once('admin/database/facilities.class.php');
+    $facility = new FACILITY();
+    $stmt = $facility->GetAllFacility("SELECT * FROM facilities");
+    $stmt->execute();
+  ?>
   <!-- Start main-content -->
   <div class="main-content">
     <!-- Section: inner-header -->
@@ -84,17 +89,26 @@
       <div class="container pt-70 pb-40">
         <div class="section-content">
           <div class="row multi-row-clearfix">
+          <?php
+          if($stmt->rowCount() > 0)
+          {
+            $sn=1;
+            while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+            { ?>
             <div class="col-sm-6 col-md-4">
               <div class="event-list bg-silver-light maxwidth500 mb-30">
                 <div class="thumb">
-                  <img src="images/facilities/gameevent.jpg" alt="" class="img-fullwidth">                  
+                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['photo']);?>" alt="" class="img-fullwidth">                  
                 </div>
                 <div class="event-list-details border-1px bg-white clearfix p-20 pt-15 pb-30">
-                  <h4 class="text-uppercase font-weight-600 mb-5"><a href="#">Games and Other Activities</a></h4>                  
-                  <p class="mt-15">Provisions of various games that are played in the locality are made.</p>
+                  <h4 class="text-uppercase font-weight-600 mb-5"><a href="#"><?php echo $row['title'];?></a></h4>                  
+                  <p class="mt-15"><?php echo $row['details'];?></p>
                 </div>
               </div>
             </div>
+            <?php
+            } }?>
+            <!--
             <div class="col-sm-6 col-md-4">
               <div class="event-list bg-silver-light maxwidth500 mb-30">
                 <div class="thumb">
@@ -150,6 +164,7 @@
                 </div>
               </div>
             </div>
+            -->
           </div>
         </div>
       </div>

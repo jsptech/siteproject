@@ -1,6 +1,6 @@
 <?php
     require_once('dbconfig.php');
-    class DOWNLOAD
+    class FACILITY
     {
         private $conn;
         public function __construct()
@@ -10,16 +10,16 @@
             $this->conn = $db;
         }
         
-        public function GetAllFiles($sql)
+        public function GetAllFacility($sql)
         {
             $stmt = $this->conn->prepare($sql);
             return $stmt;
         }
 
-        public function GetSlidById($id)
+        public function GetFacilityById($id)
         {   try
             {     
-                $stmt = $this->conn->prepare("SELECT * FROM sliders WHERE id=:id");
+                $stmt = $this->conn->prepare("SELECT * FROM facilities WHERE id=:id");
                 $stmt->bindparam(":id", $id);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,15 +31,15 @@
             } 
         }
 
-        public function CreateDownload($title, $detail, $file)
+        public function CreateFacility($title, $detail, $photo)
         {            
             try
             {         
-                $stmt = $this->conn->prepare("INSERT INTO downloads(title, detail, file) 
-                                                        VALUES(:title, :detail, :file)");
+                $stmt = $this->conn->prepare("INSERT INTO facilities(title, details, photo) 
+                                                        VALUES(:title, :detail, :photo)");
                 $stmt->bindparam(":title", $title);
                 $stmt->bindparam(":detail", $detail);
-                $stmt->bindparam(":file", $file, PDO::PARAM_LOB);
+                $stmt->bindparam(":photo", $photo, PDO::PARAM_LOB);
 
                 $stmt->execute();
                 return $stmt;
@@ -50,15 +50,15 @@
             }
         }
 
-        public function UpdateSlid($id, $SlidTitle, $SlidSlog, $SlidImage)
+        public function UpdateFacility($id, $title, $detail)
         {
             try
             {
-                $stmt = $this->conn->prepare("UPDATE sliders SET SlidTitle=:SlidTitle, SlidSlog=:SlidSlog, SlidImage=:SlidImage WHERE id=:id");
+                $stmt = $this->conn->prepare("UPDATE facilities SET title=:title, details=:detail WHERE id=:id");
                 $stmt->bindparam(":id", $id);               
-                $stmt->bindparam(":SlidTitle", $SlidTitle);
-                $stmt->bindparam(":SlidSlog", $SlidSlog);
-                $stmt->bindparam(":SlidImage", $SlidImage, PDO::PARAM_LOB);
+                $stmt->bindparam(":title", $title);
+                $stmt->bindparam(":detail", $detail);
+               // $stmt->bindparam(":SlidImage", $SlidImage, PDO::PARAM_LOB);
                 $stmt->execute();
                 return $stmt;
             }
@@ -68,11 +68,11 @@
             }
         }
 
-        public function DeleteFiles($id)
+        public function DeleteFacility($id)
         {
             try
             {
-                $stmt = $this->conn->prepare("DELETE FROM downloads WHERE id=:id");                
+                $stmt = $this->conn->prepare("DELETE FROM facilities WHERE id=:id");                
                 $stmt->bindparam(":id", $id);
                 $stmt->execute();
                 return $stmt;
