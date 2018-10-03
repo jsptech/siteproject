@@ -72,7 +72,13 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>       
+
+
+    <!-- Section: Blog -->
+    <section>
+      <div class="container mt-30 mb-30 pt-30 pb-30">
+        <div class="row">
         <?php
             require_once('admin/database/news_event.class.php');
             $news_event = new NEWS_EVENT();
@@ -82,11 +88,6 @@
                 $data_news = $news_event->GetNewsById($id);            
             ?>
 
-
-    <!-- Section: Blog -->
-    <section>
-      <div class="container mt-30 mb-30 pt-30 pb-30">
-        <div class="row">
           <div class="col-md-9">
             <div class="blog-posts single-post">
               <article class="post clearfix mb-0">
@@ -160,7 +161,89 @@
             </div>
           </div>
 
-            <?php } ?> 
+            <?php }
+            else
+            {
+              $nsmt = $news_event->GetAllNews_Event("SELECT * FROM news_events ORDER BY id DESC LIMIT 1");
+              $nsmt->execute();
+              $data_news = $nsmt->fetch(PDO::FETCH_ASSOC);
+              ?>
+                <div class="col-md-9">
+                  <div class="blog-posts single-post">
+                    <article class="post clearfix mb-0">
+                      <div class="entry-header">
+                        <div class="post-thumb thumb"> <img src="data:image/jpeg;base64,<?php echo base64_encode($data_news['image_file']);?>" alt="" class="img-responsive img-fullwidth"> </div>                  
+                      </div>
+                      <div class="entry-content">
+                        <div class="entry-meta media no-bg no-border mt-15 pb-20">
+                          <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                            <ul>
+                              <li class="font-16 text-white font-weight-600">
+                                  <?php 
+                                      foreach($day_array as $key => $day_value)
+                                      {
+                                          if($key==substr($data_news['posted_date'],8,2))
+                                          echo $day_value;
+                                      } 
+                                  ?>
+                              </li>
+                              <li class="font-12 text-white text-uppercase">
+                                  <?php 
+                                      foreach($month_array as $key => $month_value)
+                                      {
+                                        if($key==substr($data_news['posted_date'],5,2))
+                                        echo $month_value;
+                                      } 
+                                  ?>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="media-body pl-15">
+                            <div class="event-content pull-left flip">
+                              <h3 class="entry-title text-uppercase pt-0 mt-0"><?php echo $data_news['news_title'] ?></h3>
+                              <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-calendar mr-5 text-theme-colored"></i> 
+                              <?php 
+                                  foreach($day_array as $key => $day_value)
+                                  {
+                                      if($key==substr($data_news['posted_date'],8,2))
+                                      echo $day_value;
+                                  } ?>
+                                  <?php 
+                                      foreach($month_array as $key => $month_value)
+                                      {
+                                      if($key==substr($data_news['posted_date'],5,2))
+                                      echo $month_value;
+                                      } 
+                                      echo " ,";
+                                      foreach($year_array as $key => $year_value)
+                                      {
+                                      if($key==substr($data_news['posted_date'],0,4))
+                                      echo $year_value;
+                                      } 
+                                      
+                                  ?>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="mb-15" style="text-align:justify"><?php echo $data_news['news_content'];?></p>
+                        
+                        <div class="mt-30 mb-0">
+                          <h5 class="pull-left flip mt-10 mr-20 text-theme-colored">Share:</h5>
+                          <ul class="styled-icons icon-circled m-0">
+                            <li><a href="#" data-bg-color="#3A5795"><i class="fa fa-facebook text-white"></i></a></li>
+                            <li><a href="#" data-bg-color="#55ACEE"><i class="fa fa-twitter text-white"></i></a></li>
+                            <li><a href="#" data-bg-color="#A11312"><i class="fa fa-google-plus text-white"></i></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </article>                           
+                  </div>
+                </div>
+              <?php
+            }
+            
+            ?> 
 
           <div class="col-md-3 pull-right">
             <div class="sidebar sidebar-left mt-sm-30">

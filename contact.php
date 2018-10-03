@@ -71,14 +71,14 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-6">
-              <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-user"></i> Get in touch with <span class="text-theme-colored2">us !</span></h4>
+              <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-user"></i> हामी सँग सम्पर्कमा <span class="text-theme-colored2">रहनको लागी !</span></h4>
               <ul>                
-                <h4>Our School Location</h4>
-                <li>Mohanpur, Kailali-Nepal</li>
-                <h4>Contact Number</h4>
-                <li>091-575168, 575249</li>
-                <h4>Email Address</h4>
-                <li>info@vidyabhushan.edu.np</li>                 
+                <h4>विद्यालयको ठेगाना</h4>
+                <li>गौरिगंगा न.पा.-२, चौमाला, कैलाली</li>
+                <h4>सम्पर्क नं.</h4>
+                <li>०९१-४१८०२७</li>
+                <h4>इमेल</h4>
+                <li>info@malikaschool.edu.np</li>                 
               </ul> 
               <!--google map -->
               <div style="height:200px;">
@@ -117,7 +117,7 @@
                     }
                   }
               ?>
-              <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-user"></i> Interested in <span class="text-theme-colored2"> discussing? !</span></h4>
+              <h4 class="text-uppercase line-bottom-theme-colored-2 mt-0 line-height-1"><i class="fa fa-user"></i> सन्देश <span class="text-theme-colored2"> छाड्नुहोस !</span></h4>
               
               <form id="contact_form" name="contact_form" class="" action="<?Php $_SERVER['PHP_SELF']?>" method="post">
 
@@ -125,14 +125,14 @@
               
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Name <small>*</small></label>
-                    <input class="form-control" type="text" placeholder="Enter Name" required="" name = "full_name">
+                    <label>नाम <small>*</small></label>
+                    <input class="form-control" type="text" placeholder="नाम टाइप गर्नुहोस" required="" name = "full_name">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Email <small>*</small></label>
-                    <input class="form-control required email" type="email" placeholder="Enter Email" name = "email">
+                    <label>इमेल <small>*</small></label>
+                    <input class="form-control required email" type="email" placeholder="इमेल टाइप गर्नुहोस" name = "email">
                   </div>
                 </div>
               </div>
@@ -140,26 +140,26 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Subject <small>*</small></label>
-                    <input class="form-control required" type="text" placeholder="Enter Subject" name = "subject">
+                    <label>विषय <small>*</small></label>
+                    <input class="form-control required" type="text" placeholder="विषय टाइप गर्नुहोस" name = "subject">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Phone</label>
-                    <input class="form-control" type="text" placeholder="Enter Phone" name = "contact_no">
+                    <label>फोन नंम्बर</label>
+                    <input class="form-control" type="text" placeholder="फोन नंम्बर टाइप गर्नुहोस" name = "contact_no">
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label>Message</label>
-                <textarea name="message" class="form-control required" rows="5" placeholder="Enter Message"></textarea>
+                <label>सन्देश</label>
+                <textarea name="message" class="form-control required" rows="5" placeholder="सन्देश टाइप गर्नुहोस"></textarea>
               </div>
               <div class="form-group">
                 <input name="form_botcheck" class="form-control" type="hidden" value="" />
-                <button type="submit" name = "save" class="btn btn-dark btn-theme-colored btn-flat mr-5" data-loading-text="Please wait...">Send your message</button>
-                <button type="reset" class="btn btn-default btn-flat btn-theme-colored">Reset</button>
+                <button type="submit" name = "save" class="btn btn-dark btn-theme-colored btn-flat mr-5" data-loading-text="Please wait...">सन्देश पठाउनुहोस</button>
+                <button type="reset" class="btn btn-default btn-flat btn-theme-colored">पन: भर्नुहोस</button>
               </div>
               </form>
             </div>

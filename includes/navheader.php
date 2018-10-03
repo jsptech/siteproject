@@ -9,7 +9,7 @@
               <li><a href="#">कार्य समिति तथा शिक्षक</a>
                 <ul class="dropdown">
                   <li><a href="management">कार्य समिति सदस्यहरु</a></li>
-                  <li><a href="teachers">शिक्षकहरु</a></li>
+                  <li><a href="teachers">शिक्षकहरु तथा कर्मचारी</a></li>
                 </ul>
               </li>
               <li><a href="notice-events">सुचाना तथा कार्यक्रम</a></li>

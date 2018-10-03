@@ -4,7 +4,7 @@
           <div class="col-md-5">
             <div class="widget text-white">
               <ul class="list-inline xs-text-center text-white">
-                <li class="m-0 pl-10 pr-10"> <a href="#" class="text-white"><i class="fa fa-phone text-white"></i>  ०९१-५२५०४०</a> </li>
+                <li class="m-0 pl-10 pr-10"> <a href="#" class="text-white"><i class="fa fa-phone text-white"></i>  ०९१-४१८०२७</a> </li>
                 <li class="m-0 pl-10 pr-10"> 
                   <a href="#" class="text-white"><i class="fa fa-home text-white mr-5"></i> गौरिगंगा न.पा.-२, चौमाला, कैलाली</a> 
                 </li>
